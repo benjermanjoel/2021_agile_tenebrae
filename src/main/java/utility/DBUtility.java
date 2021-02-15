@@ -1,3 +1,8 @@
+/*
+* The DBUtility java class is used to register a JDBC driver with sqlite in order to create
+* a lightweight database.
+* */
+
 package utility;
 
 import java.sql.Connection;
