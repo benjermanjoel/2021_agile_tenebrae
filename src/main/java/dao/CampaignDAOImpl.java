@@ -28,7 +28,7 @@ public class CampaignDAOImpl implements CampaignDAO{
      These final's are later used in the implemented interface methods below.
 */
     // With each new campaign creation, all tables are dropped!
-    final static String DROP_TABLES = "drop tables;";
+    final static String DROP_TABLES = "drop table if exists weapons,items,spells,pcs,npcs;";
     // CREATE and SELECT queries for weapons
     final static String CREATE_TABLE_WEAPONS = "create table weapons(id integer primary key autoincrement, name text, " +
             "type text, cost text, damage text, weight text, properties text);";
