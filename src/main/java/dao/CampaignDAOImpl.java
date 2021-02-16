@@ -28,7 +28,11 @@ public class CampaignDAOImpl implements CampaignDAO{
      These final's are later used in the implemented interface methods below.
 */
     // With each new campaign creation, all tables are dropped!
-    final static String DROP_TABLES = "drop table if exists weapons,items,spells,pcs,npcs;";
+    final static String DROP_WEAPONS_TABLE = "drop table if exists weapons;";
+    final static String DROP_ITEMS_TABLE = "drop table if exists items;";
+    final static String DROP_SPELLS_TABLE = "drop table if exists spells;";
+    final static String DROP_PCS_TABLE = "drop table if exists pcs;";
+    final static String DROP_NPCS_TABLE = "drop table if exists npcs;";
     // CREATE and SELECT queries for weapons
     final static String CREATE_TABLE_WEAPONS = "create table weapons(id integer primary key autoincrement, name text, " +
             "type text, cost text, damage text, weight text, properties text);";
@@ -70,7 +74,11 @@ public class CampaignDAOImpl implements CampaignDAO{
             connection = DBUtility.createConnection();
             statement = connection.createStatement();
             statement.setQueryTimeout(DBUtility.TIMEOUT);
-            statement.executeUpdate(DROP_TABLES);
+            statement.executeUpdate(DROP_WEAPONS_TABLE);
+            statement.executeUpdate(DROP_ITEMS_TABLE);
+            statement.executeUpdate(DROP_SPELLS_TABLE);
+            statement.executeUpdate(DROP_PCS_TABLE);
+            statement.executeUpdate(DROP_NPCS_TABLE);
             statement.executeUpdate(CREATE_TABLE_WEAPONS);
             statement.executeUpdate(CREATE_TABLE_ITEMs);
             statement.executeUpdate(CREATE_TABLE_SPELLS);
