@@ -9,24 +9,24 @@ import java.io.Serializable;
 public class PC implements Serializable {
     private String name;
     private String char_class;
-    private double level;
+    private String level;
     private String race;
-    private double hitpts;
-    private double armor;
-    private double proficiency;
-    private double initiative;
-    private double speed;
-    private double strength;
-    private double dexterity;
-    private double constitution;
-    private double intelligence;
-    private double wisdom;
-    private double charisma;
+    private String hitpts;
+    private String armor;
+    private String proficiency;
+    private String initiative;
+    private String speed;
+    private String strength;
+    private String dexterity;
+    private String constitution;
+    private String intelligence;
+    private String wisdom;
+    private String charisma;
     private String background;
     
     // Constructor
 
-    public PC(String name, String char_class, double level, String race, double hitpts, double armor, double proficiency, double initiative, double speed, double strength, double dexterity, double constitution, double intelligence, double wisdom, double charisma, String background) {
+    public PC(String name, String char_class, String level, String race, String hitpts, String armor, String proficiency, String initiative, String speed, String strength, String dexterity, String constitution, String intelligence, String wisdom, String charisma, String background) {
         this.name = name;
         this.char_class = char_class;
         this.level = level;
@@ -62,11 +62,11 @@ public class PC implements Serializable {
         this.char_class = char_class;
     }
 
-    public double getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public void setLevel(double level) {
+    public void setLevel(String level) {
         this.level = level;
     }
 
@@ -78,91 +78,91 @@ public class PC implements Serializable {
         this.race = race;
     }
 
-    public double getHitpts() {
+    public String getHitpts() {
         return hitpts;
     }
 
-    public void setHitpts(double hitpts) {
+    public void setHitpts(String hitpts) {
         this.hitpts = hitpts;
     }
 
-    public double getArmor() {
+    public String getArmor() {
         return armor;
     }
 
-    public void setArmor(double armor) {
+    public void setArmor(String armor) {
         this.armor = armor;
     }
 
-    public double getProficiency() {
+    public String getProficiency() {
         return proficiency;
     }
 
-    public void setProficiency(double proficiency) {
+    public void setProficiency(String proficiency) {
         this.proficiency = proficiency;
     }
 
-    public double getInitiative() {
+    public String getInitiative() {
         return initiative;
     }
 
-    public void setInitiative(double initiative) {
+    public void setInitiative(String initiative) {
         this.initiative = initiative;
     }
 
-    public double getSpeed() {
+    public String getSpeed() {
         return speed;
     }
 
-    public void setSpeed(double speed) {
+    public void setSpeed(String speed) {
         this.speed = speed;
     }
 
-    public double getStrength() {
+    public String getStrength() {
         return strength;
     }
 
-    public void setStrength(double strength) {
+    public void setStrength(String strength) {
         this.strength = strength;
     }
 
-    public double getDexterity() {
+    public String getDexterity() {
         return dexterity;
     }
 
-    public void setDexterity(double dexterity) {
+    public void setDexterity(String dexterity) {
         this.dexterity = dexterity;
     }
 
-    public double getConstitution() {
+    public String getConstitution() {
         return constitution;
     }
 
-    public void setConstitution(double constitution) {
+    public void setConstitution(String constitution) {
         this.constitution = constitution;
     }
 
-    public double getIntelligence() {
+    public String getIntelligence() {
         return intelligence;
     }
 
-    public void setIntelligence(double intelligence) {
+    public void setIntelligence(String intelligence) {
         this.intelligence = intelligence;
     }
 
-    public double getWisdom() {
+    public String getWisdom() {
         return wisdom;
     }
 
-    public void setWisdom(double wisdom) {
+    public void setWisdom(String wisdom) {
         this.wisdom = wisdom;
     }
 
-    public double getCharisma() {
+    public String getCharisma() {
         return charisma;
     }
 
-    public void setCharisma(double charisma) {
+    public void setCharisma(String charisma) {
         this.charisma = charisma;
     }
 

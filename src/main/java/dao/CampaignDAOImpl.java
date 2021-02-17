@@ -47,15 +47,15 @@ public class CampaignDAOImpl implements CampaignDAO{
     final static String SELECT_ALL_SPELLS = "select * from spells;";
     // CREATE and SELECT queries for pcs
     final static String CREATE_TABLE_PCS = "create table pcs(id integer primary key autoincrement, name text, " +
-            "char_class text,level integer,race text,hitpts integer,armor integer,proficiency integer, " +
-            "initiative integer,speed integer,strength integer,dexterity integer,constitution integer, "+
-            "wisdom integer,charisma integer,background text);";
+            "char_class text,level text,race text,hitpts text,armor text,proficiency text, " +
+            "initiative text,speed text,strength text,dexterity text,constitution text, "+
+            "intelligence text,wisdom text,charisma text,background text);";
     final static String SELECT_ALL_PCS = "select * from pcs;";
     // CREATE and SELECT queries for npcs
     final static String CREATE_TABLE_NPCS = "create table npcs(id integer primary key autoincrement, name text, " +
-            "type text,char_class text,level integer,race text,hitpts integer,armor integer,proficiency integer, " +
-            "initiative integer,speed integer,strength integer,dexterity integer,constitution integer, "+
-            "wisdom integer,charisma integer,background text);";
+            "type text,char_class text,level text,race text,hitpts text,armor text,proficiency text, " +
+            "initiative text,speed text,strength text,dexterity text,constitution text, "+
+            "intelligence text,wisdom text,charisma text,location text,traits text);";
     final static String SELECT_ALL_NPCS = "select * from npcs;";
 
     @Override
@@ -65,9 +65,9 @@ public class CampaignDAOImpl implements CampaignDAO{
     * Then using our CREATE and SELECT queries above, this method begins creating and populating our database tables.
     *
     * */
-    public void populateDB(String filepath) throws CampaignDAOException {
-        Connection connection = null;
-        Statement statement = null;
+    public void populateDB(String weaponsPath,String itemsPath,String spellsPath,String pcsPath,String npcsPath) throws CampaignDAOException {
+        Connection connection;
+        Statement statement;
 
         try {
             // Create the database and tables
@@ -86,12 +86,16 @@ public class CampaignDAOImpl implements CampaignDAO{
             statement.executeUpdate(CREATE_TABLE_NPCS);
 
             // Populate the campaign tables with data
-            final File inputFile = new File(filepath);
-            final List<Weapon> weapons = WorkbookUtility.retrieveWeapons(inputFile);
-            final List<Item> items = WorkbookUtility.retrieveItems(inputFile);
-            final List<Spell> spells = WorkbookUtility.retrieveSpells(inputFile);
-            final List<PC> pcs = WorkbookUtility.retrievePCs(inputFile);
-            final List<NPC> npcs = WorkbookUtility.retrieveNPCs(inputFile);
+            final File weaponsFile = new File(weaponsPath);
+            final File itemsFile = new File(itemsPath);
+            final File spellsFile = new File(spellsPath);
+            final File pcsFile = new File(pcsPath);
+            final File npcsFile = new File(npcsPath);
+            final List<Weapon> weapons = WorkbookUtility.retrieveWeapons(weaponsFile);
+            final List<Item> items = WorkbookUtility.retrieveItems(itemsFile);
+            final List<Spell> spells = WorkbookUtility.retrieveSpells(spellsFile);
+            final List<PC> pcs = WorkbookUtility.retrievePCs(pcsFile);
+            final List<NPC> npcs = WorkbookUtility.retrieveNPCs(npcsFile);
 
             for (final Weapon weapon : weapons) {
                 final String insertWeapons = "insert into weapons (name,type,cost,damage,weight,properties) values" +
@@ -157,10 +161,10 @@ public class CampaignDAOImpl implements CampaignDAO{
                 statement.executeUpdate(insertPCS);
             }
             for (final NPC npc : npcs) {
-                final String insertNPCS = "insert into pcs (name,char_class,level,race,hitpts,armor,proficiency," +
-                        "initiative,speed,strength,dexterity,constitution,intelligence,wisdom,charisma,background) values" +
+                final String insertNPCS = "insert into npcs (name,type,char_class,level,race,hitpts,armor,proficiency," +
+                        "initiative,speed,strength,dexterity,constitution,intelligence,wisdom,charisma,location,traits) values" +
                         "('" + npc.getName() + "','"
-                        + npc.getType()
+                        + npc.getType() + "','"
                         + npc.getChar_class() + "','"
                         + npc.getLevel() + "','"
                         + npc.getRace() + "','"
@@ -195,8 +199,8 @@ public class CampaignDAOImpl implements CampaignDAO{
     * */
     public List<Weapon> retrieveWeapons() throws CampaignDAOException {
         final List<Weapon> weapons = new ArrayList<Weapon>();
-        Connection connection = null;
-        Statement statement = null;
+        Connection connection;
+        Statement statement;
 
         try {
             connection = DBUtility.createConnection();
@@ -231,8 +235,8 @@ public class CampaignDAOImpl implements CampaignDAO{
      * */
     public List<Item> retrieveItems() throws CampaignDAOException {
         final List<Item> items = new ArrayList<Item>();
-        Connection connection = null;
-        Statement statement = null;
+        Connection connection;
+        Statement statement;
 
         try {
             connection = DBUtility.createConnection();
@@ -265,8 +269,8 @@ public class CampaignDAOImpl implements CampaignDAO{
      * */
     public List<Spell> retrieveSpells() throws CampaignDAOException {
         final List<Spell> spells = new ArrayList<Spell>();
-        Connection connection = null;
-        Statement statement = null;
+        Connection connection;
+        Statement statement;
 
         try {
             connection = DBUtility.createConnection();
@@ -303,8 +307,8 @@ public class CampaignDAOImpl implements CampaignDAO{
     //TODO de-duplicate code.
     public List<PC> retrievePCs() throws CampaignDAOException {
         final List<PC> pcs = new ArrayList<PC>();
-        Connection connection = null;
-        Statement statement = null;
+        Connection connection;
+        Statement statement;
 
         try {
             connection = DBUtility.createConnection();
@@ -317,19 +321,19 @@ public class CampaignDAOImpl implements CampaignDAO{
             while (results.next()){
                  String name = results.getString("name");
                  String char_class = results.getString("char_class");
-                 double level = results.getDouble("level");
+                 String level = results.getString("level");
                  String race = results.getString("race");
-                 double hitpts = results.getDouble("hitpts");
-                 double armor = results.getDouble("armor");
-                 double proficiency = results.getDouble("proficiency");
-                 double initiative = results.getDouble("initiative");
-                 double speed = results.getDouble("speed");
-                 double strength = results.getDouble("strength");
-                 double dexterity = results.getDouble("dexterity");
-                 double constitution = results.getDouble("constitution");
-                 double intelligence = results.getDouble("intelligence");
-                 double wisdom = results.getDouble("wisdom");
-                 double charisma = results.getDouble("charisma");
+                 String hitpts = results.getString("hitpts");
+                 String armor = results.getString("armor");
+                 String proficiency = results.getString("proficiency");
+                 String initiative = results.getString("initiative");
+                 String speed = results.getString("speed");
+                 String strength = results.getString("strength");
+                 String dexterity = results.getString("dexterity");
+                 String constitution = results.getString("constitution");
+                 String intelligence = results.getString("intelligence");
+                 String wisdom = results.getString("wisdom");
+                 String charisma = results.getString("charisma");
                  String background = results.getString("background");
 
                 pcs.add(new PC(name,char_class,level,race,hitpts,armor,proficiency,initiative,speed,
@@ -351,8 +355,8 @@ public class CampaignDAOImpl implements CampaignDAO{
     //TODO de-duplicate code
     public List<NPC> retrieveNPCs() throws CampaignDAOException {
         final List<NPC> npcs = new ArrayList<NPC>();
-        Connection connection = null;
-        Statement statement = null;
+        Connection connection;
+        Statement statement;
 
         try {
             connection = DBUtility.createConnection();
@@ -366,19 +370,19 @@ public class CampaignDAOImpl implements CampaignDAO{
                  String name = results.getString("name");
                  String type = results.getString("type");
                  String char_class = results.getString("char_class");
-                 double level = results.getDouble("level");
+                 String level = results.getString("level");
                  String race = results.getString("race");
-                 double hitpts = results.getDouble("hitpts");
-                 double armor = results.getDouble("armor");
-                 double proficiency = results.getDouble("proficiency");
-                 double initiative = results.getDouble("initiative");
-                 double speed = results.getDouble("speed");
-                 double strength = results.getDouble("strength");
-                 double dexterity = results.getDouble("dexterity");
-                 double constitution = results.getDouble("constitution");
-                 double intelligence = results.getDouble("intelligence");
-                 double wisdom = results.getDouble("wisdom");
-                 double charisma = results.getDouble("charisma");
+                 String hitpts = results.getString("hitpts");
+                 String armor = results.getString("armor");
+                 String proficiency = results.getString("proficiency");
+                 String initiative = results.getString("initiative");
+                 String speed = results.getString("speed");
+                 String strength = results.getString("strength");
+                 String dexterity = results.getString("dexterity");
+                 String constitution = results.getString("constitution");
+                 String intelligence = results.getString("intelligence");
+                 String wisdom = results.getString("wisdom");
+                 String charisma = results.getString("charisma");
                  String location = results.getString("location");
                  String traits = results.getString("traits");
                  String background = results.getString("background");
