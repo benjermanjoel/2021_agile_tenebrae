@@ -15,6 +15,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="assets/css/screenCSS.css" rel="stylesheet">
 
     <title>Player Character's Screen</title>
 </head>
@@ -27,23 +28,21 @@
 <!-- Page Headline -->
 <div class="container text-center">
     <div class="jumbotron">
-        <h1 class="display-4">Player Character Campaign Information</h1>
+        <h1 class="display-4" id="headline">Player Character Campaign Information</h1>
     </div>
 </div>
 
 <!-- Container holding "rows" in webpage for other PC's and table data for spells and items-->
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2" id="leftColumn">
             <!-- List for Player Characters -->
             <h2>Player Characters</h2>
             <div class="list-group">
 
                 <!-- TODO: input links to PC data for each character -->
                 <!-- Have blank links to player information currently-->
-                <a href="#" class="list-group-item list-group-item-action active">
-                    Benja Minn
-                </a>
+                <a href="#" class="list-group-item list-group-item-action active">Benja Minn</a>
                 <a href="#" class="list-group-item list-group-item-action">Maat Chu</a>
                 <a href="#" class="list-group-item list-group-item-action">Tie'l Urr</a>
             </div>
@@ -51,18 +50,18 @@
 
         <!--Main content of page-->
         <div class="col-md-6 border border-top-0 border-bottom-0">
-            <h2>Main content here. My idea was to click on PC or NPC and have info about them appear here.</h2>
+            <h2>Main content and have info about them appear here. Not sure what other info should be posted for PC perspective besides stats of own (as well as other) PC's</h2>
 
         </div>
 
         <!--Tables to display tools and spells-->
-        <div class="col-md-4">
+        <div class="col-md-4" id="rightColumn">
             <!-- TODO: Create and display tables with tools or spells from database-->
-            <h2>Insert real database table(s) here</h2>
+            <h2>*Insert real database tables here*</h2>
 
             <!-- Currently has demo tables placed with fake data -->
             <h3>Items Table</h3>
-            <table class="table table-sm table-bordered table-striped">
+            <table class="table table-sm table-bordered table-striped table-dark">
                 <thead>
                 <tr>
                     <th scope="col">Item</th>

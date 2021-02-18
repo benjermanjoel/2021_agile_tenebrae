@@ -15,6 +15,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="assets/css/screenCSS.css" rel="stylesheet">
 
     <title>Dungeon Master's Screen</title>
 </head>
@@ -27,36 +28,32 @@
     <!-- Page Headline -->
     <div class="container text-center">
         <div class="jumbotron">
-            <h1 class="display-4">DM Campaign Information</h1>
+            <h1 class="display-4" id="headline">DM Campaign Information</h1>
         </div>
     </div>
 
     <!-- Container holding "rows" in webpage for PC, NPC, and table data for spells and items-->
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2" id="leftColumn">
                 <!-- List for Player Characters -->
                 <h2>Player Characters</h2>
                 <div class="list-group">
 
                     <!-- TODO: input links to PC data for each character -->
                     <!-- Have blank links to player information currently-->
-                    <a href="#" class="list-group-item list-group-item-action active">
-                        Benja Minn
-                    </a>
+                    <a href="#" class="list-group-item list-group-item-action active">Benja Minn</a>
                     <a href="#" class="list-group-item list-group-item-action">Maat Chu</a>
                     <a href="#" class="list-group-item list-group-item-action">Tie'l Urr</a>
                 </div>
-                <div class="row">
+                <div class="row" id="stylingNPC">
                     <!-- List for Non-Player Characters -->
                     <h2>Non-Player Characters</h2>
                     <div class="list-group">
 
                         <!--TODO: input links to NPC data for each character -->
                         <!-- Have blank links to NPC information currently-->
-                        <a href="#" class="list-group-item list-group-item-action">
-                            Jimmy
-                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">Jimmy</a>
                         <a href="#" class="list-group-item list-group-item-action">Bobbert</a>
                         <a href="#" class="list-group-item list-group-item-action">Serena</a>
                     </div>
@@ -70,13 +67,13 @@
             </div>
 
             <!--Tables to display tools and spells-->
-            <div class="col-md-4">
+            <div class="col-md-4" id="rightColumn">
                 <!-- TODO: Create and display tables with tools or spells from database-->
-                <h2>Insert real database table(s) here</h2>
+                <h2>*Insert real database tables here*</h2>
 
                 <!-- Currently has demo tables placed with fake data -->
                 <h3>Items Table</h3>
-                <table class="table table-sm table-bordered table-striped">
+                <table class="table table-sm table-bordered table-striped table-dark">
                     <thead>
                         <tr>
                             <th scope="col">Item</th>
@@ -120,7 +117,7 @@
                 </table>
 
                 <h3>Spells Table</h3>
-                <table class="table table-sm table-bordered table-striped">
+                <table class="table table-sm table-bordered table-striped table-dark">
                     <thead>
                     <tr>
                         <th scope="col">Spell</th>
