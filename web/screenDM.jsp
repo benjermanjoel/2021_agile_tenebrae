@@ -20,6 +20,7 @@
 </head>
 
 <body>
+
 <!--Place navbar-->
 <%@include file="includes/navbar.jsp"%>
 
@@ -30,51 +31,155 @@
         </div>
     </div>
 
-    <!-- Container holding "rows" in webpage for PC and various Table data -->
+    <!-- Container holding "rows" in webpage for PC, NPC, and table data for spells and items-->
     <div class="container">
         <div class="row">
-            <!-- List for Player Characters -->
-            <div class="col-md-3">
+            <div class="col-md-2">
+                <!-- List for Player Characters -->
                 <h2>Player Characters</h2>
                 <div class="list-group">
-                    <!-- TODO: input links to PC data for each character -->
 
+                    <!-- TODO: input links to PC data for each character -->
                     <!-- Have blank links to player information currently-->
                     <a href="#" class="list-group-item list-group-item-action active">
                         Benja Minn
                     </a>
                     <a href="#" class="list-group-item list-group-item-action">Maat Chu</a>
                     <a href="#" class="list-group-item list-group-item-action">Tie'l Urr</a>
+                </div>
+                <div class="row">
+                    <!-- List for Non-Player Characters -->
+                    <h2>Non-Player Characters</h2>
+                    <div class="list-group">
 
+                        <!--TODO: input links to NPC data for each character -->
+                        <!-- Have blank links to NPC information currently-->
+                        <a href="#" class="list-group-item list-group-item-action">
+                            Jimmy
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">Bobbert</a>
+                        <a href="#" class="list-group-item list-group-item-action">Serena</a>
+                    </div>
                 </div>
             </div>
 
             <!--Main content of page-->
-            <div class="col-md-6">
-                <h2>Main content here. My idea was to click on PC or NPC and have info appear here.</h2>
+            <div class="col-md-6 border border-top-0 border-bottom-0">
+                <h2>Main content here. My idea was to click on PC or NPC and have info about them appear here.</h2>
 
             </div>
 
             <!--Tables to display tools and spells-->
-            <div class="col-md-3">
-                <!-- TODO: Create and display tables with tools or spells -->
-                <h2>Insert tables</h2>
-            </div>
-        </div>
-        <!-- New row to place NPC data below PC data on webpage -->
-        <div class="row">
-            <!-- List for Non-Player Characters -->
-            <div class="col-md-3">
-                <h2>Non-Player Characters</h2>
-                <!--TODO: input links to NPC data for each character -->
+            <div class="col-md-4">
+                <!-- TODO: Create and display tables with tools or spells from database-->
+                <h2>Insert real database table(s) here</h2>
 
-                <!-- Have blank links to NPC information currently-->
-                <a href="#" class="list-group-item list-group-item-action">
-                    Jimmy
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">Bobbert</a>
-                <a href="#" class="list-group-item list-group-item-action">Serena</a>
+                <!-- Currently has demo tables placed with fake data -->
+                <h3>Items Table</h3>
+                <table class="table table-sm table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Item</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Cost</th>
+                            <th scope="col">Weight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Abacus</th>
+                            <td>Adventuring Gear</td>
+                            <td>2 gp</td>
+                            <td>2 lb</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Acid (vial)</th>
+                            <td>Adventuring Gear</td>
+                            <td>25 gp</td>
+                            <td>1 lb</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Alchemist's fire (flask)</th>
+                            <td>Adventuring Gear</td>
+                            <td>50 gp</td>
+                            <td>1 lb</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Arrows (20)</th>
+                            <td>Ammunition</td>
+                            <td>1 gp</td>
+                            <td>1 lb</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Blowgun Needles (20)</th>
+                            <td>Ammunition</td>
+                            <td>1 gp</td>
+                            <td>1 lb</td>
+                        </tr>
+                    </tbody>
+                </table>
 
+                <h3>Spells Table</h3>
+                <table class="table table-sm table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Spell</th>
+                        <th scope="col">Level</th>
+                        <th scope="col">School</th>
+                        <th scope="col">Casting</th>
+                        <th scope="col">Ritual</th>
+                        <th scope="col">Concentration</th>
+                        <th scope="col">Classes</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Acid Splash</th>
+                        <td>Cantrip</td>
+                        <td>Conjuration</td>
+                        <td>Action</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>Sorcerer, Wizard</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Blade Ward</th>
+                        <td>Cantrip</td>
+                        <td>Abjuration</td>
+                        <td>Action</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>Bard,Sorcerer, Warlock, Wizard</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Chill Touch</th>
+                        <td>Cantrip</td>
+                        <td>Necromancy</td>
+                        <td>Action</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>Sorcerer, Warlock, Wizard</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Dancing Lights</th>
+                        <td>Cantrip</td>
+                        <td>Evocation</td>
+                        <td>Action</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>Bard, Sorcerer, Wizard</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Druidcraft</th>
+                        <td>Cantrip</td>
+                        <td>Transmutation</td>
+                        <td>Action</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>Druid</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
