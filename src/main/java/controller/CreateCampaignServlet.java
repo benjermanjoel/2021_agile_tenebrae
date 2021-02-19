@@ -19,12 +19,16 @@ public class CreateCampaignServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        final String filePath = getServletContext().getRealPath(WorkbookUtility.INPUT_FILE_DATA);
+        final String weaponsPath = getServletContext().getRealPath(WorkbookUtility.WEAPONS_FILE_DATA);
+        final String itemsPath = getServletContext().getRealPath(WorkbookUtility.ITEMS_FILE_DATA);
+        final String spellsPath = getServletContext().getRealPath(WorkbookUtility.SPELLS_FILE_DATA);
+        final String pcsPath = getServletContext().getRealPath(WorkbookUtility.PCS_FILE_DATA);
+        final String npcsPath = getServletContext().getRealPath(WorkbookUtility.NPCS_FILE_DATA);
         final CampaignDAO campaignDAO = new CampaignDAOImpl();
         String message;
 
         try {
-            campaignDAO.populateDB(filePath);
+            campaignDAO.populateDB(weaponsPath,itemsPath,spellsPath,pcsPath,npcsPath);
             message = "Database successfully populated!";
         } catch (CampaignDAOException e) {
             e.printStackTrace();
