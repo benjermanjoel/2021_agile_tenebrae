@@ -76,3 +76,9 @@ log/
 
 # Mac
 .DS_Store
+
+# Database
+*.db
+
+# tomcat
+tomcat.8080
