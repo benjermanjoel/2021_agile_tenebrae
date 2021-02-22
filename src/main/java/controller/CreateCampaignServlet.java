@@ -34,7 +34,7 @@ public class CreateCampaignServlet extends HttpServlet {
             e.printStackTrace();
             message = "There was an error creating the database. The database has not been populated.";
         }
-        request.setAttribute("message", message);
+
         getServletContext().getRequestDispatcher("/createCampaign.jsp").forward(request,response);
     }
 }
