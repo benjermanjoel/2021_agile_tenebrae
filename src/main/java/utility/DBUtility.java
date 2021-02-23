@@ -12,12 +12,9 @@ import java.sql.Statement;
 
 public class DBUtility {
     public static final int TIMEOUT = 30;
-    private static final String CONNECTION = "jdbc:sqlite:new_campaign.db";
-    private static final String DRIVER = "org.sqlite.JDBC";
+    private static final String CONNECTION = "jdbc:postgresql://ec2-3-87-180-131.compute-1.amazonaws.com:5432/d7iin3c0jveuc0";
 
     public static Connection createConnection() throws SQLException, ClassNotFoundException {
-        //register
-        Class.forName(DRIVER);
         //create database connection, this also creates the database
         return DriverManager.getConnection(CONNECTION);
     }

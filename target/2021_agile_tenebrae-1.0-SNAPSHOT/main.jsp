@@ -21,10 +21,12 @@
 <%@include file="includes/navbar.jsp"%>
 <div class="container">
   <div class="jumbotron">
-    <h1 class="display-4">Dungeon Masters' Uber cool stat tracker!</h1>
+    <h1 class="display-4">Welcome home!</h1>
+    <b>${user.firstname} (${user.email})</b>
+    <br><br>
+    <a href="/logout">Logout</a>
   </div>
 </div>
-
 
 <!-- Optional JavaScript; choose one of the two! -->
 
