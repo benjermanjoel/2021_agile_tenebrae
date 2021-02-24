@@ -1,8 +1,10 @@
 package controller;
 
+import com.google.gson.Gson;
 import dao.CampaignDAO;
 import dao.CampaignDAOException;
 import dao.CampaignDAOImpl;
+import dao.TestDAO;
 import model.NPC;
 import model.PC;
 
@@ -22,7 +24,7 @@ public class ViewPCServlet extends HttpServlet {
         String requestType = request.getParameter("type");
         String name = request.getParameter("name");
 
-        /* Use instead of comparator? Since we are specifically trying to match a certain name entry */
+
         if (requestType.equals("PC")) {
 
             /* Set empty variable to hold found Player Character information */
@@ -42,6 +44,18 @@ public class ViewPCServlet extends HttpServlet {
                     }
                 }
 
+                if (foundPC == null) {
+                    return;
+                }
+
+                /* Create new gson variable to hold json */
+                Gson gson = new Gson();
+
+                /* Populate json with Player Character found and convert to JSON */
+                String json = gson.toJson(foundPC);
+
+                /* Display information  */
+                response.getWriter().println(json);
 
 
             } catch (CampaignDAOException e) {
@@ -66,6 +80,19 @@ public class ViewPCServlet extends HttpServlet {
                         break;
                     }
                 }
+
+                if (foundNPC == null) {
+                    return;
+                }
+
+                /* Create new gson variable to hold json */
+                Gson gson = new Gson();
+
+                /* Populate json with Player Character found and convert to JSON */
+                String json = gson.toJson(foundNPC);
+
+                /* Display information  */
+                response.getWriter().println(json);
             } catch (CampaignDAOException e) {
                 e.printStackTrace();
             }
