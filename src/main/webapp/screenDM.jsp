@@ -41,6 +41,7 @@
             <div class="col-md-2" id="leftColumn">
                 <!-- List for Player Characters -->
                 <h2>Player Characters</h2>
+                <div class="list-group">
                 <c:choose>
 
                     <c:when test="${empty pcList}">
@@ -49,15 +50,14 @@
 
                     <c:otherwise>
                         <c:forEach var="pcList" items="${pcList}">
-                            <div class="list-group">
 
                                 <!-- TODO: Create link to database for character -->
                                 <a href="#" class="list-group-item list-group-item-action listOnClickPC">${pcList.name}</a>
 
-                            </div>
                         </c:forEach>
                     </c:otherwise>
                 </c:choose>
+                </div>
 
 
                 <div class="row" id="stylingNPC">
@@ -90,6 +90,82 @@
             <div class="col-md-6 border border-top-0 border-bottom-0">
                 <!-- Container to hold and display all Player Character stats (to be switched with nonPlayerCharacter on click) -->
                 <div id="playerCharacter">
+
+                    <div class="row">
+                        <div>
+                            <table class="pcStatSheet">
+                                <thead class="pcStatHead">
+                                    <tr>
+                                        <th colspan="2">CHARACTER NAME HERE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="pcStat">Class:</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Level:</td>
+                                        <td>LEVEL HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Race:</td>
+                                        <td>RACE HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Race:</td>
+                                        <td>RACE HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hit Points:</td>
+                                        <td>HP HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Armor Class:</td>
+                                        <td>AC HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Proficiency:</td>
+                                        <td>PROFICIENCY HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Initiative:</td>
+                                        <td>INITIATIVE HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Speed:</td>:</td>
+                                        <td>SPEED HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Strength:</td>
+                                        <td>STR HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dexterity:</td>
+                                        <td>DEX HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Constitution:</td>
+                                        <td>CON HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Intelligence:</td>
+                                        <td>INT HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wisdom:</td>
+                                        <td>WIS HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Background:</td>
+                                        <td>BACKGROUND HERE</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
 
                 </div>
 

@@ -32,7 +32,7 @@ public class LoadDMServlet extends HttpServlet {
             /* Retrieve list of NPC information from DAO and store in variable npcList */
             List<NPC> npcList = campaignDAO.retrieveNPCs();
 
-            //Attach our list of people to the request object
+            //Attach our lists of people to the request object
             request.setAttribute("pcList", pcList);
             request.setAttribute("npcList", npcList);
 

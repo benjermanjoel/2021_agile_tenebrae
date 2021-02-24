@@ -41,6 +41,7 @@
         <div class="col-md-2" id="leftColumn">
             <!-- List for Player Characters -->
             <h2>Player Characters</h2>
+            <div class="list-group">
             <c:choose>
 
                 <c:when test="${empty pcList}">
@@ -50,15 +51,16 @@
                 <c:otherwise>
 
                     <c:forEach var="pcList" items="${pcList}">
-                        <div class="list-group">
+
 
                             <!-- TODO: Create link to database for character -->
                             <a href="#" class="list-group-item list-group-item-action">${pcList.name}</a>
 
-                        </div>
+
                     </c:forEach>
                 </c:otherwise>
             </c:choose>
+            </div>
         </div>
 
         <!--Main content of page-->

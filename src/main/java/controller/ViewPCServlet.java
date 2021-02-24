@@ -54,7 +54,7 @@ public class ViewPCServlet extends HttpServlet {
                 /* Populate json with Player Character found and convert to JSON */
                 String json = gson.toJson(foundPC);
 
-                /* Display information  */
+                /* Display information stored in json */
                 response.getWriter().println(json);
 
 
