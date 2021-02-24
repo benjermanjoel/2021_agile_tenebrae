@@ -61,15 +61,11 @@
             <artifactId>guava</artifactId>
             <version>14.0.1</version>
         </dependency>
-<<<<<<< HEAD
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.2.10</version>
         </dependency>
-
-=======
->>>>>>> main
     </dependencies>
 
     <build>

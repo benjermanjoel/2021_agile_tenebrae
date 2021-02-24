@@ -54,10 +54,7 @@
     <orderEntry type="library" name="Maven: xml-apis:xml-apis:1.0.b2" level="project" />
     <orderEntry type="library" name="Maven: jstl:jstl:1.2" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:14.0.1" level="project" />
-<<<<<<< HEAD
     <orderEntry type="library" name="Maven: org.postgresql:postgresql:42.2.10" level="project" />
-=======
-    <orderEntry type="library" name="Maven: org.xerial:sqlite-jdbc:3.34.0" level="project" />
->>>>>>> main
+
   </component>
 </module>
