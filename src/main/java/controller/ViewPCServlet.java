@@ -12,8 +12,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "viewPC", value = "/viewPC")
-public class viewPC extends HttpServlet {
+@WebServlet(name = "ViewPCServlet", value = "/ViewPCServlet")
+public class ViewPCServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -41,6 +41,9 @@ public class viewPC extends HttpServlet {
                         break;
                     }
                 }
+
+
+
             } catch (CampaignDAOException e) {
                 e.printStackTrace();
             }
@@ -67,6 +70,9 @@ public class viewPC extends HttpServlet {
                 e.printStackTrace();
             }
         }
+
+
+
     }
 
     @Override
