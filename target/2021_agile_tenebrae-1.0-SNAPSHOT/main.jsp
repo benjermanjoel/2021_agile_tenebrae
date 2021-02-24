@@ -24,7 +24,6 @@
     <h1 class="display-4">Welcome back!</h1>
     <b>${user.firstName} (${user.email})</b>
     <br><br>
-    <button action="logout">Logout</button>
   </div>
 </div>
 
