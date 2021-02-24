@@ -16,7 +16,7 @@ public class UserDAO {
         Properties props = new Properties();
         props.setProperty("user", dbUser);
         props.setProperty("password", dbPassword);
-        props.setProperty("ssl", "true");
+        //props.setProperty("ssl", "true");
         Connection conn = DriverManager.getConnection(jdbcURL, props);
 
         String sql = "select * from users where email = ? and password = ?";

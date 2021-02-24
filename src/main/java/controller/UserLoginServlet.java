@@ -26,7 +26,7 @@ public class UserLoginServlet extends HttpServlet {
 
         try{
             User user = userDao.checkLogin(email, password);
-            String destPage = "login.jsp";
+            String destPage = "index.jsp";
 
             if(user != null){
                 HttpSession session = request.getSession();
