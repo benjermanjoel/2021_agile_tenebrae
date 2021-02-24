@@ -6,9 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
+    <!-- CDN for hosting and using jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,30 +42,183 @@
                 <!-- List for Player Characters -->
                 <h2>Player Characters</h2>
                 <div class="list-group">
+                <c:choose>
 
-                    <!-- TODO: input links to PC data for each character -->
-                    <!-- Have blank links to player information currently-->
-                    <a href="#" class="list-group-item list-group-item-action active">Benja Minn</a>
-                    <a href="#" class="list-group-item list-group-item-action">Maat Chu</a>
-                    <a href="#" class="list-group-item list-group-item-action">Tie'l Urr</a>
+                    <c:when test="${empty pcList}">
+                        <h5>No current Player Characters</h5>
+                    </c:when>
+
+                    <c:otherwise>
+                        <c:forEach var="pcList" items="${pcList}">
+
+                                <!-- TODO: Create link to database for character -->
+                                <a href="#" class="list-group-item list-group-item-action listOnClickPC">${pcList.name}</a>
+
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
                 </div>
+
+
                 <div class="row" id="stylingNPC">
                     <!-- List for Non-Player Characters -->
                     <h2>Non-Player Characters</h2>
                     <div class="list-group">
+                        <c:choose>
 
-                        <!--TODO: input links to NPC data for each character -->
-                        <!-- Have blank links to NPC information currently-->
-                        <a href="#" class="list-group-item list-group-item-action">Jimmy</a>
-                        <a href="#" class="list-group-item list-group-item-action">Bobbert</a>
-                        <a href="#" class="list-group-item list-group-item-action">Serena</a>
+                            <c:when test="${empty npcList}">
+                                <h5>No current Player Characters</h5>
+                            </c:when>
+
+                            <c:otherwise>
+
+                                <c:forEach var="npcList" items="${npcList}">
+
+
+                                        <!-- TODO: Create link to database for character -->
+                                        <a href="#" class="list-group-item list-group-item-action listOnClickNPC">${npcList.name}</a>
+
+
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
 
             <!--Main content of page-->
             <div class="col-md-6 border border-top-0 border-bottom-0">
-                <h2>Main content here. My idea was to click on PC or NPC and have info about them appear here.</h2>
+                <!-- Container to hold and display all Player Character stats (to be switched with nonPlayerCharacter on click) -->
+                <div id="playerCharacter">
+
+                    <div class="row">
+                        <div>
+                            <table class="pcStatSheet">
+                                <thead class="pcStatHead">
+                                    <tr>
+                                        <th colspan="2">CHARACTER NAME HERE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="pcStat">Class:</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Level:</td>
+                                        <td>LEVEL HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Race:</td>
+                                        <td>RACE HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Race:</td>
+                                        <td>RACE HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hit Points:</td>
+                                        <td>HP HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Armor Class:</td>
+                                        <td>AC HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Proficiency:</td>
+                                        <td>PROFICIENCY HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Initiative:</td>
+                                        <td>INITIATIVE HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Speed:</td>:</td>
+                                        <td>SPEED HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Strength:</td>
+                                        <td>STR HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dexterity:</td>
+                                        <td>DEX HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Constitution:</td>
+                                        <td>CON HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Intelligence:</td>
+                                        <td>INT HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wisdom:</td>
+                                        <td>WIS HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Background:</td>
+                                        <td>BACKGROUND HERE</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Container to hold and display all Non-Player Character stats (to be switched with playerCharacter on click) -->
+                <div id="nonPlayerCharacter">
+
+                </div>
+
+                <script>
+                    <!-- After doc is ready, run function-->
+                    $( document ).ready(function() {
+                        <!-- When object is clicked run function -->
+                        $(".listOnClickPC").click(function() {
+                            <!-- Store text of name from clicked object in variable $name -->
+                            var $name = $(this).text();
+                            <!-- (Ajax runs code in background) Direct Ajax to correct file "ViewPCServlet -->
+                            $.ajax('ViewPCServlet',
+                                {
+                                    dataType: 'json',
+                                    type: 'get',
+                                    <!-- Data to be sent to servlet to match with the specific character -->
+                                    data: {name: $name, type: 'PC'},
+                                    timeout: 500,
+                                    success: function(data) {
+
+                                        <!-- console log for testing -->
+                                        console.log(data);
+                                    }
+                                })
+                        });
+                        <!-- When object is clicked run function -->
+                        $(".listOnClickNPC").click(function() {
+                            <!-- Store text of name from clicked object in variable $name -->
+                            var $name = $(this).text();
+                            <!-- (Ajax runs code in background) Direct Ajax to correct file "ViewNPCServlet -->
+                            $.ajax('ViewPCServlet',
+                                {
+                                    dataType: 'json',
+                                    type: 'get',
+                                    <!-- Data to be sent to servlet to match with the specific character -->
+                                    data: {name: $name, type: 'NPC'},
+                                    timeout: 500,
+                                    success: function(data) {
+
+                                        <!-- console log for testing -->
+                                        console.log(data);
+                                    }
+                                })
+                        });
+                     });
+                </script>
+
+
 
             </div>
 

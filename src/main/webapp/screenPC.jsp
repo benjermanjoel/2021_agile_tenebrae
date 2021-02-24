@@ -6,9 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
+    <!-- CDN for hosting and using jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,17 +42,30 @@
             <!-- List for Player Characters -->
             <h2>Player Characters</h2>
             <div class="list-group">
+            <c:choose>
 
-                <!-- TODO: input links to PC data for each character -->
-                <!-- Have blank links to player information currently-->
-                <a href="#" class="list-group-item list-group-item-action active">Benja Minn</a>
-                <a href="#" class="list-group-item list-group-item-action">Maat Chu</a>
-                <a href="#" class="list-group-item list-group-item-action">Tie'l Urr</a>
+                <c:when test="${empty pcList}">
+                    <h5>No current Player Characters</h5>
+                </c:when>
+
+                <c:otherwise>
+
+                    <c:forEach var="pcList" items="${pcList}">
+
+
+                            <!-- TODO: Create link to database for character -->
+                            <a href="#" class="list-group-item list-group-item-action">${pcList.name}</a>
+
+
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
             </div>
         </div>
 
         <!--Main content of page-->
         <div class="col-md-6 border border-top-0 border-bottom-0">
+            <!-- TODO: Display Character information-->
             <h2>Main content and have info about them appear here. Not sure what other info should be posted for PC perspective besides stats of own (as well as other) PC's</h2>
 
         </div>
