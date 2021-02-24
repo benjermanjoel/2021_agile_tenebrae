@@ -15,6 +15,8 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <%--Javascript--%>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
     <title>Dungeon Masters' Uber cool stat tracker!</title>
 </head>
@@ -29,14 +31,14 @@
 
 <%-- Form for adding a new character.--%>
 <div class="container">
-    <form class="form-row" action="addCharacter" method="post">
+    <form action="addCharacter" method="post">
         <div class="col">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" aria-placeholder="Frodo Baggins">
+            <input type="text" class="form-control" id="name" aria-placeholder="Frodo Baggins" required>
         </div>
         <div class="col">
             <label for="level">Level</label>
-            <select class="form-control" id="level">
+            <select class="form-control" id="level" required>
                 <option selected>Choose...</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -62,7 +64,7 @@
         </div>
         <div class="col">
             <label for="char_class">Class</label>
-            <select class="form-select" id="char_class">
+            <select class="form-select" id="char_class" required>
                 <option selected>Choose...</option>
                 <option value="1">Barbarian</option>
                 <option value="2">Bard</option>
@@ -72,7 +74,7 @@
         <div class="form-row">
             <div class="col">
                 <label for="race">Race</label>
-                <select class="form-select" id="race">
+                <select class="form-select" id="race" required>
                     <option selected>Choose...</option>
                     <option value="1">Human</option>
                     <option value="2">Elf</option>
@@ -146,18 +148,34 @@
             <textarea class="form-control" id="background" rows="3"></textarea>
         </div>
         <div class="col-auto">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="npcCheck">
-                <label class="form-check-label" for="npcCheck">
-                    Non-playable character?
-                </label>
+            <p>
+                <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Non-playable Character?
+                </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <label for="type">Type</label>
+                <div>
+                    <select class="form-select" id="type">
+                        <option selected>Choose...</option>
+                        <option value="1">Non-combat NPC</option>
+                        <option value="2">Enemy</option>
+                    </select>
+                </div>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Enter traits here" id="traits"></textarea>
+                    <label for="traits">Traits</label>
+                </div>
+                <div class="mb-3">
+                    <label for="backgroundNPC" class="form-label">Background</label>
+                    <textarea class="form-control" id="backgroundNPC" rows="3"></textarea>
+                </div>
             </div>
-            <br>
         </div>
-        <div class="col">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Create Character</button>
     </form>
+    <h3 style="color: #2373c8">${message}</h3>
 </div>
 
 
