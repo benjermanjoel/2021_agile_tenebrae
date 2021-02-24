@@ -1,12 +1,12 @@
 <script type="text/javascript">
   function rollDice() {
-    var results = 0;
-    var roll;
+    let results = 0;
+    let roll;
 
-    var numDice = parseInt(document.getElementById('numDice').value, 10);
-    var sides = parseInt(document.getElementById('sides').value, 10);
+    let numDice = parseInt(document.getElementById('numDice').value, 10);
+    let sides = parseInt(document.getElementById('sides').value, 10);
 
-    for(var i = 0; i < numDice; i++){
+      for(let i = 0; i < numDice; i++){
         roll = (Math.ceil(Math.random() * sides));
 
         alert("Roll: " + roll);

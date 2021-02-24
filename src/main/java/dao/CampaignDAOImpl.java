@@ -13,10 +13,7 @@ import utility.WorkbookUtility;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +52,7 @@ public class CampaignDAOImpl implements CampaignDAO{
     final static String CREATE_TABLE_NPCS = "create table npcs(id integer primary key autoincrement, name text, " +
             "type text,char_class text,level text,race text,hitpts text,armor text,proficiency text, " +
             "initiative text,speed text,strength text,dexterity text,constitution text, "+
-            "intelligence text,wisdom text,charisma text,location text,traits text);";
+            "intelligence text,wisdom text,charisma text,location text,traits text,background text);";
     final static String SELECT_ALL_NPCS = "select * from npcs;";
 
     @Override
@@ -162,7 +159,7 @@ public class CampaignDAOImpl implements CampaignDAO{
             }
             for (final NPC npc : npcs) {
                 final String insertNPCS = "insert into npcs (name,type,char_class,level,race,hitpts,armor,proficiency," +
-                        "initiative,speed,strength,dexterity,constitution,intelligence,wisdom,charisma,location,traits) values" +
+                        "initiative,speed,strength,dexterity,constitution,intelligence,wisdom,charisma,location,traits,background) values" +
                         "('" + npc.getName() + "','"
                         + npc.getType() + "','"
                         + npc.getChar_class() + "','"
@@ -180,7 +177,8 @@ public class CampaignDAOImpl implements CampaignDAO{
                         + npc.getWisdom() + "','"
                         + npc.getCharisma() + "','"
                         + npc.getLocation() + "','"
-                        + npc.getTraits() + "')";
+                        + npc.getTraits() + "','"
+                        + npc.getBackground() + "')";
                 //Debugging
                 System.out.println(insertNPCS);
                 // Insert the data
@@ -398,5 +396,83 @@ public class CampaignDAOImpl implements CampaignDAO{
         return npcs;
     }
 
+    @Override
+    public void addPC(PC pc) throws CampaignDAOException {
+        Connection connection;
+        PreparedStatement insertStatement;
 
+        try {
+            connection = DBUtility.createConnection();
+            final String addPCSQL = "insert into pcs (name,char_class,level,race,hitpts,armor,proficiency," +
+                    "initiative,speed,strength,dexterity,constitution,intelligence,wisdom,charisma,background) values" +
+                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+
+            // Insert a new record into pcs table using our prepared statement
+            insertStatement = connection.prepareStatement(addPCSQL);
+            insertStatement.setString(1, pc.getName());
+            insertStatement.setString(2, pc.getChar_class());
+            insertStatement.setString(3, pc.getLevel());
+            insertStatement.setString(4, pc.getRace());
+            insertStatement.setString(5, pc.getHitpts());
+            insertStatement.setString(6, pc.getArmor());
+            insertStatement.setString(7, pc.getProficiency());
+            insertStatement.setString(8, pc.getInitiative());
+            insertStatement.setString(9, pc.getSpeed());
+            insertStatement.setString(10, pc.getStrength());
+            insertStatement.setString(11, pc.getDexterity());
+            insertStatement.setString(12, pc.getConstitution());
+            insertStatement.setString(13, pc.getIntelligence());
+            insertStatement.setString(14, pc.getWisdom());
+            insertStatement.setString(15, pc.getCharisma());
+            insertStatement.setString(16, pc.getBackground());
+
+
+            insertStatement.setQueryTimeout(DBUtility.TIMEOUT);
+            insertStatement.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException exception) {
+            exception.printStackTrace();
+            throw new CampaignDAOException("Error: unable to add playable character record to the PCs table.");
+        }
+
+    }
+
+    @Override
+    public void addNPC(NPC npc) throws CampaignDAOException {
+        Connection connection;
+        PreparedStatement insertStatement;
+
+        try {
+            connection = DBUtility.createConnection();
+            final String addNPCSQL = "insert into npcs (name,type,char_class,level,race,hitpts,armor,proficiency," +
+                    "initiative,speed,strength,dexterity,constitution,intelligence,wisdom,charisma,location,traits,background) values" +
+                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+
+            // Insert a new record into npcs table using our prepared statement
+            insertStatement = connection.prepareStatement(addNPCSQL);
+            insertStatement.setString(1, npc.getName());
+            insertStatement.setString(2, npc.getType());
+            insertStatement.setString(3, npc.getChar_class());
+            insertStatement.setString(4, npc.getLevel());
+            insertStatement.setString(5, npc.getRace());
+            insertStatement.setString(6, npc.getHitpts());
+            insertStatement.setString(7, npc.getArmor());
+            insertStatement.setString(8, npc.getProficiency());
+            insertStatement.setString(9, npc.getInitiative());
+            insertStatement.setString(10, npc.getSpeed());
+            insertStatement.setString(11, npc.getStrength());
+            insertStatement.setString(12, npc.getDexterity());
+            insertStatement.setString(13, npc.getConstitution());
+            insertStatement.setString(14, npc.getIntelligence());
+            insertStatement.setString(15, npc.getWisdom());
+            insertStatement.setString(16, npc.getCharisma());
+            insertStatement.setString(17, npc.getLocation());
+            insertStatement.setString(18, npc.getTraits());
+
+        } catch (SQLException | ClassNotFoundException exception) {
+            exception.printStackTrace();
+            throw new CampaignDAOException("Error: unable to add non-playable character record to the NPCs table.");
+        }
+
+    }
 }

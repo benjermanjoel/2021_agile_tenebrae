@@ -15,7 +15,7 @@ public interface CampaignDAO {
     List<Spell> retrieveSpells() throws CampaignDAOException;
     List<PC> retrievePCs() throws CampaignDAOException;
     List<NPC> retrieveNPCs() throws CampaignDAOException;
-//    void addPC() throws CampaignDAOException;
-//    void addNPC() throws CampaignDAOException;
+    void addPC(PC pc) throws CampaignDAOException;
+    void addNPC(NPC npc) throws CampaignDAOException;
     //TODO determine if we need more stuff here.
 }

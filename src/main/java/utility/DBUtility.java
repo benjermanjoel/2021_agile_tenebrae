@@ -1,7 +1,7 @@
 /*
-* The DBUtility java class is used to register a JDBC driver with sqlite in order to create
-* a lightweight database.
-* */
+ * The DBUtility java class is used to register a JDBC driver with sqlite in order to create
+ * a lightweight database.
+ * */
 
 package utility;
 
@@ -12,8 +12,8 @@ import java.sql.Statement;
 
 public class DBUtility {
     public static final int TIMEOUT = 30;
-    private static final String CONNECTION = "jdbc:sqlite:new_campaign.db";
-    private static final String DRIVER = "org.sqlite.JDBC";
+    private static final String CONNECTION = "jdbc:postgresql://ec2-3-87-180-131.compute-1.amazonaws.com:5432/d7iin3c0jveuc0";
+    private static final String DRIVER = "org.postgresql.Driver";
 
     public static Connection createConnection() throws SQLException, ClassNotFoundException {
         //register
