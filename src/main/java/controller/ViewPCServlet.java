@@ -20,7 +20,7 @@ public class ViewPCServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         /* Set variables */
-        final CampaignDAO campaignDAO = new TestDAO();
+        final CampaignDAO campaignDAO = new CampaignDAOImpl();
         String requestType = request.getParameter("type");
         String name = request.getParameter("name");
 

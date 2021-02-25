@@ -19,7 +19,7 @@ public class LoadDMServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         /* Set variables */
-        final CampaignDAO campaignDAO = new TestDAO();
+        final CampaignDAO campaignDAO = new CampaignDAOImpl();
 
         //Tell servlet which file to route to
         String target = "screenDM.jsp";
