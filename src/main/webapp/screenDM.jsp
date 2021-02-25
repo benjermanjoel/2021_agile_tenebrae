@@ -97,7 +97,7 @@
                                 <thead id="pcStatHead">
                                     <tr class="table-dark">
                                         <th scope="col" colspan="2" id="nameCell">CHARACTER NAME HERE</th>
-                                    </tr><!-- When doc is prepared, run function-->
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
@@ -178,7 +178,7 @@
                                 <thead id="npcStatHead">
                                 <tr class="table-dark">
                                     <th scope="col" colspan="2" id="npcNameCell">CHARACTER NAME HERE</th>
-                                </tr><!-- When doc is prepared, run function-->
+                                </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
@@ -280,7 +280,7 @@
                                         $("#nameCell").text(data.name);
                                         $("#classCell").text(data.char_class);
                                         $("#levelCell").text(data.level);
-                                        $("#npcRaceCell").text(data.race);
+                                        $("#raceCell").text(data.race);
                                         $("#hpCell").text(data.hitpts);
                                         $("#armorCell").text(data.armor);
                                         $("#proficiencyCell").text(data.proficiency);
@@ -318,7 +318,7 @@
                                         $("#npcTypeCell").text(data.type);
                                         $("#npcClassCell").text(data.char_class);
                                         $("#npcLevelCell").text(data.level);
-                                        $("#raceCell").text(data.race);
+                                        $("#npcRaceCell").text(data.race);
                                         $("#npcHpCell").text(data.hitpts);
                                         $("#npcArmorCell").text(data.armor);
                                         $("#npcProficiencyCell").text(data.proficiency);

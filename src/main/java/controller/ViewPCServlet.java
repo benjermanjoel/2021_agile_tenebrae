@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import dao.CampaignDAO;
 import dao.CampaignDAOException;
 import dao.CampaignDAOImpl;
+import dao.TestDAO;
 import model.NPC;
 import model.PC;
 
@@ -19,7 +20,7 @@ public class ViewPCServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         /* Set variables */
-        final CampaignDAO campaignDAO = new CampaignDAOImpl();
+        final CampaignDAO campaignDAO = new TestDAO();
         String requestType = request.getParameter("type");
         String name = request.getParameter("name");
 

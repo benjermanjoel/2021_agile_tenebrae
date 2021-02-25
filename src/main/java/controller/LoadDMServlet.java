@@ -3,6 +3,7 @@ package controller;
 import dao.CampaignDAO;
 import dao.CampaignDAOException;
 import dao.CampaignDAOImpl;
+import dao.TestDAO;
 import model.NPC;
 import model.PC;
 
@@ -18,7 +19,7 @@ public class LoadDMServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         /* Set variables */
-        final CampaignDAO campaignDAO = new CampaignDAOImpl();
+        final CampaignDAO campaignDAO = new TestDAO();
 
         //Tell servlet which file to route to
         String target = "screenDM.jsp";

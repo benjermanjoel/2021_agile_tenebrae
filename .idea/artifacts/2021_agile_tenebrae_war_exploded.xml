@@ -26,6 +26,7 @@
           <element id="library" level="project" name="Maven: org.xerial:sqlite-jdbc:3.34.0" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:14.0.1" />
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.2.10" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.6" />
         </element>
       </element>
       <element id="directory" name="META-INF">
