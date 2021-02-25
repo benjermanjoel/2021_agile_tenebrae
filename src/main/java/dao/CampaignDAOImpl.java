@@ -31,25 +31,25 @@ public class CampaignDAOImpl implements CampaignDAO{
     final static String DROP_PCS_TABLE = "drop table if exists pcs;";
     final static String DROP_NPCS_TABLE = "drop table if exists npcs;";
     // CREATE and SELECT queries for weapons
-    final static String CREATE_TABLE_WEAPONS = "create table weapons(id integer primary key autoincrement, name text, " +
+    final static String CREATE_TABLE_WEAPONS = "create table weapons(id serial primary key, name text, " +
             "type text, cost text, damage text, weight text, properties text);";
     final static String SELECT_ALL_WEAPONS = "select * from weapons;";
     // CREATE and SELECT queries for items
-    final static String CREATE_TABLE_ITEMs = "create table items(id integer primary key autoincrement, name text, " +
+    final static String CREATE_TABLE_ITEMs = "create table items(id serial primary key, name text, " +
             "type text, cost text, weight text);";
     final static String SELECT_ALL_ITEMS = "select * from items;";
     // CREATE and SELECT queries for spells
-    final static String CREATE_TABLE_SPELLS = "create table spells(id integer primary key autoincrement, name text, " +
+    final static String CREATE_TABLE_SPELLS = "create table spells(id serial primary key, name text, " +
             "level text, school text, casting text, ritual text, concentration text, classes text);";
     final static String SELECT_ALL_SPELLS = "select * from spells;";
     // CREATE and SELECT queries for pcs
-    final static String CREATE_TABLE_PCS = "create table pcs(id integer primary key autoincrement, name text, " +
+    final static String CREATE_TABLE_PCS = "create table pcs(id serial primary key, name text, " +
             "char_class text,level text,race text,hitpts text,armor text,proficiency text, " +
             "initiative text,speed text,strength text,dexterity text,constitution text, "+
             "intelligence text,wisdom text,charisma text,background text);";
     final static String SELECT_ALL_PCS = "select * from pcs;";
     // CREATE and SELECT queries for npcs
-    final static String CREATE_TABLE_NPCS = "create table npcs(id integer primary key autoincrement, name text, " +
+    final static String CREATE_TABLE_NPCS = "create table npcs(id serial primary key, name text, " +
             "type text,char_class text,level text,race text,hitpts text,armor text,proficiency text, " +
             "initiative text,speed text,strength text,dexterity text,constitution text, "+
             "intelligence text,wisdom text,charisma text,location text,traits text,background text);";
@@ -74,25 +74,25 @@ public class CampaignDAOImpl implements CampaignDAO{
             statement.executeUpdate(DROP_WEAPONS_TABLE);
             statement.executeUpdate(DROP_ITEMS_TABLE);
             statement.executeUpdate(DROP_SPELLS_TABLE);
-            statement.executeUpdate(DROP_PCS_TABLE);
-            statement.executeUpdate(DROP_NPCS_TABLE);
+            //statement.executeUpdate(DROP_PCS_TABLE);
+            //statement.executeUpdate(DROP_NPCS_TABLE);
             statement.executeUpdate(CREATE_TABLE_WEAPONS);
             statement.executeUpdate(CREATE_TABLE_ITEMs);
             statement.executeUpdate(CREATE_TABLE_SPELLS);
-            statement.executeUpdate(CREATE_TABLE_PCS);
-            statement.executeUpdate(CREATE_TABLE_NPCS);
+            //statement.executeUpdate(CREATE_TABLE_PCS);
+            //statement.executeUpdate(CREATE_TABLE_NPCS);
 
             // Populate the campaign tables with data
             final File weaponsFile = new File(weaponsPath);
             final File itemsFile = new File(itemsPath);
             final File spellsFile = new File(spellsPath);
-            final File pcsFile = new File(pcsPath);
-            final File npcsFile = new File(npcsPath);
+            //final File pcsFile = new File(pcsPath);
+            //final File npcsFile = new File(npcsPath);
             final List<Weapon> weapons = WorkbookUtility.retrieveWeapons(weaponsFile);
             final List<Item> items = WorkbookUtility.retrieveItems(itemsFile);
             final List<Spell> spells = WorkbookUtility.retrieveSpells(spellsFile);
-            final List<PC> pcs = WorkbookUtility.retrievePCs(pcsFile);
-            final List<NPC> npcs = WorkbookUtility.retrieveNPCs(npcsFile);
+            //final List<PC> pcs = WorkbookUtility.retrievePCs(pcsFile);
+            //final List<NPC> npcs = WorkbookUtility.retrieveNPCs(npcsFile);
 
             for (final Weapon weapon : weapons) {
                 final String insertWeapons = "insert into weapons (name,type,cost,damage,weight,properties) values" +
@@ -133,6 +133,7 @@ public class CampaignDAOImpl implements CampaignDAO{
                 // Insert the data
                 statement.executeUpdate(insertSpells);
             }
+            /*
             for (final PC pc : pcs) {
                 final String insertPCS = "insert into pcs (name,char_class,level,race,hitpts,armor,proficiency," +
                         "initiative,speed,strength,dexterity,constitution,intelligence,wisdom,charisma,background) values" +
@@ -184,6 +185,7 @@ public class CampaignDAOImpl implements CampaignDAO{
                 // Insert the data
                 statement.executeUpdate(insertNPCS);
             }
+             */
         } catch (SQLException | ClassNotFoundException | InvalidFormatException | IOException exception ) {
             exception.printStackTrace();
             throw new CampaignDAOException("Error: Unable to populate the campaign database with data from spreadsheet.");
@@ -298,10 +300,8 @@ public class CampaignDAOImpl implements CampaignDAO{
     }
 
     @Override
-    /*
-     * The following method leverages the SELECT_ALL_PCS query to retrieve PC data from the pcs table
-     *
-     * */
+    //The following method leverages the SELECT_ALL_PCS query to retrieve PC data from the pcs table
+
     //TODO de-duplicate code.
     public List<PC> retrievePCs() throws CampaignDAOException {
         final List<PC> pcs = new ArrayList<PC>();
@@ -346,10 +346,8 @@ public class CampaignDAOImpl implements CampaignDAO{
     }
 
     @Override
-    /*
-     * The following method leverages the SELECT_ALL_NPCS query to retrieve NPC data from the npcs table
-     *
-     * */
+    //The following method leverages the SELECT_ALL_NPCS query to retrieve NPC data from the npcs table
+
     //TODO de-duplicate code
     public List<NPC> retrieveNPCs() throws CampaignDAOException {
         final List<NPC> npcs = new ArrayList<NPC>();
