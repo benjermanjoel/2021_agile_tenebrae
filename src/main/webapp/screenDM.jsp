@@ -21,6 +21,7 @@
     <link href="assets/css/screenCSS.css" rel="stylesheet">
 
     <title>Dungeon Master's Screen</title>
+
 </head>
 
 <body>
@@ -89,76 +90,75 @@
             <!--Main content of page-->
             <div class="col-md-6 border border-top-0 border-bottom-0">
                 <!-- Container to hold and display all Player Character stats (to be switched with nonPlayerCharacter on click) -->
-                <div id="playerCharacter">
-
+                <div class="dashboardView" id="playerCharacter">
                     <div class="row">
                         <div>
-                            <table class="pcStatSheet">
-                                <thead class="pcStatHead">
-                                    <tr>
-                                        <th colspan="2">CHARACTER NAME HERE</th>
-                                    </tr>
+                            <table class="table table-bordered">
+                                <thead id="pcStatHead">
+                                    <tr class="table-dark">
+                                        <th scope="col" colspan="2" id="nameCell">CHARACTER NAME HERE</th>
+                                    </tr><!-- When doc is prepared, run function-->
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="pcStat">Class:</td>
-                                        <td></td>
+                                        <th scope="row">Class:</th>
+                                        <td id="classCell">Class Here</td>
                                     </tr>
                                     <tr>
-                                        <td>Level:</td>
-                                        <td>LEVEL HERE</td>
+                                        <th scope="row">Level:</th>
+                                        <td id="levelCell">LEVEL HERE</td>
                                     </tr>
                                     <tr>
-                                        <td>Race:</td>
-                                        <td>RACE HERE</td>
+                                        <th scope="row">Race:</th>
+                                        <td id="raceCell">RACE HERE</td>
                                     </tr>
                                     <tr>
-                                        <td>Race:</td>
-                                        <td>RACE HERE</td>
+                                        <th scope="row">Hit Points:</th>
+                                        <td id="hpCell">HP HERE</td>
                                     </tr>
                                     <tr>
-                                        <td>Hit Points:</td>
-                                        <td>HP HERE</td>
+                                        <th scope="row">Armor Class:</th>
+                                        <td id="armorCell">AC HERE</td>
                                     </tr>
                                     <tr>
-                                        <td>Armor Class:</td>
-                                        <td>AC HERE</td>
+                                        <th scope="row">Proficiency:</th>
+                                        <td id="proficiencyCell">PROFICIENCY HERE</td>
                                     </tr>
                                     <tr>
-                                        <td>Proficiency:</td>
-                                        <td>PROFICIENCY HERE</td>
+                                        <th scope="row">Initiative:</th>
+                                        <td id="initiativeCell">INITIATIVE HERE</td>
                                     </tr>
                                     <tr>
-                                        <td>Initiative:</td>
-                                        <td>INITIATIVE HERE</td>
+                                        <th scope="row">Speed:</th>
+                                        <td id="speedCell">SPEED HERE</td>
                                     </tr>
                                     <tr>
-                                        <td>Speed:</td>:</td>
-                                        <td>SPEED HERE</td>
+                                        <th scope="row">Strength:</th>
+                                        <td id="strengthCell">STR HERE</td>
                                     </tr>
                                     <tr>
-                                        <td>Strength:</td>
-                                        <td>STR HERE</td>
+                                        <th scope="row">Dexterity:</th>
+                                        <td id="dexterityCell">DEX HERE</td>
                                     </tr>
                                     <tr>
-                                        <td>Dexterity:</td>
-                                        <td>DEX HERE</td>
+                                        <th scope="row">Constitution:</th>
+                                        <td id="constitutionCell">CON HERE</td>
                                     </tr>
                                     <tr>
-                                        <td>Constitution:</td>
-                                        <td>CON HERE</td>
+                                        <th scope="row">Intelligence:</th>
+                                        <td id="intelligenceCell">INT HERE</td>
                                     </tr>
                                     <tr>
-                                        <td>Intelligence:</td>
-                                        <td>INT HERE</td>
+                                        <th scope="row">Wisdom:</th>
+                                        <td id="wisdomCell">WIS HERE</td>
                                     </tr>
                                     <tr>
-                                        <td>Wisdom:</td>
-                                        <td>WIS HERE</td>
+                                        <th scope="row">Charisma:</th>
+                                        <td id="charismaCell">CHA HERE</td>
                                     </tr>
                                     <tr>
-                                        <td>Background:</td>
-                                        <td>BACKGROUND HERE</td>
+                                        <th scope="row">Background:</th>
+                                        <td id="backgroundCell">BACKGROUND HERE</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -170,12 +170,99 @@
                 </div>
 
                 <!-- Container to hold and display all Non-Player Character stats (to be switched with playerCharacter on click) -->
-                <div id="nonPlayerCharacter">
+                <div class="dashboardView" id="nonPlayerCharacter">
 
+                    <div class="row">
+                        <div>
+                            <table class="table table-bordered">
+                                <thead id="npcStatHead">
+                                <tr class="table-dark">
+                                    <th scope="col" colspan="2" id="npcNameCell">CHARACTER NAME HERE</th>
+                                </tr><!-- When doc is prepared, run function-->
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Type:</th>
+                                    <td id="npcTypeCell">TYPE HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Class:</th>
+                                    <td id="npcClassCell">CLASS HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Level:</th>
+                                    <td id="npcLevelCell">LEVEL HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Race:</th>
+                                    <td id="npcRaceCell">RACE HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Hit Points:</th>
+                                    <td id="npcHpCell">HP HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Armor Class:</th>
+                                    <td id="npcArmorCell">AC HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Proficiency:</th>
+                                    <td id="npcProficiencyCell">PROFICIENCY HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Initiative:</th>
+                                    <td id="npcInitiativeCell">INITIATIVE HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Speed:</th>
+                                    <td id="npcSpeedCell">SPEED HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Strength:</th>
+                                    <td id="npcStrengthCell">STR HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Dexterity:</th>
+                                    <td id="npcDexterityCell">DEX HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Constitution:</th>
+                                    <td id="npcConstitutionCell">CON HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Intelligence:</th>
+                                    <td id="npcIntelligenceCell">INT HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Wisdom:</th>
+                                    <td id="npcWisdomCell">WIS HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Charisma:</th>
+                                    <td id="npcCharismaCell">CHA HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Location:</th>
+                                    <td id="npcLocationCell">LOCATION HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Traits:</th>
+                                    <td id="npcTraitsCell">TRAITS HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Background:</th>
+                                    <td id="npcBackgroundCell">BACKGROUND HERE</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
                 </div>
 
+                <!-- When doc is ready, run function-->
                 <script>
-                    <!-- After doc is ready, run function-->
                     $( document ).ready(function() {
                         <!-- When object is clicked run function -->
                         $(".listOnClickPC").click(function() {
@@ -190,7 +277,25 @@
                                     data: {name: $name, type: 'PC'},
                                     timeout: 500,
                                     success: function(data) {
+                                        $("#nameCell").text(data.name);
+                                        $("#classCell").text(data.char_class);
+                                        $("#levelCell").text(data.level);
+                                        $("#npcRaceCell").text(data.race);
+                                        $("#hpCell").text(data.hitpts);
+                                        $("#armorCell").text(data.armor);
+                                        $("#proficiencyCell").text(data.proficiency);
+                                        $("#initiativeCell").text(data.initiative);
+                                        $("#speedCell").text(data.speed);
+                                        $("#strengthCell").text(data.strength);
+                                        $("#dexterityCell").text(data.dexterity);
+                                        $("#constitutionCell").text(data.constitution);
+                                        $("#intelligenceCell").text(data.intelligence);
+                                        $("#wisdomCell").text(data.wisdom);
+                                        $("#charismaCell").text(data.charisma);
+                                        $("#backgroundCell").text(data.background);
 
+                                        $("#playerCharacter").show();
+                                        $("#nonPlayerCharacter").hide();
                                         <!-- console log for testing -->
                                         console.log(data);
                                     }
@@ -209,7 +314,28 @@
                                     data: {name: $name, type: 'NPC'},
                                     timeout: 500,
                                     success: function(data) {
+                                        $("#npcNameCell").text(data.name);
+                                        $("#npcTypeCell").text(data.type);
+                                        $("#npcClassCell").text(data.char_class);
+                                        $("#npcLevelCell").text(data.level);
+                                        $("#raceCell").text(data.race);
+                                        $("#npcHpCell").text(data.hitpts);
+                                        $("#npcArmorCell").text(data.armor);
+                                        $("#npcProficiencyCell").text(data.proficiency);
+                                        $("#npcInitiativeCell").text(data.initiative);
+                                        $("#npcSpeedCell").text(data.speed);
+                                        $("#npcStrengthCell").text(data.strength);
+                                        $("#npcDexterityCell").text(data.dexterity);
+                                        $("#npcConstitutionCell").text(data.constitution);
+                                        $("#npcIntelligenceCell").text(data.intelligence);
+                                        $("#npcWisdomCell").text(data.wisdom);
+                                        $("#npcCharismaCell").text(data.charisma);
+                                        $("#npcLocationCell").text(data.location);
+                                        $("#npcTraitsCell").text(data.traits);
+                                        $("#npcBackgroundCell").text(data.background);
 
+                                        $("#playerCharacter").hide();
+                                        $("#nonPlayerCharacter").show();
                                         <!-- console log for testing -->
                                         console.log(data);
                                     }
@@ -217,8 +343,6 @@
                         });
                      });
                 </script>
-
-
 
             </div>
 
