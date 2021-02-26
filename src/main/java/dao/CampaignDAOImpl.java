@@ -401,8 +401,8 @@ public class CampaignDAOImpl implements CampaignDAO{
 
         try {
             connection = DBUtility.createConnection();
-            final String addPCSQL = "insert into pcs (name,char_class,level,race,hitpts,armor,proficiency," +
-                    "initiative,speed,strength,dexterity,constitution,intelligence,wisdom,charisma,background) values" +
+            final String addPCSQL = "insert into characters (name, level, race, class, hp, ac,proficiency," +
+                    "initiative,speed,str,dex,con,intel,wis,cha,background) values" +
                     "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             // Insert a new record into pcs table using our prepared statement
@@ -442,8 +442,8 @@ public class CampaignDAOImpl implements CampaignDAO{
 
         try {
             connection = DBUtility.createConnection();
-            final String addNPCSQL = "insert into npcs (name,type,char_class,level,race,hitpts,armor,proficiency," +
-                    "initiative,speed,strength,dexterity,constitution,intelligence,wisdom,charisma,location,traits,background) values" +
+            final String addNPCSQL = "insert into characters (name,type,class,level,race,hp,ac,proficiency," +
+                    "initiative,speed,str,dex,con,intel,wis,cha,location,traits,background) values" +
                     "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             // Insert a new record into npcs table using our prepared statement

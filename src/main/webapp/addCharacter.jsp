@@ -66,9 +66,9 @@
             <label for="char_class">Class</label>
             <select class="form-select" id="char_class" name="class" required>
                 <option selected>Choose...</option>
-                <option value="1">Barbarian</option>
-                <option value="2">Bard</option>
-                <option value="3">Blood Hunter</option>
+                <option value="Barbarian">Barbarian</option>
+                <option value="Bard">Bard</option>
+                <option value="Blood Hunter">Blood Hunter</option>
             </select>
         </div>
         <div class="form-row">
@@ -76,9 +76,9 @@
                 <label for="race">Race</label>
                 <select class="form-select" id="race" name="race" required>
                     <option selected>Choose...</option>
-                    <option value="1">Human</option>
-                    <option value="2">Elf</option>
-                    <option value="3">Dwarf</option>
+                    <option value="Human">Human</option>
+                    <option value="Elf">Elf</option>
+                    <option value="Dwarf">Dwarf</option>
                 </select>
             </div>
             <div class="col">
