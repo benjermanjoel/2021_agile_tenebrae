@@ -34,7 +34,7 @@
     <form action="addCharacter" method="post">
         <div class="col">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" name="name" aria-placeholder="Frodo Baggins" required>
+            <input type="text" class="form-control" id="name" name="name" required>
         </div>
         <div class="col">
             <label for="level">Level</label>
@@ -54,12 +54,12 @@
                 <option value="12">12</option>
                 <option value="13">13</option>
                 <option value="14">14</option>
-                <option value="15"></option>
-                <option value="16"></option>
-                <option value="17"></option>
-                <option value="18"></option>
-                <option value="19"></option>
-                <option value="20"></option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
             </select>
         </div>
         <div class="col">
@@ -68,7 +68,16 @@
                 <option selected>Choose...</option>
                 <option value="1">Barbarian</option>
                 <option value="2">Bard</option>
-                <option value="3">Blood Hunter</option>
+                <option value="3">Cleric</option>
+                <option value="4">Druid</option>
+                <option value="5">Figher</option>
+                <option value="6">Monk</option>
+                <option value="7">Paladin</option>
+                <option value="8">Ranger</option>
+                <option value="9">Rogue</option>
+                <option value="10">Sorcerer</option>
+                <option value="11">Warlock</option>
+                <option value="12">Wizard</option>
             </select>
         </div>
         <div class="form-row">
@@ -76,9 +85,15 @@
                 <label for="race">Race</label>
                 <select class="form-select" id="race" name="race" required>
                     <option selected>Choose...</option>
-                    <option value="1">Human</option>
-                    <option value="2">Elf</option>
-                    <option value="3">Dwarf</option>
+                    <option value="1">Dragonborn</option>
+                    <option value="2">Dwarf</option>
+                    <option value="3">Elf</option>
+                    <option value="4">Gnome</option>
+                    <option value="5">Half-Elf</option>
+                    <option value="6">Halfling</option>
+                    <option value="7">Half-Orc</option>
+                    <option value="8">Human</option>
+                    <option value="9">Tiefling</option>
                 </select>
             </div>
             <div class="col">
@@ -161,6 +176,10 @@
                         <option value="1">Non-combat NPC</option>
                         <option value="2">Enemy</option>
                     </select>
+                </div>
+                <div class="col">
+                    <label for="location">Location</label>
+                    <input type="text" class="form-control" id="location" name="location">
                 </div>
                 <div class="mb-3">
                     <label for="traits" class="form-label">Traits</label>
