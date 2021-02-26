@@ -6,9 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
+    <!-- CDN for hosting and using jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,18 +42,152 @@
             <!-- List for Player Characters -->
             <h2>Player Characters</h2>
             <div class="list-group">
+            <c:choose>
 
-                <!-- TODO: input links to PC data for each character -->
-                <!-- Have blank links to player information currently-->
-                <a href="#" class="list-group-item list-group-item-action active">Benja Minn</a>
-                <a href="#" class="list-group-item list-group-item-action">Maat Chu</a>
-                <a href="#" class="list-group-item list-group-item-action">Tie'l Urr</a>
+                <c:when test="${empty pcList}">
+                    <h5>No current Player Characters</h5>
+                </c:when>
+
+                <c:otherwise>
+
+                    <c:forEach var="pcList" items="${pcList}">
+
+
+                            <!-- TODO: Create link to database for character -->
+                            <a href="#" class="list-group-item list-group-item-action listOnClickPC">${pcList.name}</a>
+
+
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
             </div>
         </div>
 
         <!--Main content of page-->
         <div class="col-md-6 border border-top-0 border-bottom-0">
-            <h2>Main content and have info about them appear here. Not sure what other info should be posted for PC perspective besides stats of own (as well as other) PC's</h2>
+            <!-- Container to hold and display all Player Character stats (only PC's since it is not the DM's screen) -->
+            <div class="dashboardView" id="playerCharacter">
+                <div class="row">
+                    <div>
+                        <table class="table table-bordered">
+                            <thead id="pcStatHead">
+                            <tr class="table-dark">
+                                <th scope="col" colspan="2" id="nameCell">CHARACTER NAME HERE</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Class:</th>
+                                <td id="classCell">Class Here</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Level:</th>
+                                <td id="levelCell">LEVEL HERE</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Race:</th>
+                                <td id="raceCell">RACE HERE</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Hit Points:</th>
+                                <td id="hpCell">HP HERE</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Armor Class:</th>
+                                <td id="armorCell">AC HERE</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Proficiency:</th>
+                                <td id="proficiencyCell">PROFICIENCY HERE</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Initiative:</th>
+                                <td id="initiativeCell">INITIATIVE HERE</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Speed:</th>
+                                <td id="speedCell">SPEED HERE</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Strength:</th>
+                                <td id="strengthCell">STR HERE</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Dexterity:</th>
+                                <td id="dexterityCell">DEX HERE</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Constitution:</th>
+                                <td id="constitutionCell">CON HERE</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Intelligence:</th>
+                                <td id="intelligenceCell">INT HERE</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Wisdom:</th>
+                                <td id="wisdomCell">WIS HERE</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Charisma:</th>
+                                <td id="charismaCell">CHA HERE</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Background:</th>
+                                <td id="backgroundCell">BACKGROUND HERE</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- When doc is ready, run function-->
+            <script>
+                $( document ).ready(function() {
+                    <!-- When object is clicked run function -->
+                    $(".listOnClickPC").click(function() {
+                        <!-- Store text of name from clicked object in variable $name -->
+                        var $name = $(this).text();
+                        <!-- (Ajax runs code in background) Direct Ajax to correct file "ViewPCServlet -->
+                        $.ajax('ViewPCServlet',
+                            {
+                                dataType: 'json',
+                                type: 'get',
+                                <!-- Data to be sent to servlet to match with the specific character -->
+                                data: {name: $name, type: 'PC'},
+                                timeout: 500,
+                                success: function(data) {
+                                    $("#nameCell").text(data.name);
+                                    $("#classCell").text(data.char_class);
+                                    $("#levelCell").text(data.level);
+                                    $("#raceCell").text(data.race);
+                                    $("#hpCell").text(data.hitpts);
+                                    $("#armorCell").text(data.armor);
+                                    $("#proficiencyCell").text(data.proficiency);
+                                    $("#initiativeCell").text(data.initiative);
+                                    $("#speedCell").text(data.speed);
+                                    $("#strengthCell").text(data.strength);
+                                    $("#dexterityCell").text(data.dexterity);
+                                    $("#constitutionCell").text(data.constitution);
+                                    $("#intelligenceCell").text(data.intelligence);
+                                    $("#wisdomCell").text(data.wisdom);
+                                    $("#charismaCell").text(data.charisma);
+                                    $("#backgroundCell").text(data.background);
+
+                                    $("#playerCharacter").show();
+                                    <!-- console log for testing -->
+                                    console.log(data);
+                                }
+                            })
+                    });
+                });
+            </script>
 
         </div>
 
@@ -105,7 +242,7 @@
             </table>
 
             <h3>Spells Table</h3>
-            <table class="table table-sm table-bordered table-striped">
+            <table class="table table-sm table-bordered table-striped table-dark">
                 <thead>
                 <tr>
                     <th scope="col">Spell</th>

@@ -15,7 +15,6 @@ import java.io.IOException;
 public class AddCharacterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        final String npcCheck = request.getParameter("npcCheck");
         final String name = request.getParameter("name");
         final String type = request.getParameter("type");
         final String char_class = request.getParameter("class");
@@ -35,7 +34,6 @@ public class AddCharacterServlet extends HttpServlet {
         final String location = request.getParameter("location");
         final String traits = request.getParameter("traits");
         final String background = request.getParameter("background");
-        final String backgroundNPC = request.getParameter("backgroundNPC");
 
         if (Strings.isNullOrEmpty(name)
                 || Strings.isNullOrEmpty(char_class)
@@ -46,7 +44,9 @@ public class AddCharacterServlet extends HttpServlet {
         }
         else {
             // all required fields entered
-
+            if (Strings.isNullOrEmpty(type)
+                    && Strings.isNullOrEmpty(traits)
+                    && Strings.isNullOrEmpty(location)) {
 
                 final CampaignDAO campaignDAO = new CampaignDAOImpl();
                 final PC pc = new PC(name, char_class, level, race, hitPts, armorClass, proficiency, initiative, speed, strength,
@@ -61,11 +61,11 @@ public class AddCharacterServlet extends HttpServlet {
                     request.setAttribute("message", exception.getMessage());
                 }
                 getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
-
-            /*
+            }
+            else {
                 final CampaignDAO campaignDAO = new CampaignDAOImpl();
                 final NPC npc = new NPC(name, type,char_class, level, race, hitPts, armorClass, proficiency, initiative, speed, strength,
-                        dexterity, constitution, intelligence, wisdom, charisma, location, traits, backgroundNPC);
+                        dexterity, constitution, intelligence, wisdom, charisma, location, traits, background);
 
                 try {
                     campaignDAO.addNPC(npc);
@@ -75,9 +75,8 @@ public class AddCharacterServlet extends HttpServlet {
                     exception.printStackTrace();
                     request.setAttribute("message", exception.getMessage());
                 }
-                getServletContext().getRequestDispatcher("addCharacter.jsp").forward(request, response);
-            */
-
+                getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
+            }
         }
     }
 

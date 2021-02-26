@@ -34,7 +34,7 @@
     <form action="addCharacter" method="post">
         <div class="col">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" name="name" aria-placeholder="Frodo Baggins" required>
+            <input type="text" class="form-control" id="name" name="name" required>
         </div>
         <div class="col">
             <label for="level">Level</label>
@@ -54,12 +54,12 @@
                 <option value="12">12</option>
                 <option value="13">13</option>
                 <option value="14">14</option>
-                <option value="15"></option>
-                <option value="16"></option>
-                <option value="17"></option>
-                <option value="18"></option>
-                <option value="19"></option>
-                <option value="20"></option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
             </select>
         </div>
         <div class="col">
@@ -68,7 +68,16 @@
                 <option selected>Choose...</option>
                 <option value="Barbarian">Barbarian</option>
                 <option value="Bard">Bard</option>
-                <option value="Blood Hunter">Blood Hunter</option>
+                <option value="Cleric">Cleric</option>
+                <option value="Druid">Druid</option>
+                <option value="Fighter">Fighter</option>
+                <option value="Monk">Monk</option>
+                <option value="Paladin">Paladin</option>
+                <option value="Ranger">Ranger</option>
+                <option value="Rogue">Rogue</option>
+                <option value="Sorcerer">Sorcerer</option>
+                <option value="Warlock">Warlock</option>
+                <option value="Wizard">Wizard</option>
             </select>
         </div>
         <div class="form-row">
@@ -76,9 +85,16 @@
                 <label for="race">Race</label>
                 <select class="form-select" id="race" name="race" required>
                     <option selected>Choose...</option>
-                    <option value="Human">Human</option>
-                    <option value="Elf">Elf</option>
+                    <option value="Dragonborn">Dragonborn</option>
                     <option value="Dwarf">Dwarf</option>
+                    <option value="Drow">Drow</option>
+                    <option value="Elf">Elf</option>
+                    <option value="Gnome">Gnome</option>
+                    <option value="Half-Elf">Half-Elf</option>
+                    <option value="Halfling">Halfling</option>
+                    <option value="Half-Orc">Half-Orc</option>
+                    <option value="Human">Human</option>
+                    <option value="Tiefling">Tiefling</option>
                 </select>
             </div>
             <div class="col">
@@ -162,13 +178,13 @@
                         <option value="2">Enemy</option>
                     </select>
                 </div>
-                <div class="form-floating">
-                    <textarea class="form-control" placeholder="Enter traits here" id="traits" name="traits"></textarea>
-                    <label for="traits">Traits</label>
+                <div class="col">
+                    <label for="location">Location</label>
+                    <input type="text" class="form-control" id="location" name="location">
                 </div>
                 <div class="mb-3">
-                    <label for="backgroundNPC" class="form-label">Background</label>
-                    <textarea class="form-control" id="backgroundNPC" name="backgroundNPC" rows="3"></textarea>
+                    <label for="traits" class="form-label">Traits</label>
+                    <textarea class="form-control" id="traits" name="traits" rows="3"></textarea>
                 </div>
             </div>
         </div>

@@ -6,9 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
+    <!-- CDN for hosting and using jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,6 +21,7 @@
     <link href="assets/css/screenCSS.css" rel="stylesheet">
 
     <title>Dungeon Master's Screen</title>
+
 </head>
 
 <body>
@@ -39,30 +43,306 @@
                 <!-- List for Player Characters -->
                 <h2>Player Characters</h2>
                 <div class="list-group">
+                <c:choose>
 
-                    <!-- TODO: input links to PC data for each character -->
-                    <!-- Have blank links to player information currently-->
-                    <a href="#" class="list-group-item list-group-item-action active">Benja Minn</a>
-                    <a href="#" class="list-group-item list-group-item-action">Maat Chu</a>
-                    <a href="#" class="list-group-item list-group-item-action">Tie'l Urr</a>
+                    <c:when test="${empty pcList}">
+                        <h5>No current Player Characters</h5>
+                    </c:when>
+
+                    <c:otherwise>
+                        <c:forEach var="pcList" items="${pcList}">
+
+                                <!-- TODO: Create link to database for character -->
+                                <a href="#" class="list-group-item list-group-item-action listOnClickPC">${pcList.name}</a>
+
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
                 </div>
+
+
                 <div class="row" id="stylingNPC">
                     <!-- List for Non-Player Characters -->
                     <h2>Non-Player Characters</h2>
                     <div class="list-group">
+                        <c:choose>
 
-                        <!--TODO: input links to NPC data for each character -->
-                        <!-- Have blank links to NPC information currently-->
-                        <a href="#" class="list-group-item list-group-item-action">Jimmy</a>
-                        <a href="#" class="list-group-item list-group-item-action">Bobbert</a>
-                        <a href="#" class="list-group-item list-group-item-action">Serena</a>
+                            <c:when test="${empty npcList}">
+                                <h5>No current Player Characters</h5>
+                            </c:when>
+
+                            <c:otherwise>
+
+                                <c:forEach var="npcList" items="${npcList}">
+
+
+                                        <!-- TODO: Create link to database for character -->
+                                        <a href="#" class="list-group-item list-group-item-action listOnClickNPC">${npcList.name}</a>
+
+
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
 
             <!--Main content of page-->
             <div class="col-md-6 border border-top-0 border-bottom-0">
-                <h2>Main content here. My idea was to click on PC or NPC and have info about them appear here.</h2>
+                <!-- Container to hold and display all Player Character stats (to be switched with nonPlayerCharacter on click) -->
+                <div class="dashboardView" id="playerCharacter">
+                    <div class="row">
+                        <div>
+                            <table class="table table-bordered">
+                                <thead id="pcStatHead">
+                                    <tr class="table-dark">
+                                        <th scope="col" colspan="2" id="nameCell">CHARACTER NAME HERE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Class:</th>
+                                        <td id="classCell">Class Here</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Level:</th>
+                                        <td id="levelCell">LEVEL HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Race:</th>
+                                        <td id="raceCell">RACE HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Hit Points:</th>
+                                        <td id="hpCell">HP HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Armor Class:</th>
+                                        <td id="armorCell">AC HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Proficiency:</th>
+                                        <td id="proficiencyCell">PROFICIENCY HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Initiative:</th>
+                                        <td id="initiativeCell">INITIATIVE HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Speed:</th>
+                                        <td id="speedCell">SPEED HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Strength:</th>
+                                        <td id="strengthCell">STR HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Dexterity:</th>
+                                        <td id="dexterityCell">DEX HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Constitution:</th>
+                                        <td id="constitutionCell">CON HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Intelligence:</th>
+                                        <td id="intelligenceCell">INT HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Wisdom:</th>
+                                        <td id="wisdomCell">WIS HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Charisma:</th>
+                                        <td id="charismaCell">CHA HERE</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Background:</th>
+                                        <td id="backgroundCell">BACKGROUND HERE</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Container to hold and display all Non-Player Character stats (to be switched with playerCharacter on click) -->
+                <div class="dashboardView" id="nonPlayerCharacter">
+
+                    <div class="row">
+                        <div>
+                            <table class="table table-bordered">
+                                <thead id="npcStatHead">
+                                <tr class="table-dark">
+                                    <th scope="col" colspan="2" id="npcNameCell">CHARACTER NAME HERE</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Type:</th>
+                                    <td id="npcTypeCell">TYPE HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Class:</th>
+                                    <td id="npcClassCell">CLASS HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Level:</th>
+                                    <td id="npcLevelCell">LEVEL HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Race:</th>
+                                    <td id="npcRaceCell">RACE HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Hit Points:</th>
+                                    <td id="npcHpCell">HP HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Armor Class:</th>
+                                    <td id="npcArmorCell">AC HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Proficiency:</th>
+                                    <td id="npcProficiencyCell">PROFICIENCY HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Initiative:</th>
+                                    <td id="npcInitiativeCell">INITIATIVE HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Speed:</th>
+                                    <td id="npcSpeedCell">SPEED HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Strength:</th>
+                                    <td id="npcStrengthCell">STR HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Dexterity:</th>
+                                    <td id="npcDexterityCell">DEX HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Constitution:</th>
+                                    <td id="npcConstitutionCell">CON HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Intelligence:</th>
+                                    <td id="npcIntelligenceCell">INT HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Wisdom:</th>
+                                    <td id="npcWisdomCell">WIS HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Charisma:</th>
+                                    <td id="npcCharismaCell">CHA HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Location:</th>
+                                    <td id="npcLocationCell">LOCATION HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Traits:</th>
+                                    <td id="npcTraitsCell">TRAITS HERE</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Background:</th>
+                                    <td id="npcBackgroundCell">BACKGROUND HERE</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- When doc is ready, run function-->
+                <script>
+                    $( document ).ready(function() {
+                        <!-- When object is clicked run function -->
+                        $(".listOnClickPC").click(function() {
+                            <!-- Store text of name from clicked object in variable $name -->
+                            var $name = $(this).text();
+                            <!-- (Ajax runs code in background) Direct Ajax to correct file "ViewPCServlet -->
+                            $.ajax('ViewPCServlet',
+                                {
+                                    dataType: 'json',
+                                    type: 'get',
+                                    <!-- Data to be sent to servlet to match with the specific character -->
+                                    data: {name: $name, type: 'PC'},
+                                    timeout: 500,
+                                    success: function(data) {
+                                        $("#nameCell").text(data.name);
+                                        $("#classCell").text(data.char_class);
+                                        $("#levelCell").text(data.level);
+                                        $("#raceCell").text(data.race);
+                                        $("#hpCell").text(data.hitpts);
+                                        $("#armorCell").text(data.armor);
+                                        $("#proficiencyCell").text(data.proficiency);
+                                        $("#initiativeCell").text(data.initiative);
+                                        $("#speedCell").text(data.speed);
+                                        $("#strengthCell").text(data.strength);
+                                        $("#dexterityCell").text(data.dexterity);
+                                        $("#constitutionCell").text(data.constitution);
+                                        $("#intelligenceCell").text(data.intelligence);
+                                        $("#wisdomCell").text(data.wisdom);
+                                        $("#charismaCell").text(data.charisma);
+                                        $("#backgroundCell").text(data.background);
+
+                                        $("#playerCharacter").show();
+                                        $("#nonPlayerCharacter").hide();
+                                        <!-- console log for testing -->
+                                        console.log(data);
+                                    }
+                                })
+                        });
+                        <!-- When object is clicked run function -->
+                        $(".listOnClickNPC").click(function() {
+                            <!-- Store text of name from clicked object in variable $name -->
+                            var $name = $(this).text();
+                            <!-- (Ajax runs code in background) Direct Ajax to correct file "ViewNPCServlet -->
+                            $.ajax('ViewPCServlet',
+                                {
+                                    dataType: 'json',
+                                    type: 'get',
+                                    <!-- Data to be sent to servlet to match with the specific character -->
+                                    data: {name: $name, type: 'NPC'},
+                                    timeout: 500,
+                                    success: function(data) {
+                                        $("#npcNameCell").text(data.name);
+                                        $("#npcTypeCell").text(data.type);
+                                        $("#npcClassCell").text(data.char_class);
+                                        $("#npcLevelCell").text(data.level);
+                                        $("#npcRaceCell").text(data.race);
+                                        $("#npcHpCell").text(data.hitpts);
+                                        $("#npcArmorCell").text(data.armor);
+                                        $("#npcProficiencyCell").text(data.proficiency);
+                                        $("#npcInitiativeCell").text(data.initiative);
+                                        $("#npcSpeedCell").text(data.speed);
+                                        $("#npcStrengthCell").text(data.strength);
+                                        $("#npcDexterityCell").text(data.dexterity);
+                                        $("#npcConstitutionCell").text(data.constitution);
+                                        $("#npcIntelligenceCell").text(data.intelligence);
+                                        $("#npcWisdomCell").text(data.wisdom);
+                                        $("#npcCharismaCell").text(data.charisma);
+                                        $("#npcLocationCell").text(data.location);
+                                        $("#npcTraitsCell").text(data.traits);
+                                        $("#npcBackgroundCell").text(data.background);
+
+                                        $("#playerCharacter").hide();
+                                        $("#nonPlayerCharacter").show();
+                                        <!-- console log for testing -->
+                                        console.log(data);
+                                    }
+                                })
+                        });
+                     });
+                </script>
 
             </div>
 
