@@ -47,7 +47,7 @@ public class AddCharacterServlet extends HttpServlet {
         else {
             // all required fields entered
 
-            if (Strings.isNullOrEmpty(npcCheck)){
+
                 final CampaignDAO campaignDAO = new CampaignDAOImpl();
                 final PC pc = new PC(name, char_class, level, race, hitPts, armorClass, proficiency, initiative, speed, strength,
                         dexterity, constitution, intelligence, wisdom, charisma, background);
@@ -61,8 +61,8 @@ public class AddCharacterServlet extends HttpServlet {
                     request.setAttribute("message", exception.getMessage());
                 }
                 getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
-            }
-            else {
+
+            /*
                 final CampaignDAO campaignDAO = new CampaignDAOImpl();
                 final NPC npc = new NPC(name, type,char_class, level, race, hitPts, armorClass, proficiency, initiative, speed, strength,
                         dexterity, constitution, intelligence, wisdom, charisma, location, traits, backgroundNPC);
@@ -75,8 +75,8 @@ public class AddCharacterServlet extends HttpServlet {
                     exception.printStackTrace();
                     request.setAttribute("message", exception.getMessage());
                 }
-                getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
-            }
+                getServletContext().getRequestDispatcher("addCharacter.jsp").forward(request, response);
+            */
 
         }
     }

@@ -34,11 +34,11 @@
     <form action="addCharacter" method="post">
         <div class="col">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" aria-placeholder="Frodo Baggins" required>
+            <input type="text" class="form-control" id="name" name="name" aria-placeholder="Frodo Baggins" required>
         </div>
         <div class="col">
             <label for="level">Level</label>
-            <select class="form-control" id="level" required>
+            <select class="form-control" id="level" name="level" required>
                 <option selected>Choose...</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -64,7 +64,7 @@
         </div>
         <div class="col">
             <label for="char_class">Class</label>
-            <select class="form-select" id="char_class" required>
+            <select class="form-select" id="char_class" name="class" required>
                 <option selected>Choose...</option>
                 <option value="1">Barbarian</option>
                 <option value="2">Bard</option>
@@ -74,7 +74,7 @@
         <div class="form-row">
             <div class="col">
                 <label for="race">Race</label>
-                <select class="form-select" id="race" required>
+                <select class="form-select" id="race" name="race" required>
                     <option selected>Choose...</option>
                     <option value="1">Human</option>
                     <option value="2">Elf</option>
@@ -83,17 +83,17 @@
             </div>
             <div class="col">
                 <label  for="hitPts">Hit Points</label>
-                <input type="text" class="form-control" id="hitPts" aria-placeholder="45">
+                <input type="text" class="form-control" id="hitPts" name="hitPts" aria-placeholder="45">
             </div>
             <div class="col">
                 <label for="armorClass">Armor Class</label>
-                <input type="text" class="form-control" id="armorClass" aria-placeholder="15">
+                <input type="text" class="form-control" id="armorClass" name="armorClass" aria-placeholder="15">
             </div>
         </div>
         <div class="form-row">
             <div class="col">
                 <label for="proficiency">Proficiency</label>
-                <select class="form-select" id="proficiency">
+                <select class="form-select" id="proficiency" name="proficiency">
                     <option selected>Choose...</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -102,7 +102,7 @@
             </div>
             <div class="col">
                 <label for="initiative">Initiative</label>
-                <select class="form-select" id="initiative">
+                <select class="form-select" id="initiative" name="initiative">
                     <option selected>Choose...</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -111,41 +111,41 @@
             </div>
             <div class="col">
                 <label for="speed">Speed</label>
-                <select class="form-select" id="speed">
+                <select class="form-select" id="speed" name="speed">
                     <option selected>Choose...</option>
-                    <option value="1">30</option>
-                    <option value="2">35</option>
+                    <option value="30">30</option>
+                    <option value="35">35</option>
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label for="strength" class="form-label">Strength</label>
-            <input type="range" class="form-range" min="8" max="15" id="strength" oninput="this.nextElementSibling.value = this.value">
-            <output>8</output>
+            <input type="range" class="form-range" min="8" max="15" id="strength" name="strength" oninput="this.nextElementSibling.value = this.value">
+            <output>12</output>
             <br>
             <label for="dexterity" class="form-label">Dexterity</label>
-            <input type="range" class="form-range" min="8" max="15" id="dexterity" oninput="this.nextElementSibling.value = this.value">
-            <output>8</output>
+            <input type="range" class="form-range" min="8" max="15" id="dexterity" name="dexterity" oninput="this.nextElementSibling.value = this.value">
+            <output>12</output>
             <br>
             <label for="constitution" class="form-label">Constitution</label>
-            <input type="range" class="form-range" min="8" max="15" id="constitution" oninput="this.nextElementSibling.value = this.value">
-            <output>8</output>
+            <input type="range" class="form-range" min="8" max="15" id="constitution" name="constitution" oninput="this.nextElementSibling.value = this.value">
+            <output>12</output>
             <br>
             <label for="intelligence" class="form-label">Intelligence</label>
-            <input type="range" class="form-range" min="8" max="15" id="intelligence" oninput="this.nextElementSibling.value = this.value">
-            <output>8</output>
+            <input type="range" class="form-range" min="8" max="15" id="intelligence" name="intelligence" oninput="this.nextElementSibling.value = this.value">
+            <output>12</output>
             <br>
             <label for="wisdom" class="form-label">Wisdom</label>
-            <input type="range" class="form-range" min="8" max="15" id="wisdom" oninput="this.nextElementSibling.value = this.value">
-            <output>8</output>
+            <input type="range" class="form-range" min="8" max="15" id="wisdom" name="wisdom" oninput="this.nextElementSibling.value = this.value">
+            <output>12</output>
             <br>
             <label for="charisma" class="form-label">Charisma</label>
-            <input type="range" class="form-range" min="8" max="15" id="charisma" oninput="this.nextElementSibling.value = this.value">
-            <output>8</output>
+            <input type="range" class="form-range" min="8" max="15" id="charisma" name="charisma" oninput="this.nextElementSibling.value = this.value">
+            <output>12</output>
         </div>
         <div class="mb-3">
             <label for="background" class="form-label">Background</label>
-            <textarea class="form-control" id="background" rows="3"></textarea>
+            <textarea class="form-control" id="background" name="background" rows="3"></textarea>
         </div>
         <div class="col-auto">
             <p>
@@ -156,19 +156,19 @@
             <div class="collapse" id="collapseExample">
                 <label for="type">Type</label>
                 <div>
-                    <select class="form-select" id="type">
+                    <select class="form-select" id="type" name="type">
                         <option selected>Choose...</option>
                         <option value="1">Non-combat NPC</option>
                         <option value="2">Enemy</option>
                     </select>
                 </div>
                 <div class="form-floating">
-                    <textarea class="form-control" placeholder="Enter traits here" id="traits"></textarea>
+                    <textarea class="form-control" placeholder="Enter traits here" id="traits" name="traits"></textarea>
                     <label for="traits">Traits</label>
                 </div>
                 <div class="mb-3">
                     <label for="backgroundNPC" class="form-label">Background</label>
-                    <textarea class="form-control" id="backgroundNPC" rows="3"></textarea>
+                    <textarea class="form-control" id="backgroundNPC" name="backgroundNPC" rows="3"></textarea>
                 </div>
             </div>
         </div>
