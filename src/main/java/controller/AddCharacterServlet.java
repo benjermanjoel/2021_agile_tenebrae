@@ -45,8 +45,9 @@ public class AddCharacterServlet extends HttpServlet {
         else {
             // all required fields entered
             if (Strings.isNullOrEmpty(type)
-                    || Strings.isNullOrEmpty(traits)
-                    || Strings.isNullOrEmpty(location)){
+                    && Strings.isNullOrEmpty(traits)
+                    && Strings.isNullOrEmpty(location)) {
+
                 final CampaignDAO campaignDAO = new CampaignDAOImpl();
                 final PC pc = new PC(name, char_class, level, race, hitPts, armorClass, proficiency, initiative, speed, strength,
                         dexterity, constitution, intelligence, wisdom, charisma, background);
