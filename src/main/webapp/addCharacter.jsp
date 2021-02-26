@@ -162,13 +162,9 @@
                         <option value="2">Enemy</option>
                     </select>
                 </div>
-                <div class="form-floating">
-                    <textarea class="form-control" placeholder="Enter traits here" id="traits" name="traits"></textarea>
-                    <label for="traits">Traits</label>
-                </div>
                 <div class="mb-3">
-                    <label for="backgroundNPC" class="form-label">Background</label>
-                    <textarea class="form-control" id="backgroundNPC" name="backgroundNPC" rows="3"></textarea>
+                    <label for="traits" class="form-label">Traits</label>
+                    <textarea class="form-control" id="traits" name="traits" rows="3"></textarea>
                 </div>
             </div>
         </div>

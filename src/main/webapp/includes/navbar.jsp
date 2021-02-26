@@ -18,9 +18,6 @@
                     <a class="nav-link active" aria-current="page" href="main.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="createCampaign.jsp">Create Campaign</a>
-                </li>
-                <li class="nav-item">
                 <a class="nav-link" href="screenDM.jsp">DM-Dashboard</a>
                 </li>
                 <li class="nav-item">
