@@ -30,19 +30,6 @@
 }
 
 /* Styling for main content section of page */
-.pcStatSheet,
-.pcStat {
-    border-color: inherit;
-    border-style: solid;
-    border-width: 0;
-    border: 2px solid #333333;
-}
-
-.pcStatHead {
-    border-color: inherit;
-    border-style: solid;
-    border-width: 0;
-    vertical-align: bottom;
-    background-color: #333333;
-    color:#fff;
+.dashboardView {
+    display: none;
 }

@@ -3,6 +3,7 @@ package controller;
 import dao.CampaignDAO;
 import dao.CampaignDAOException;
 import dao.CampaignDAOImpl;
+import dao.TestDAO;
 import model.NPC;
 import model.PC;
 
@@ -21,7 +22,7 @@ public class LoadPCServlet extends HttpServlet {
         final CampaignDAO campaignDAO = new CampaignDAOImpl();
 
         //Tell servlet which file to route to
-        String target = "screenDM.jsp";
+        String target = "screenPC.jsp";
 
         try {
 
