@@ -18,10 +18,10 @@
                     <a class="nav-link active" aria-current="page" href="main.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="screenDM.jsp">DM-Dashboard</a>
+                <a class="nav-link" href="LoadDMServlet">DM-Dashboard</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="screenPC.jsp">PC-Dashboard</a>
+                <a class="nav-link" href="LoadPCServlet">PC-Dashboard</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="addCharacter.jsp">Add Character</a>
