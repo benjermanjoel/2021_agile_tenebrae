@@ -47,13 +47,13 @@ public class CampaignDAOImpl implements CampaignDAO{
             "char_class text,level text,race text,hitpts text,armor text,proficiency text, " +
             "initiative text,speed text,strength text,dexterity text,constitution text, "+
             "intelligence text,wisdom text,charisma text,background text);";
-    final static String SELECT_ALL_PCS = "select * from characters;";
+    final static String SELECT_ALL_PCS = "select * from characters where isnpc=false;";
     // CREATE and SELECT queries for npcs
     final static String CREATE_TABLE_NPCS = "create table npcs(id serial primary key, name text, " +
             "type text,char_class text,level text,race text,hitpts text,armor text,proficiency text, " +
             "initiative text,speed text,strength text,dexterity text,constitution text, "+
             "intelligence text,wisdom text,charisma text,location text,traits text,background text);";
-    final static String SELECT_ALL_NPCS = "select * from characters;";
+    final static String SELECT_ALL_NPCS = "select * from characters join npcs n on characters.char_id = n.char_id";
 
     @Override
     /*
@@ -377,7 +377,7 @@ public class CampaignDAOImpl implements CampaignDAO{
                  String constitution = results.getString("con");
                  String intelligence = results.getString("intel");
                  String wisdom = results.getString("wis");
-                 String charisma = results.getString("char");
+                 String charisma = results.getString("cha");
                  String background = results.getString("background");
 
                  String type = results.getString("type");
