@@ -447,11 +447,11 @@ public class CampaignDAOImpl implements CampaignDAO{
             final String ADD_NPC_CHAR_SQL = "insert into characters (name,class,level,race,hp,ac,proficiency," +
                     "initiative,speed,str,dex,con,intel,wis,cha,background,isnpc) values" +
                     "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-            final String ADD_NPC_SQL = "insert into npcs (type,loc,traits) values" +
-                    "(?,?,?);";
+            final String ADD_NPC_SQL = "insert into npcs (type,loc,traits,char_id) values" +
+                    "(?,?,?,?);";
 
             // Insert a new record into characters table using our prepared statement
-            insertStatement = connection.prepareStatement(ADD_NPC_CHAR_SQL);
+            insertStatement = connection.prepareStatement(ADD_NPC_CHAR_SQL, Statement.RETURN_GENERATED_KEYS);
             insertStatement.setString(1, npc.getName());
             insertStatement.setString(2, npc.getChar_class());
             insertStatement.setString(3, npc.getLevel());
@@ -473,10 +473,15 @@ public class CampaignDAOImpl implements CampaignDAO{
             insertStatement.setQueryTimeout(DBUtility.TIMEOUT);
             insertStatement.executeUpdate();
 
+            ResultSet rs = insertStatement.getGeneratedKeys();
+            rs.next();
+            int charID = rs.getInt(1);
+
             insertNPCStatement = connection.prepareStatement(ADD_NPC_SQL);
             insertNPCStatement.setString(1, npc.getType());
             insertNPCStatement.setString(2, npc.getLocation());
             insertNPCStatement.setString(3, npc.getTraits());
+            insertNPCStatement.setInt(4, charID);
 
             insertNPCStatement.setQueryTimeout(DBUtility.TIMEOUT);
             insertNPCStatement.executeUpdate();
