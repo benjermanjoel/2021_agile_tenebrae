@@ -47,13 +47,13 @@ public class CampaignDAOImpl implements CampaignDAO{
             "char_class text,level text,race text,hitpts text,armor text,proficiency text, " +
             "initiative text,speed text,strength text,dexterity text,constitution text, "+
             "intelligence text,wisdom text,charisma text,background text);";
-    final static String SELECT_ALL_PCS = "select * from pcs;";
+    final static String SELECT_ALL_PCS = "select * from characters where isnpc=false;";
     // CREATE and SELECT queries for npcs
     final static String CREATE_TABLE_NPCS = "create table npcs(id serial primary key, name text, " +
             "type text,char_class text,level text,race text,hitpts text,armor text,proficiency text, " +
             "initiative text,speed text,strength text,dexterity text,constitution text, "+
             "intelligence text,wisdom text,charisma text,location text,traits text,background text);";
-    final static String SELECT_ALL_NPCS = "select * from npcs;";
+    final static String SELECT_ALL_NPCS = "select * from characters join npcs n on characters.char_id = n.char_id";
 
     @Override
     /*
@@ -318,20 +318,20 @@ public class CampaignDAOImpl implements CampaignDAO{
             // loop
             while (results.next()){
                  String name = results.getString("name");
-                 String char_class = results.getString("char_class");
+                 String char_class = results.getString("class");
                  String level = results.getString("level");
                  String race = results.getString("race");
-                 String hitpts = results.getString("hitpts");
-                 String armor = results.getString("armor");
+                 String hitpts = results.getString("hp");
+                 String armor = results.getString("ac");
                  String proficiency = results.getString("proficiency");
                  String initiative = results.getString("initiative");
                  String speed = results.getString("speed");
-                 String strength = results.getString("strength");
-                 String dexterity = results.getString("dexterity");
-                 String constitution = results.getString("constitution");
-                 String intelligence = results.getString("intelligence");
-                 String wisdom = results.getString("wisdom");
-                 String charisma = results.getString("charisma");
+                 String strength = results.getString("str");
+                 String dexterity = results.getString("dex");
+                 String constitution = results.getString("con");
+                 String intelligence = results.getString("intel");
+                 String wisdom = results.getString("wis");
+                 String charisma = results.getString("cha");
                  String background = results.getString("background");
 
                 pcs.add(new PC(name,char_class,level,race,hitpts,armor,proficiency,initiative,speed,
@@ -340,7 +340,7 @@ public class CampaignDAOImpl implements CampaignDAO{
 
         } catch (SQLException | ClassNotFoundException exception) {
             exception.printStackTrace();
-            throw new CampaignDAOException("Error: unable to retrieve pc records from the pcs table.");
+            throw new CampaignDAOException("Error: unable to retrieve pc records from the characters table.");
         }
         return pcs;
     }
@@ -364,24 +364,25 @@ public class CampaignDAOImpl implements CampaignDAO{
             // loop
             while (results.next()){
                  String name = results.getString("name");
-                 String type = results.getString("type");
-                 String char_class = results.getString("char_class");
+                 String char_class = results.getString("class");
                  String level = results.getString("level");
                  String race = results.getString("race");
-                 String hitpts = results.getString("hitpts");
-                 String armor = results.getString("armor");
+                 String hitpts = results.getString("hp");
+                 String armor = results.getString("ac");
                  String proficiency = results.getString("proficiency");
                  String initiative = results.getString("initiative");
                  String speed = results.getString("speed");
-                 String strength = results.getString("strength");
-                 String dexterity = results.getString("dexterity");
-                 String constitution = results.getString("constitution");
-                 String intelligence = results.getString("intelligence");
-                 String wisdom = results.getString("wisdom");
-                 String charisma = results.getString("charisma");
-                 String location = results.getString("location");
-                 String traits = results.getString("traits");
+                 String strength = results.getString("str");
+                 String dexterity = results.getString("dex");
+                 String constitution = results.getString("con");
+                 String intelligence = results.getString("intel");
+                 String wisdom = results.getString("wis");
+                 String charisma = results.getString("cha");
                  String background = results.getString("background");
+
+                 String type = results.getString("type");
+                 String location = results.getString("loc");
+                 String traits = results.getString("traits");
 
                 npcs.add(new NPC(name,type,char_class,level,race,hitpts,armor,proficiency,initiative,speed,
                         strength,dexterity,constitution,intelligence,wisdom,charisma,location,traits,background));
@@ -439,33 +440,52 @@ public class CampaignDAOImpl implements CampaignDAO{
     public void addNPC(NPC npc) throws CampaignDAOException {
         Connection connection;
         PreparedStatement insertStatement;
+        PreparedStatement insertNPCStatement;
 
         try {
             connection = DBUtility.createConnection();
-            final String addNPCSQL = "insert into characters (name,type,class,level,race,hp,ac,proficiency," +
-                    "initiative,speed,str,dex,con,intel,wis,cha,location,traits,background) values" +
-                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            final String ADD_NPC_CHAR_SQL = "insert into characters (name,class,level,race,hp,ac,proficiency," +
+                    "initiative,speed,str,dex,con,intel,wis,cha,background,isnpc) values" +
+                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            final String ADD_NPC_SQL = "insert into npcs (type,loc,traits,char_id) values" +
+                    "(?,?,?,?);";
 
-            // Insert a new record into npcs table using our prepared statement
-            insertStatement = connection.prepareStatement(addNPCSQL);
+            // Insert a new record into characters table using our prepared statement
+            insertStatement = connection.prepareStatement(ADD_NPC_CHAR_SQL, Statement.RETURN_GENERATED_KEYS);
             insertStatement.setString(1, npc.getName());
-            insertStatement.setString(2, npc.getType());
-            insertStatement.setString(3, npc.getChar_class());
-            insertStatement.setString(4, npc.getLevel());
-            insertStatement.setString(5, npc.getRace());
-            insertStatement.setString(6, npc.getHitpts());
-            insertStatement.setString(7, npc.getArmor());
-            insertStatement.setString(8, npc.getProficiency());
-            insertStatement.setString(9, npc.getInitiative());
-            insertStatement.setString(10, npc.getSpeed());
-            insertStatement.setString(11, npc.getStrength());
-            insertStatement.setString(12, npc.getDexterity());
-            insertStatement.setString(13, npc.getConstitution());
-            insertStatement.setString(14, npc.getIntelligence());
-            insertStatement.setString(15, npc.getWisdom());
-            insertStatement.setString(16, npc.getCharisma());
-            insertStatement.setString(17, npc.getLocation());
-            insertStatement.setString(18, npc.getTraits());
+            insertStatement.setString(2, npc.getChar_class());
+            insertStatement.setString(3, npc.getLevel());
+            insertStatement.setString(4, npc.getRace());
+            insertStatement.setString(5, npc.getHitpts());
+            insertStatement.setString(6, npc.getArmor());
+            insertStatement.setString(7, npc.getProficiency());
+            insertStatement.setString(8, npc.getInitiative());
+            insertStatement.setString(9, npc.getSpeed());
+            insertStatement.setString(10, npc.getStrength());
+            insertStatement.setString(11, npc.getDexterity());
+            insertStatement.setString(12, npc.getConstitution());
+            insertStatement.setString(13, npc.getIntelligence());
+            insertStatement.setString(14, npc.getWisdom());
+            insertStatement.setString(15, npc.getCharisma());
+            insertStatement.setString(16, npc.getBackground());
+            insertStatement.setBoolean(17, true);
+
+            insertStatement.setQueryTimeout(DBUtility.TIMEOUT);
+            insertStatement.executeUpdate();
+
+            ResultSet rs = insertStatement.getGeneratedKeys();
+            rs.next();
+            int charID = rs.getInt(1);
+
+            insertNPCStatement = connection.prepareStatement(ADD_NPC_SQL);
+            insertNPCStatement.setString(1, npc.getType());
+            insertNPCStatement.setString(2, npc.getLocation());
+            insertNPCStatement.setString(3, npc.getTraits());
+            insertNPCStatement.setInt(4, charID);
+
+            insertNPCStatement.setQueryTimeout(DBUtility.TIMEOUT);
+            insertNPCStatement.executeUpdate();
+
 
         } catch (SQLException | ClassNotFoundException exception) {
             exception.printStackTrace();

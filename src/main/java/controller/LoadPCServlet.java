@@ -3,8 +3,6 @@ package controller;
 import dao.CampaignDAO;
 import dao.CampaignDAOException;
 import dao.CampaignDAOImpl;
-import dao.TestDAO;
-import model.NPC;
 import model.PC;
 
 import javax.servlet.*;
