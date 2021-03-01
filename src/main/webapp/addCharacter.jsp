@@ -173,7 +173,7 @@
                 <label for="type">Type</label>
                 <div>
                     <select class="form-select" id="type" name="type">
-                        <option value="null"></option>
+                        <option></option>
                         <option value="1">Non-combat NPC</option>
                         <option value="2">Enemy</option>
                     </select>
