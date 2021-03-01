@@ -220,7 +220,7 @@ public class CampaignDAOImpl implements CampaignDAO{
 
                 weapons.add(new Weapon(name,type,cost,damage,weight,properties));
             }
-
+            connection.close();
         } catch (SQLException | ClassNotFoundException exception) {
             exception.printStackTrace();
             throw new CampaignDAOException("Error: unable to retrieve weapons records from the weapons table.");
@@ -254,7 +254,7 @@ public class CampaignDAOImpl implements CampaignDAO{
 
                 items.add(new Item(name,type,cost,weight));
             }
-
+            connection.close();
         } catch (SQLException | ClassNotFoundException exception) {
             exception.printStackTrace();
             throw new CampaignDAOException("Error: unable to retrieve item records from the items table.");
@@ -291,7 +291,7 @@ public class CampaignDAOImpl implements CampaignDAO{
 
                 spells.add(new Spell(name,level,school,casting,ritual,concentration,classes));
             }
-
+            connection.close();
         } catch (SQLException | ClassNotFoundException exception) {
             exception.printStackTrace();
             throw new CampaignDAOException("Error: unable to retrieve spell records from the spells table.");
@@ -337,7 +337,7 @@ public class CampaignDAOImpl implements CampaignDAO{
                 pcs.add(new PC(name,char_class,level,race,hitpts,armor,proficiency,initiative,speed,
                         strength,dexterity,constitution,intelligence,wisdom,charisma,background));
             }
-
+            connection.close();
         } catch (SQLException | ClassNotFoundException exception) {
             exception.printStackTrace();
             throw new CampaignDAOException("Error: unable to retrieve pc records from the characters table.");
@@ -428,6 +428,7 @@ public class CampaignDAOImpl implements CampaignDAO{
 
             insertStatement.setQueryTimeout(DBUtility.TIMEOUT);
             insertStatement.executeUpdate();
+            connection.close();
 
         } catch (SQLException | ClassNotFoundException exception) {
             exception.printStackTrace();
@@ -485,7 +486,7 @@ public class CampaignDAOImpl implements CampaignDAO{
 
             insertNPCStatement.setQueryTimeout(DBUtility.TIMEOUT);
             insertNPCStatement.executeUpdate();
-
+            connection.close();
 
         } catch (SQLException | ClassNotFoundException exception) {
             exception.printStackTrace();
