@@ -403,15 +403,15 @@ public class CampaignDAOImpl implements CampaignDAO{
         try {
             connection = DBUtility.createConnection();
             final String addPCSQL = "insert into characters (name, level, race, class, hp, ac,proficiency," +
-                    "initiative,speed,str,dex,con,intel,wis,cha,background) values" +
-                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                    "initiative,speed,str,dex,con,intel,wis,cha,background,isnpc) values" +
+                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             // Insert a new record into pcs table using our prepared statement
             insertStatement = connection.prepareStatement(addPCSQL);
             insertStatement.setString(1, pc.getName());
-            insertStatement.setString(2, pc.getChar_class());
-            insertStatement.setString(3, pc.getLevel());
-            insertStatement.setString(4, pc.getRace());
+            insertStatement.setString(2, pc.getLevel());
+            insertStatement.setString(3, pc.getRace());
+            insertStatement.setString(4, pc.getChar_class());
             insertStatement.setString(5, pc.getHitpts());
             insertStatement.setString(6, pc.getArmor());
             insertStatement.setString(7, pc.getProficiency());
@@ -424,6 +424,7 @@ public class CampaignDAOImpl implements CampaignDAO{
             insertStatement.setString(14, pc.getWisdom());
             insertStatement.setString(15, pc.getCharisma());
             insertStatement.setString(16, pc.getBackground());
+            insertStatement.setBoolean(17, false);
 
 
             insertStatement.setQueryTimeout(DBUtility.TIMEOUT);

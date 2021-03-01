@@ -35,18 +35,9 @@ public class AddCharacterServlet extends HttpServlet {
         final String traits = request.getParameter("traits");
         final String background = request.getParameter("background");
 
-        if (Strings.isNullOrEmpty(name)
-                || Strings.isNullOrEmpty(char_class)
-                || Strings.isNullOrEmpty(race)
-                || Strings.isNullOrEmpty(level)) {
-            // one of the above was null or empty
-            request.setAttribute("message", "Please complete all required fields");
-        }
-        else {
-            // all required fields entered
-            if (Strings.isNullOrEmpty(type)
-                    && Strings.isNullOrEmpty(traits)
-                    && Strings.isNullOrEmpty(location)) {
+        if (Strings.isNullOrEmpty(type)
+                && Strings.isNullOrEmpty(traits)
+                && Strings.isNullOrEmpty(location)) {
 
                 final CampaignDAO campaignDAO = new CampaignDAOImpl();
                 final PC pc = new PC(name, char_class, level, race, hitPts, armorClass, proficiency, initiative, speed, strength,
@@ -77,7 +68,6 @@ public class AddCharacterServlet extends HttpServlet {
                 }
                 getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
             }
-        }
     }
 
     @Override
