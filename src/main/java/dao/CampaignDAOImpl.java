@@ -387,7 +387,7 @@ public class CampaignDAOImpl implements CampaignDAO{
                 npcs.add(new NPC(name,type,char_class,level,race,hitpts,armor,proficiency,initiative,speed,
                         strength,dexterity,constitution,intelligence,wisdom,charisma,location,traits,background));
             }
-
+            connection.close();
         } catch (SQLException | ClassNotFoundException exception) {
             exception.printStackTrace();
             throw new CampaignDAOException("Error: unable to retrieve npc records from the npcs table.");
