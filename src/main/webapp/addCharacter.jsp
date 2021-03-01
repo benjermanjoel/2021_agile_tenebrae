@@ -26,6 +26,7 @@
     <div class="container">
         <h1 class="display-4">Add a new PC</h1>
         <p class = "lead">Enter in all the required fields below to add a new playable or non-playable character!</p>
+        <h3 style="color: #2373c8">${message}</h3>
     </div>
 </div>
 
@@ -191,7 +192,6 @@
         <br>
         <button type="submit" class="btn btn-primary">Create Character</button>
     </form>
-    <h3 style="color: #2373c8">${message}</h3>
 </div>
 
 
