@@ -39,8 +39,8 @@
         </div>
         <div class="col">
             <label for="level">Level</label>
-            <select class="form-control" id="level" name="level" required>
-                <option selected>Choose...</option>
+            <select class="form-select" id="level" name="level" required>
+                <option value="" selected disabled>Choose...</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -66,7 +66,7 @@
         <div class="col">
             <label for="char_class">Class</label>
             <select class="form-select" id="char_class" name="class" required>
-                <option selected>Choose...</option>
+                <option selected disabled>Choose...</option>
                 <option value="Barbarian">Barbarian</option>
                 <option value="Bard">Bard</option>
                 <option value="Cleric">Cleric</option>
@@ -85,7 +85,7 @@
             <div class="col">
                 <label for="race">Race</label>
                 <select class="form-select" id="race" name="race" required>
-                    <option selected>Choose...</option>
+                    <option selected disabled>Choose...</option>
                     <option value="Dragonborn">Dragonborn</option>
                     <option value="Dwarf">Dwarf</option>
                     <option value="Drow">Drow</option>
@@ -100,11 +100,11 @@
             </div>
             <div class="col">
                 <label  for="hitPts">Hit Points</label>
-                <input type="text" class="form-control" id="hitPts" name="hitPts" aria-placeholder="45">
+                <input type="text" class="form-control" id="hitPts" name="hitPts" aria-placeholder="45" required>
             </div>
             <div class="col">
                 <label for="armorClass">Armor Class</label>
-                <input type="text" class="form-control" id="armorClass" name="armorClass" aria-placeholder="15">
+                <input type="text" class="form-control" id="armorClass" name="armorClass" aria-placeholder="15" required>
             </div>
         </div>
         <div class="form-row">
