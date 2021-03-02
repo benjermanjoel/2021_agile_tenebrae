@@ -57,4 +57,14 @@ public class TestDAO implements CampaignDAO {
     public void addNPC(NPC npc) throws CampaignDAOException {
 
     }
+
+    @Override
+    public void deletePC(String name) throws CampaignDAOException {
+
+    }
+
+    @Override
+    public void deleteNPC(String name, Integer char_id) throws CampaignDAOException {
+
+    }
 }
