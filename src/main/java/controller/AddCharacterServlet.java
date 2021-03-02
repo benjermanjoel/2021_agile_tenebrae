@@ -38,7 +38,7 @@ public class AddCharacterServlet extends HttpServlet {
         /* ------------------------------ Validation for name  ------------------------------*/
         /* Check to see if entry is empty or less than 20 characters */
         if (Strings.isNullOrEmpty(name) || name.length() >= 20) {
-            request.setAttribute("message", "Please enter a valid name less than 20 characters.");
+            request.setAttribute("message", "Please enter a valid Name less than 20 characters.");
             getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
             return;
         }
@@ -46,7 +46,7 @@ public class AddCharacterServlet extends HttpServlet {
         /* ------------------------------ Validation for level  ------------------------------*/
         /* Check to see if entry is empty or left on "Choose..." option */
         if (Strings.isNullOrEmpty(level) || level.equals("Choose...")) {
-            request.setAttribute("message", "Please select the level of your character.");
+            request.setAttribute("message", "Please select the Level of your character.");
             getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
             return;
         }
@@ -54,13 +54,14 @@ public class AddCharacterServlet extends HttpServlet {
         try {
             int enteredLevel = Integer.parseInt(level);
 
+            /* Check if entered level is within the range */
             if (enteredLevel < 1 || enteredLevel > 20) {
-                request.setAttribute("message", "Please select the level of your character.");
+                request.setAttribute("message", "Please select the Level of your character.");
                 getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
                 return;
             }
         } catch (NumberFormatException nfe) {
-            request.setAttribute("message", "Please select the level of your character.");
+            request.setAttribute("message", "Please select the Level of your character.");
             getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
             return;
         }
@@ -68,7 +69,7 @@ public class AddCharacterServlet extends HttpServlet {
         /* ------------------------------ Validation for class ------------------------------*/
         /* Check to see if entry is empty or left on "Choose..." option */
         if (Strings.isNullOrEmpty(char_class) || char_class.equals("Choose...")) {
-            request.setAttribute("message", "Please select a class for your character.");
+            request.setAttribute("message", "Please select a Class for your character.");
             getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
             return;
         }
@@ -85,7 +86,7 @@ public class AddCharacterServlet extends HttpServlet {
                 || char_class.equals("Sorcerer")
                 || char_class.equals("Warlock")
                 || char_class.equals("Wizard"))) {
-                request.setAttribute("message", "Please select a class for your character.");
+                request.setAttribute("message", "Please select a Class for your character.");
             getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
             return;
         }
@@ -93,7 +94,7 @@ public class AddCharacterServlet extends HttpServlet {
         /* ------------------------------ Validation for race ------------------------------*/
         /* Check to see if entry is empty or left on "Choose..." option */
         if (Strings.isNullOrEmpty(race) || race.equals("Choose...")) {
-            request.setAttribute("message", "Please select a race for your character.");
+            request.setAttribute("message", "Please select a Race for your character.");
             getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
             return;
         }
@@ -108,13 +109,14 @@ public class AddCharacterServlet extends HttpServlet {
                 || race.equals("Half-Orc")
                 || race.equals("Human")
                 || race.equals("Tiefling"))) {
-            request.setAttribute("message", "Please select a race for your character.");
+            request.setAttribute("message", "Please select a Race for your character.");
             getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
             return;
         }
 
         /* ------------------------------ Validation for hit points  ------------------------------*/
         /* TODO: Check length of varchar for hitPts (in database?) to match */
+        /* Check to see if entry is empty or greater than 5 digits */
         if (Strings.isNullOrEmpty(hitPts) || hitPts.length() > 5) {
             request.setAttribute("message", "Please enter a valid Hit Point total number, no greater than 5 digits.");
             getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
@@ -124,6 +126,7 @@ public class AddCharacterServlet extends HttpServlet {
         try {
             int enteredHP = Integer.parseInt(hitPts);
 
+            /* Check if entered hit points is within the range */
             if (enteredHP < 1 || enteredHP > 99999) {
                 request.setAttribute("message", "Please enter a valid number for Hit Points, no greater than 5 digits.");
                 getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
@@ -136,7 +139,6 @@ public class AddCharacterServlet extends HttpServlet {
         }
 
         /* ------------------------------ Validation for armor class  ------------------------------*/
-        /* TODO: Validation for AC */
         if (Strings.isNullOrEmpty(armorClass) || armorClass.length() > 2) {
             request.setAttribute("message", "Please enter a valid Armor Class, between 1 and 99.");
             getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
@@ -146,6 +148,7 @@ public class AddCharacterServlet extends HttpServlet {
         try {
             int enteredAC = Integer.parseInt(armorClass);
 
+            /* Check if entered armor class is within the range */
             if (enteredAC < 1 || enteredAC > 99) {
                 request.setAttribute("message", "Please enter a valid number for Armor Class, between 1 and 99.");
                 getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
@@ -158,13 +161,82 @@ public class AddCharacterServlet extends HttpServlet {
         }
 
         /* ------------------------------ Validation for proficiency  ------------------------------*/
-        /* TODO: Validation for proficiency */
+        /* Check to see if entry is empty or left on "Choose..." option */
+        if (Strings.isNullOrEmpty(proficiency) || proficiency.equals("Choose...")) {
+            request.setAttribute("message", "Please select the Proficiency of your character.");
+            getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
+            return;
+        }
+        /* Check to see if proficiency is a number, then check to see if it is a number 2-6 */
+        try {
+            int enteredProficiency = Integer.parseInt(proficiency);
+
+            /* Check if entered proficiency is within the range */
+            if (enteredProficiency < 2 || enteredProficiency > 6) {
+                request.setAttribute("message", "Please select the Proficiency of your character.");
+                getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
+                return;
+            }
+        } catch (NumberFormatException nfe) {
+            request.setAttribute("message", "Please select the Proficiency of your character.");
+            getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
+            return;
+        }
 
         /* ------------------------------ Validation for initiative  ------------------------------*/
-        /* TODO: Validation for initiative */
+        /* TODO: Confirm changes made to initiative */
+        /* Check to see if entry is empty or left on "Choose..." option */
+        if (Strings.isNullOrEmpty(initiative) || initiative.equals("Choose...")) {
+            request.setAttribute("message", "Please enter a valid Initiative, between 1 and 99.");
+            getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
+            return;
+        }
+        /* Check to see if initiative is a number, then check to see if it is a number 1-99 */
+        try {
+            int enteredInitiative = Integer.parseInt(initiative);
+
+            /* Check if entered initiative is within the range */
+            if (enteredInitiative < 1 || enteredInitiative > 99) {
+                request.setAttribute("message", "Please enter a valid number for Initiative, between 1 and 99.");
+                getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
+                return;
+            }
+        } catch (NumberFormatException nfe) {
+            request.setAttribute("message", "Please enter a valid number for Initiative, between 1 and 99.");
+            getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
+            return;
+        }
+
 
         /* ------------------------------ Validation for speed  ------------------------------*/
-        /* TODO: Validation for speed */
+        /* TODO: Confirm changes made to speed */
+        /* Check to see if entry is empty or left on "Choose..." option */
+        if (Strings.isNullOrEmpty(speed) || speed.equals("Choose...")) {
+            request.setAttribute("message", "Please enter a valid Speed, between 5 and 5000 and a multiple of 5.");
+            getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
+            return;
+        }
+        /* Check to see if initiative is a number, then check to see if it is a number 5-5000 */
+        try {
+            int enteredSpeed = Integer.parseInt(speed);
+
+            /* Check if entered speed is within the range */
+            if (enteredSpeed < 5 || enteredSpeed > 5000) {
+                request.setAttribute("message", "Please enter a valid number for Speed, between 5 and 5000 and a multiple of 5.");
+                getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
+                return;
+            }
+            /* Check if entered speed is divisible by 5 (speed is always a multiple of 5 in D&D) */
+            if (enteredSpeed % 5 != 0) {
+                request.setAttribute("message", "Please enter a valid number for Speed, between 5 and 5000 and a multiple of 5.");
+                getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
+                return;
+            }
+        } catch (NumberFormatException nfe) {
+            request.setAttribute("message", "Please enter a valid number for Speed, between 5 and 5000 and a multiple of 5.");
+            getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
+            return;
+        }
 
         /* ------------------------------ Validation for strength  ------------------------------*/
         /* TODO: Validation for strength */

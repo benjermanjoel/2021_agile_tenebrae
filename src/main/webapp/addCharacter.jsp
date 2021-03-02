@@ -99,40 +99,33 @@
                 </select>
             </div>
             <div class="col">
-                <label  for="hitPts">Hit Points</label>
+                <label for="hitPts">Hit Points</label>
                 <input type="text" class="form-control" id="hitPts" name="hitPts" aria-placeholder="45" required>
             </div>
             <div class="col">
                 <label for="armorClass">Armor Class</label>
-                <input type="text" class="form-control" id="armorClass" name="armorClass" aria-placeholder="15" required>
+                <input type="text" class="form-control" id="armorClass" name="armorClass" aria-placeholder="12" required>
             </div>
         </div>
         <div class="form-row">
             <div class="col">
                 <label for="proficiency">Proficiency</label>
-                <select class="form-select" id="proficiency" name="proficiency">
-                    <option selected>Choose...</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
+                <select class="form-select" id="proficiency" name="proficiency" required>
+                    <option selected disabled>Choose...</option>
+                    <option value="2">+2</option>
+                    <option value="3">+3</option>
+                    <option value="4">+4</option>
+                    <option value="5">+5</option>
+                    <option value="6">+6</option>
                 </select>
             </div>
             <div class="col">
                 <label for="initiative">Initiative</label>
-                <select class="form-select" id="initiative" name="initiative">
-                    <option selected>Choose...</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
+                <input type="text" class="form-control" id="initiative" name="initiative" aria-placeholder="2" required>
             </div>
             <div class="col">
                 <label for="speed">Speed</label>
-                <select class="form-select" id="speed" name="speed">
-                    <option selected>Choose...</option>
-                    <option value="30">30</option>
-                    <option value="35">35</option>
-                </select>
+                <input type="text" class="form-control" id="speed" name="speed" aria-placeholder="30" required>
             </div>
         </div>
         <div class="form-group">
