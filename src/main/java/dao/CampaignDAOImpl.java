@@ -495,4 +495,52 @@ public class CampaignDAOImpl implements CampaignDAO{
         }
 
     }
+
+    @Override
+    public void deletePC(String name) throws CampaignDAOException {
+        Connection connection;
+        PreparedStatement deleteStatement;
+
+        try {
+            connection = DBUtility.createConnection();
+            final String deletePCSQL = "delete from characters where name = ?";
+
+            deleteStatement = connection.prepareStatement(deletePCSQL);
+            deleteStatement.setString(1, name);
+
+            deleteStatement.setQueryTimeout(DBUtility.TIMEOUT);
+            deleteStatement.executeUpdate();
+            connection.close();
+
+        } catch (SQLException | ClassNotFoundException exception) {
+            exception.printStackTrace();
+            throw new CampaignDAOException("Error: unable to delete playable character record from the characters table.");
+        }
+
+    }
+
+    @Override
+    public void deleteNPC(String name) throws CampaignDAOException {
+        Connection connection;
+        PreparedStatement deleteStatement;
+
+        try {
+            connection = DBUtility.createConnection();
+            final String deleteNPC_SQL_1 = "delete from characters where name = ?";
+
+            deleteStatement = connection.prepareStatement(deleteNPC_SQL_1);
+            deleteStatement.setString(1, name);
+            deleteStatement.setQueryTimeout(DBUtility.TIMEOUT);
+            deleteStatement.executeUpdate();
+
+            connection.close();
+
+        } catch (SQLException | ClassNotFoundException exception) {
+            exception.printStackTrace();
+            throw new CampaignDAOException("Error: unable to add non-playable character record from the characters table.");
+        }
+
+    }
+
+
 }
