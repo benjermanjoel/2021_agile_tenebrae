@@ -520,22 +520,16 @@ public class CampaignDAOImpl implements CampaignDAO{
     }
 
     @Override
-    public void deleteNPC(String name,Integer char_id) throws CampaignDAOException {
+    public void deleteNPC(String name) throws CampaignDAOException {
         Connection connection;
         PreparedStatement deleteStatement;
 
         try {
             connection = DBUtility.createConnection();
             final String deleteNPC_SQL_1 = "delete from characters where name = ?";
-            final String deleteNPC_SQL_2 = "delete from npcs where char_id = ?";
 
             deleteStatement = connection.prepareStatement(deleteNPC_SQL_1);
             deleteStatement.setString(1, name);
-            deleteStatement.setQueryTimeout(DBUtility.TIMEOUT);
-            deleteStatement.executeUpdate();
-
-            deleteStatement = connection.prepareStatement(deleteNPC_SQL_2);
-            deleteStatement.setInt(1, char_id);
             deleteStatement.setQueryTimeout(DBUtility.TIMEOUT);
             deleteStatement.executeUpdate();
 

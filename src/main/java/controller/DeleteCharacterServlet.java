@@ -38,7 +38,7 @@ public class DeleteCharacterServlet extends HttpServlet {
             int char_id = rs.getInt(1);
 
             if (isnpc == true) try {
-                    campaignDAO.deleteNPC(name,char_id);
+                    campaignDAO.deleteNPC(name);
                     request.setAttribute("message", "Non-playable character deleted successfully.");
                 } catch (CampaignDAOException exception) {
                     exception.printStackTrace();
