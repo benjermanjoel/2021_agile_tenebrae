@@ -24,7 +24,7 @@
 <%@include file="includes/navbar.jsp"%>
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">Add a new PC</h1>
+        <h1 class="display-4">Add a new Character</h1>
         <p class = "lead">Enter in all the required fields below to add a new playable or non-playable character!</p>
         <h3 style="color: #2373c8">${message}</h3>
     </div>
@@ -130,46 +130,46 @@
         </div>
         <div class="form-group">
             <label for="strength" class="form-label">Strength</label>
-            <input type="range" class="form-range" min="8" max="15" id="strength" name="strength" oninput="this.nextElementSibling.value = this.value">
+            <input type="range" class="form-range" min="1" max="20" id="strength" name="strength" oninput="this.nextElementSibling.value = this.value" required>
             <output>12</output>
             <br>
             <label for="dexterity" class="form-label">Dexterity</label>
-            <input type="range" class="form-range" min="8" max="15" id="dexterity" name="dexterity" oninput="this.nextElementSibling.value = this.value">
+            <input type="range" class="form-range" min="1" max="20" id="dexterity" name="dexterity" oninput="this.nextElementSibling.value = this.value" required>
             <output>12</output>
             <br>
             <label for="constitution" class="form-label">Constitution</label>
-            <input type="range" class="form-range" min="8" max="15" id="constitution" name="constitution" oninput="this.nextElementSibling.value = this.value">
+            <input type="range" class="form-range" min="1" max="20" id="constitution" name="constitution" oninput="this.nextElementSibling.value = this.value" required>
             <output>12</output>
             <br>
             <label for="intelligence" class="form-label">Intelligence</label>
-            <input type="range" class="form-range" min="8" max="15" id="intelligence" name="intelligence" oninput="this.nextElementSibling.value = this.value">
+            <input type="range" class="form-range" min="1" max="20" id="intelligence" name="intelligence" oninput="this.nextElementSibling.value = this.value" required>
             <output>12</output>
             <br>
             <label for="wisdom" class="form-label">Wisdom</label>
-            <input type="range" class="form-range" min="8" max="15" id="wisdom" name="wisdom" oninput="this.nextElementSibling.value = this.value">
+            <input type="range" class="form-range" min="1" max="20" id="wisdom" name="wisdom" oninput="this.nextElementSibling.value = this.value" required>
             <output>12</output>
             <br>
             <label for="charisma" class="form-label">Charisma</label>
-            <input type="range" class="form-range" min="8" max="15" id="charisma" name="charisma" oninput="this.nextElementSibling.value = this.value">
+            <input type="range" class="form-range" min="1" max="20" id="charisma" name="charisma" oninput="this.nextElementSibling.value = this.value" required>
             <output>12</output>
         </div>
         <div class="mb-3">
             <label for="background" class="form-label">Background</label>
-            <textarea class="form-control" id="background" name="background" rows="3"></textarea>
+            <textarea class="form-control" id="background" name="background" rows="3" required></textarea>
         </div>
         <div class="col-auto">
             <p>
                 <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Non-playable Character?
+                    Click for Non-Player Character
                 </button>
             </p>
             <div class="collapse" id="collapseExample">
                 <label for="type">Type</label>
                 <div>
                     <select class="form-select" id="type" name="type">
-                        <option></option>
-                        <option value="1">Non-combat NPC</option>
-                        <option value="2">Enemy</option>
+                        <option selected disabled>Choose...</option>
+                        <option value="CombatNPC">Combat NPC</option>
+                        <option value="NonCombatNPC">Non-Combat NPC</option>
                     </select>
                 </div>
                 <div class="col">
