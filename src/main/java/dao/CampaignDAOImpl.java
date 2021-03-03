@@ -497,12 +497,98 @@ public class CampaignDAOImpl implements CampaignDAO{
     }
 
     @Override
-    public void modifyPC(String name) throws CampaignDAOException {
+    public void modifyPC(PC pc, Integer char_id) throws CampaignDAOException {
+        Connection connection;
+        PreparedStatement updateStatement;
 
+        try {
+            connection = DBUtility.createConnection();
+            final String modifyPCSQL = "update characters set (name, level, race, class, hp, ac,proficiency," +
+                    "initiative,speed,str,dex,con,intel,wis,cha,background) values" +
+                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) where char_id = ?;";
+
+            // Insert a new record into pcs table using our prepared statement
+            updateStatement = connection.prepareStatement(modifyPCSQL);
+            updateStatement.setString(1, pc.getName());
+            updateStatement.setString(2, pc.getLevel());
+            updateStatement.setString(3, pc.getRace());
+            updateStatement.setString(4, pc.getChar_class());
+            updateStatement.setString(5, pc.getHitpts());
+            updateStatement.setString(6, pc.getArmor());
+            updateStatement.setString(7, pc.getProficiency());
+            updateStatement.setString(8, pc.getInitiative());
+            updateStatement.setString(9, pc.getSpeed());
+            updateStatement.setString(10, pc.getStrength());
+            updateStatement.setString(11, pc.getDexterity());
+            updateStatement.setString(12, pc.getConstitution());
+            updateStatement.setString(13, pc.getIntelligence());
+            updateStatement.setString(14, pc.getWisdom());
+            updateStatement.setString(15, pc.getCharisma());
+            updateStatement.setString(16, pc.getBackground());
+            updateStatement.setInt(17, char_id);
+
+            updateStatement.setQueryTimeout(DBUtility.TIMEOUT);
+            updateStatement.executeUpdate();
+            connection.close();
+
+        } catch (SQLException | ClassNotFoundException exception) {
+            exception.printStackTrace();
+            throw new CampaignDAOException("Error: unable to modify playable character record.");
+        }
     }
 
     @Override
-    public void modifyNPC(String name) throws CampaignDAOException {
+    public void modifyNPC(NPC npc, Integer char_id) throws CampaignDAOException {
+        Connection connection;
+        PreparedStatement updateCHARStatement;
+        PreparedStatement updateNPCStatement;
+
+        try {
+            connection = DBUtility.createConnection();
+            final String ADD_NPC_CHAR_SQL = "update characters set (name,class,level,race,hp,ac,proficiency," +
+                    "initiative,speed,str,dex,con,intel,wis,cha,background) values" +
+                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) where char_id = ?;";
+            final String ADD_NPC_SQL = "update npcs set (type,loc,traits) values" +
+                    "(?,?,?) where char_id = ?;";
+
+            // Insert a new record into characters table using our prepared statement
+            updateCHARStatement = connection.prepareStatement(ADD_NPC_CHAR_SQL, Statement.RETURN_GENERATED_KEYS);
+            updateCHARStatement.setString(1, npc.getName());
+            updateCHARStatement.setString(2, npc.getChar_class());
+            updateCHARStatement.setString(3, npc.getLevel());
+            updateCHARStatement.setString(4, npc.getRace());
+            updateCHARStatement.setString(5, npc.getHitpts());
+            updateCHARStatement.setString(6, npc.getArmor());
+            updateCHARStatement.setString(7, npc.getProficiency());
+            updateCHARStatement.setString(8, npc.getInitiative());
+            updateCHARStatement.setString(9, npc.getSpeed());
+            updateCHARStatement.setString(10, npc.getStrength());
+            updateCHARStatement.setString(11, npc.getDexterity());
+            updateCHARStatement.setString(12, npc.getConstitution());
+            updateCHARStatement.setString(13, npc.getIntelligence());
+            updateCHARStatement.setString(14, npc.getWisdom());
+            updateCHARStatement.setString(15, npc.getCharisma());
+            updateCHARStatement.setString(16, npc.getBackground());
+            updateCHARStatement.setInt(17, char_id);
+
+            updateCHARStatement.setQueryTimeout(DBUtility.TIMEOUT);
+            updateCHARStatement.executeUpdate();
+
+
+            updateNPCStatement = connection.prepareStatement(ADD_NPC_SQL);
+            updateNPCStatement.setString(1, npc.getType());
+            updateNPCStatement.setString(2, npc.getLocation());
+            updateNPCStatement.setString(3, npc.getTraits());
+            updateNPCStatement.setInt(4, char_id);
+
+            updateNPCStatement.setQueryTimeout(DBUtility.TIMEOUT);
+            updateNPCStatement.executeUpdate();
+            connection.close();
+
+        } catch (SQLException | ClassNotFoundException exception) {
+            exception.printStackTrace();
+            throw new CampaignDAOException("Error: unable to modify non-playable character.");
+        }
 
     }
 

@@ -59,12 +59,12 @@ public class TestDAO implements CampaignDAO {
     }
 
     @Override
-    public void modifyPC(String name) throws CampaignDAOException {
+    public void modifyPC(PC pc, Integer char_id) throws CampaignDAOException {
 
     }
 
     @Override
-    public void modifyNPC(String name) throws CampaignDAOException {
+    public void modifyNPC(NPC npc, Integer char_id) throws CampaignDAOException {
 
     }
 
