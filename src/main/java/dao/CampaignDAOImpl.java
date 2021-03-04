@@ -7,12 +7,8 @@ package dao;
 
 import model.*;
 import model.Item;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import utility.DBUtility;
-import utility.WorkbookUtility;
 
-import java.io.File;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,143 +50,6 @@ public class CampaignDAOImpl implements CampaignDAO{
             "initiative text,speed text,strength text,dexterity text,constitution text, "+
             "intelligence text,wisdom text,charisma text,location text,traits text,background text);";
     final static String SELECT_ALL_NPCS = "select * from characters join npcs n on characters.char_id = n.char_id";
-
-    @Override
-    /*
-    * The following method, populateDB, takes as an argument a filepath. It then uses the JDBC to create a new
-    * database connect which creates the database. The first SQL statement we run is to drop all tables.
-    * Then using our CREATE and SELECT queries above, this method begins creating and populating our database tables.
-    *
-    * */
-    public void populateDB(String weaponsPath,String itemsPath,String spellsPath,String pcsPath,String npcsPath) throws CampaignDAOException {
-        Connection connection;
-        Statement statement;
-
-        try {
-            // Create the database and tables
-            connection = DBUtility.createConnection();
-            statement = connection.createStatement();
-            statement.setQueryTimeout(DBUtility.TIMEOUT);
-            statement.executeUpdate(DROP_WEAPONS_TABLE);
-            statement.executeUpdate(DROP_ITEMS_TABLE);
-            statement.executeUpdate(DROP_SPELLS_TABLE);
-            //statement.executeUpdate(DROP_PCS_TABLE);
-            //statement.executeUpdate(DROP_NPCS_TABLE);
-            statement.executeUpdate(CREATE_TABLE_WEAPONS);
-            statement.executeUpdate(CREATE_TABLE_ITEMs);
-            statement.executeUpdate(CREATE_TABLE_SPELLS);
-            //statement.executeUpdate(CREATE_TABLE_PCS);
-            //statement.executeUpdate(CREATE_TABLE_NPCS);
-
-            // Populate the campaign tables with data
-            final File weaponsFile = new File(weaponsPath);
-            final File itemsFile = new File(itemsPath);
-            final File spellsFile = new File(spellsPath);
-            //final File pcsFile = new File(pcsPath);
-            //final File npcsFile = new File(npcsPath);
-            final List<Weapon> weapons = WorkbookUtility.retrieveWeapons(weaponsFile);
-            final List<Item> items = WorkbookUtility.retrieveItems(itemsFile);
-            final List<Spell> spells = WorkbookUtility.retrieveSpells(spellsFile);
-            //final List<PC> pcs = WorkbookUtility.retrievePCs(pcsFile);
-            //final List<NPC> npcs = WorkbookUtility.retrieveNPCs(npcsFile);
-
-            for (final Weapon weapon : weapons) {
-                final String insertWeapons = "insert into weapons (name,type,cost,damage,weight,properties) values" +
-                        "('" + weapon.getName() + "','"
-                        + weapon.getType() + "','"
-                        + weapon.getCost() + "','"
-                        + weapon.getDamage() + "','"
-                        + weapon.getWeight() + "','"
-                        + weapon.getProperties() + "')";
-                //Debugging
-                System.out.println(insertWeapons);
-                // Insert the data
-                statement.executeUpdate(insertWeapons);
-            }
-            for (final Item item : items) {
-                final String insertItems = "insert into items (name,type,cost,weight) values" +
-                        "('" + item.getName() + "','"
-                        + item.getType() + "','"
-                        + item.getCost() + "','"
-                        + item.getWeight() + "')";
-                //Debugging
-                System.out.println(insertItems);
-                // Insert the data
-                statement.executeUpdate(insertItems);
-
-            }
-            for (final Spell spell : spells) {
-                final String insertSpells = "insert into spells (name,level,school,casting,ritual,concentration,classes) values" +
-                        "('" + spell.getName() + "','"
-                        + spell.getLevel() + "','"
-                        + spell.getSchool() + "','"
-                        + spell.getCasting() + "','"
-                        + spell.getRitual() + "','"
-                        + spell.getConcentration() + "','"
-                        + spell.getClasses() + "')";
-                //Debugging
-                System.out.println(insertSpells);
-                // Insert the data
-                statement.executeUpdate(insertSpells);
-            }
-            /*
-            for (final PC pc : pcs) {
-                final String insertPCS = "insert into pcs (name,char_class,level,race,hitpts,armor,proficiency," +
-                        "initiative,speed,strength,dexterity,constitution,intelligence,wisdom,charisma,background) values" +
-                        "('" + pc.getName() + "','"
-                        + pc.getChar_class() + "','"
-                        + pc.getLevel() + "','"
-                        + pc.getRace() + "','"
-                        + pc.getHitpts() + "','"
-                        + pc.getArmor() + "','"
-                        + pc.getProficiency() + "','"
-                        + pc.getInitiative() + "','"
-                        + pc.getSpeed() + "','"
-                        + pc.getStrength() + "','"
-                        + pc.getDexterity() + "','"
-                        + pc.getConstitution() + "','"
-                        + pc.getIntelligence() + "','"
-                        + pc.getWisdom() + "','"
-                        + pc.getCharisma() + "','"
-                        + pc.getBackground() + "')";
-                //Debugging
-                System.out.println(insertPCS);
-                // Insert the data
-                statement.executeUpdate(insertPCS);
-            }
-            for (final NPC npc : npcs) {
-                final String insertNPCS = "insert into npcs (name,type,char_class,level,race,hitpts,armor,proficiency," +
-                        "initiative,speed,strength,dexterity,constitution,intelligence,wisdom,charisma,location,traits,background) values" +
-                        "('" + npc.getName() + "','"
-                        + npc.getType() + "','"
-                        + npc.getChar_class() + "','"
-                        + npc.getLevel() + "','"
-                        + npc.getRace() + "','"
-                        + npc.getHitpts() + "','"
-                        + npc.getArmor() + "','"
-                        + npc.getProficiency() + "','"
-                        + npc.getInitiative() + "','"
-                        + npc.getSpeed() + "','"
-                        + npc.getStrength() + "','"
-                        + npc.getDexterity() + "','"
-                        + npc.getConstitution() + "','"
-                        + npc.getIntelligence() + "','"
-                        + npc.getWisdom() + "','"
-                        + npc.getCharisma() + "','"
-                        + npc.getLocation() + "','"
-                        + npc.getTraits() + "','"
-                        + npc.getBackground() + "')";
-                //Debugging
-                System.out.println(insertNPCS);
-                // Insert the data
-                statement.executeUpdate(insertNPCS);
-            }
-             */
-        } catch (SQLException | ClassNotFoundException | InvalidFormatException | IOException exception ) {
-            exception.printStackTrace();
-            throw new CampaignDAOException("Error: Unable to populate the campaign database with data from spreadsheet.");
-        }
-    }
 
     @Override
     /*

@@ -9,7 +9,6 @@ import model.*;
 import java.util.List;
 
 public interface CampaignDAO {
-    void populateDB(String weaponsPath,String itemsPath,String spellsPath,String pcsPath,String npcsPath) throws CampaignDAOException;
     List<Weapon> retrieveWeapons() throws CampaignDAOException;
     List<Item> retrieveItems() throws CampaignDAOException;
     List<Spell> retrieveSpells() throws CampaignDAOException;

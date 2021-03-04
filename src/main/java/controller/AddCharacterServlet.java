@@ -17,7 +17,7 @@ public class AddCharacterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        final int id = (int) session.getAttribute("user_id");
+        final int id = ((int)session.getAttribute("user_id"));
         final String name = request.getParameter("name");
         final String type = request.getParameter("type");
         final String char_class = request.getParameter("class");
