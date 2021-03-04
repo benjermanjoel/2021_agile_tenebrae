@@ -317,6 +317,7 @@ public class CampaignDAOImpl implements CampaignDAO{
             final ResultSet results = statement.executeQuery(SELECT_ALL_PCS);
             // loop
             while (results.next()){
+                 int user_id = results.getInt("user_id");
                  String name = results.getString("name");
                  String char_class = results.getString("class");
                  String level = results.getString("level");
@@ -334,7 +335,7 @@ public class CampaignDAOImpl implements CampaignDAO{
                  String charisma = results.getString("cha");
                  String background = results.getString("background");
 
-                pcs.add(new PC(name,char_class,level,race,hitpts,armor,proficiency,initiative,speed,
+                pcs.add(new PC(user_id,name,char_class,level,race,hitpts,armor,proficiency,initiative,speed,
                         strength,dexterity,constitution,intelligence,wisdom,charisma,background));
             }
             connection.close();
@@ -363,6 +364,7 @@ public class CampaignDAOImpl implements CampaignDAO{
             final ResultSet results = statement.executeQuery(SELECT_ALL_NPCS);
             // loop
             while (results.next()){
+                 int user_id = results.getInt("user_id");
                  String name = results.getString("name");
                  String char_class = results.getString("class");
                  String level = results.getString("level");
@@ -384,7 +386,7 @@ public class CampaignDAOImpl implements CampaignDAO{
                  String location = results.getString("loc");
                  String traits = results.getString("traits");
 
-                npcs.add(new NPC(name,type,char_class,level,race,hitpts,armor,proficiency,initiative,speed,
+                npcs.add(new NPC(user_id,name,type,char_class,level,race,hitpts,armor,proficiency,initiative,speed,
                         strength,dexterity,constitution,intelligence,wisdom,charisma,location,traits,background));
             }
             connection.close();
@@ -403,8 +405,8 @@ public class CampaignDAOImpl implements CampaignDAO{
         try {
             connection = DBUtility.createConnection();
             final String addPCSQL = "insert into characters (name, level, race, class, hp, ac,proficiency," +
-                    "initiative,speed,str,dex,con,intel,wis,cha,background,isnpc) values" +
-                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                    "initiative,speed,str,dex,con,intel,wis,cha,background,isnpc, user_id) values" +
+                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             // Insert a new record into pcs table using our prepared statement
             insertStatement = connection.prepareStatement(addPCSQL);
@@ -425,6 +427,7 @@ public class CampaignDAOImpl implements CampaignDAO{
             insertStatement.setString(15, pc.getCharisma());
             insertStatement.setString(16, pc.getBackground());
             insertStatement.setBoolean(17, false);
+            insertStatement.setInt(18, pc.getUser_id());
 
 
             insertStatement.setQueryTimeout(DBUtility.TIMEOUT);
@@ -447,8 +450,8 @@ public class CampaignDAOImpl implements CampaignDAO{
         try {
             connection = DBUtility.createConnection();
             final String ADD_NPC_CHAR_SQL = "insert into characters (name,class,level,race,hp,ac,proficiency," +
-                    "initiative,speed,str,dex,con,intel,wis,cha,background,isnpc) values" +
-                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                    "initiative,speed,str,dex,con,intel,wis,cha,background,isnpc,user_id) values" +
+                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
             final String ADD_NPC_SQL = "insert into npcs (type,loc,traits,char_id) values" +
                     "(?,?,?,?);";
 
@@ -471,6 +474,7 @@ public class CampaignDAOImpl implements CampaignDAO{
             insertStatement.setString(15, npc.getCharisma());
             insertStatement.setString(16, npc.getBackground());
             insertStatement.setBoolean(17, true);
+            insertStatement.setInt(18, npc.getUser_id());
 
             insertStatement.setQueryTimeout(DBUtility.TIMEOUT);
             insertStatement.executeUpdate();

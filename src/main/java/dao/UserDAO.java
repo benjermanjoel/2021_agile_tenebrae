@@ -23,6 +23,7 @@ public class UserDAO {
 
         if(result.next()){
             user = new User();
+            user.setId(result.getInt("user_id"));
             user.setFirstName(result.getString("firstname"));
             user.setLastName(result.getString("lastname"));
             user.setEmail(email);
@@ -32,4 +33,5 @@ public class UserDAO {
 
         return user;
     }
+
 }

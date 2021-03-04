@@ -7,6 +7,7 @@ package model;
 import java.io.Serializable;
 
 public class PC implements Serializable {
+    private int user_id;
     private String name;
     private String char_class;
     private String level;
@@ -26,7 +27,8 @@ public class PC implements Serializable {
     
     // Constructor
 
-    public PC(String name, String char_class, String level, String race, String hitpts, String armor, String proficiency, String initiative, String speed, String strength, String dexterity, String constitution, String intelligence, String wisdom, String charisma, String background) {
+    public PC(int user_id, String name, String char_class, String level, String race, String hitpts, String armor, String proficiency, String initiative, String speed, String strength, String dexterity, String constitution, String intelligence, String wisdom, String charisma, String background) {
+        this.user_id = user_id;
         this.name = name;
         this.char_class = char_class;
         this.level = level;
@@ -46,6 +48,12 @@ public class PC implements Serializable {
     }
 
     // Getters 'n setters
+
+
+    public int getUser_id() { return user_id; }
+
+    public void setUser_id(int user_id) { this.user_id = user_id; }
+
     public String getName() {
         return name;
     }
