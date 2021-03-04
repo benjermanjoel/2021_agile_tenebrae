@@ -26,6 +26,8 @@ public class ModifyCharacterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        final int user_id = ((int)session.getAttribute("user_id"));
         final String name = request.getParameter("name");
         final String type = request.getParameter("type");
         final String char_class = request.getParameter("class");
@@ -51,7 +53,7 @@ public class ModifyCharacterServlet extends HttpServlet {
                 && Strings.isNullOrEmpty(location)) {
 
             final CampaignDAO campaignDAO = new CampaignDAOImpl();
-            final PC pc = new PC(name, char_class, level, race, hitPts, armorClass, proficiency, initiative, speed, strength,
+            final PC pc = new PC(user_id, name, char_class, level, race, hitPts, armorClass, proficiency, initiative, speed, strength,
                     dexterity, constitution, intelligence, wisdom, charisma, background);
 
             try {
@@ -76,7 +78,7 @@ public class ModifyCharacterServlet extends HttpServlet {
             getServletContext().getRequestDispatcher("/modifyCharacter.jsp").forward(request, response);
         } else {
             final CampaignDAO campaignDAO = new CampaignDAOImpl();
-            final NPC npc = new NPC(name, type, char_class, level, race, hitPts, armorClass, proficiency, initiative, speed, strength,
+            final NPC npc = new NPC(user_id,name, type, char_class, level, race, hitPts, armorClass, proficiency, initiative, speed, strength,
                     dexterity, constitution, intelligence, wisdom, charisma, location, traits, background);
 
             try {
