@@ -43,13 +43,13 @@ public class CampaignDAOImpl implements CampaignDAO{
             "char_class text,level text,race text,hitpts text,armor text,proficiency text, " +
             "initiative text,speed text,strength text,dexterity text,constitution text, "+
             "intelligence text,wisdom text,charisma text,background text);";
-    final static String SELECT_ALL_PCS = "select * from characters where isnpc=false;";
+    // final static String SELECT_ALL_PCS = "select * from characters where isnpc=false;";
     // CREATE and SELECT queries for npcs
     final static String CREATE_TABLE_NPCS = "create table npcs(id serial primary key, name text, " +
             "type text,char_class text,level text,race text,hitpts text,armor text,proficiency text, " +
             "initiative text,speed text,strength text,dexterity text,constitution text, "+
             "intelligence text,wisdom text,charisma text,location text,traits text,background text);";
-    final static String SELECT_ALL_NPCS = "select * from characters join npcs n on characters.char_id = n.char_id";
+    //final static String SELECT_ALL_NPCS = "select * from characters join npcs n on characters.char_id = n.char_id";
 
     @Override
     /*
@@ -162,21 +162,23 @@ public class CampaignDAOImpl implements CampaignDAO{
     //The following method leverages the SELECT_ALL_PCS query to retrieve PC data from the pcs table
 
     //TODO de-duplicate code.
-    public List<PC> retrievePCs() throws CampaignDAOException {
+    public List<PC> retrievePCs(Integer user_id) throws CampaignDAOException {
         final List<PC> pcs = new ArrayList<PC>();
+        final String SELECT_ALL_PCS = "select * from characters where isnpc=false and user_id = ?;";
         Connection connection;
-        Statement statement;
+        PreparedStatement statement;
 
         try {
             connection = DBUtility.createConnection();
-            statement = connection.createStatement();
+            statement = connection.prepareStatement(SELECT_ALL_PCS);
+            statement.setInt(1,user_id);
             statement.setQueryTimeout(DBUtility.TIMEOUT);
 
             // select all data from pcs table
-            final ResultSet results = statement.executeQuery(SELECT_ALL_PCS);
+            final ResultSet results = statement.executeQuery();
             // loop
             while (results.next()){
-                 int user_id = results.getInt("user_id");
+                 int id = results.getInt("user_id");
                  String name = results.getString("name");
                  String char_class = results.getString("class");
                  String level = results.getString("level");
@@ -194,7 +196,7 @@ public class CampaignDAOImpl implements CampaignDAO{
                  String charisma = results.getString("cha");
                  String background = results.getString("background");
 
-                pcs.add(new PC(user_id,name,char_class,level,race,hitpts,armor,proficiency,initiative,speed,
+                pcs.add(new PC(id,name,char_class,level,race,hitpts,armor,proficiency,initiative,speed,
                         strength,dexterity,constitution,intelligence,wisdom,charisma,background));
             }
             connection.close();
@@ -209,21 +211,23 @@ public class CampaignDAOImpl implements CampaignDAO{
     //The following method leverages the SELECT_ALL_NPCS query to retrieve NPC data from the npcs table
 
     //TODO de-duplicate code
-    public List<NPC> retrieveNPCs() throws CampaignDAOException {
+    public List<NPC> retrieveNPCs(Integer user_id) throws CampaignDAOException {
         final List<NPC> npcs = new ArrayList<NPC>();
+        final String SELECT_ALL_NPCS = "select * from characters c join npcs n on c.char_id = n.char_id where c.user_id=?;";
         Connection connection;
-        Statement statement;
+        PreparedStatement statement;
 
         try {
             connection = DBUtility.createConnection();
-            statement = connection.createStatement();
+            statement = connection.prepareStatement(SELECT_ALL_NPCS);
+            statement.setInt(1,user_id);
             statement.setQueryTimeout(DBUtility.TIMEOUT);
 
-            // select all data from npcs table
-            final ResultSet results = statement.executeQuery(SELECT_ALL_NPCS);
+            // select all data from pcs table
+            final ResultSet results = statement.executeQuery();
             // loop
             while (results.next()){
-                 int user_id = results.getInt("user_id");
+                 int id = results.getInt("user_id");
                  String name = results.getString("name");
                  String char_class = results.getString("class");
                  String level = results.getString("level");

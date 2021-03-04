@@ -23,7 +23,7 @@ public class TestDAO implements CampaignDAO {
     }
 
     @Override
-    public List<PC> retrievePCs() throws CampaignDAOException {
+    public List<PC> retrievePCs(Integer user_id) throws CampaignDAOException {
         PC pc = new PC(1234,"Toddddd", "Bard", "7", "Human", "40", "20", "2", "1", "30", "15", "12", "10", "18", "14", "14", "He has history.");
 
         List<PC> list = new ArrayList<PC>() {{
@@ -33,7 +33,7 @@ public class TestDAO implements CampaignDAO {
     }
 
     @Override
-    public List<NPC> retrieveNPCs() throws CampaignDAOException {
+    public List<NPC> retrieveNPCs(Integer user_id) throws CampaignDAOException {
         NPC npc = new NPC(1234,"Jarnthoor", "Combat", "Barbarian", "12", "Half-Orc", "55", "14", "1", "2","30", "17", "15", "17", "18", "15", "14", "Pumperduke", "Very angry", "Crazy man kills things.");
 
 

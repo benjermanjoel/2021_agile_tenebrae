@@ -19,6 +19,8 @@ public class LoadDMServlet extends HttpServlet {
 
         /* Set variables */
         final CampaignDAO campaignDAO = new CampaignDAOImpl();
+        HttpSession session = request.getSession();
+        final int user_id = ((int)session.getAttribute("user_id"));
 
         //Tell servlet which file to route to
         String target = "screenDM.jsp";
@@ -26,10 +28,10 @@ public class LoadDMServlet extends HttpServlet {
         try {
 
             /* Retrieve list of PC information from DAO and store in variable pcList */
-            List<PC> pcList = campaignDAO.retrievePCs();
+            List<PC> pcList = campaignDAO.retrievePCs(user_id);
 
             /* Retrieve list of NPC information from DAO and store in variable npcList */
-            List<NPC> npcList = campaignDAO.retrieveNPCs();
+            List<NPC> npcList = campaignDAO.retrieveNPCs(user_id);
 
             //Attach our lists of people to the request object
             request.setAttribute("pcList", pcList);

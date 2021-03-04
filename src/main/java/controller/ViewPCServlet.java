@@ -22,6 +22,8 @@ public class ViewPCServlet extends HttpServlet {
         final CampaignDAO campaignDAO = new CampaignDAOImpl();
         String requestType = request.getParameter("type");
         String name = request.getParameter("name");
+        HttpSession session = request.getSession();
+        final int user_id = ((int)session.getAttribute("user_id"));
 
 
         if (requestType.equals("PC")) {
@@ -30,7 +32,7 @@ public class ViewPCServlet extends HttpServlet {
             PC foundPC = null;
             try {
                 /* Retrieve list of PC information from DAO and store in variable pcList */
-                List<PC> pcList = campaignDAO.retrievePCs();
+                List<PC> pcList = campaignDAO.retrievePCs(user_id);
 
                 /* Cycle through list of PC's to find matching name */
                 /* For each PC(model) pc in pcList... */
@@ -67,7 +69,7 @@ public class ViewPCServlet extends HttpServlet {
             NPC foundNPC = null;
             try {
                 /* Retrieve list of NPC information from DAO and store in variable npcList */
-                List<NPC> npcList = campaignDAO.retrieveNPCs();
+                List<NPC> npcList = campaignDAO.retrieveNPCs(user_id);
 
                 /* Cycle through list of NPC's to find matching name */
                 /* For each NPC(model) npc in npcList... */
