@@ -503,9 +503,8 @@ public class CampaignDAOImpl implements CampaignDAO{
 
         try {
             connection = DBUtility.createConnection();
-            final String modifyPCSQL = "update characters set (name, level, race, class, hp, ac,proficiency," +
-                    "initiative,speed,str,dex,con,intel,wis,cha,background) values" +
-                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) where char_id = ?;";
+            final String modifyPCSQL = "update characters set name=?, level=?, race=?, class=?, hp=?, ac=?,proficiency=?," +
+                    "initiative=?,speed=?,str=?,dex=?,con=?,intel=?,wis=?,cha=?,background=? where char_id = ?;";
 
             // Insert a new record into pcs table using our prepared statement
             updateStatement = connection.prepareStatement(modifyPCSQL);
@@ -545,14 +544,12 @@ public class CampaignDAOImpl implements CampaignDAO{
 
         try {
             connection = DBUtility.createConnection();
-            final String ADD_NPC_CHAR_SQL = "update characters set (name,class,level,race,hp,ac,proficiency," +
-                    "initiative,speed,str,dex,con,intel,wis,cha,background) values" +
-                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) where char_id = ?;";
-            final String ADD_NPC_SQL = "update npcs set (type,loc,traits) values" +
-                    "(?,?,?) where char_id = ?;";
+            final String ADD_NPC_CHAR_SQL = "UPDATE characters SET name=?,class=?,level=?,race=?,hp=?,ac=?,proficiency=?," +
+                    "initiative=?,speed=?,str=?,dex=?,con=?,intel=?,wis=?,cha=?,background=? where char_id=?;";
+            final String ADD_NPC_SQL = "UPDATE npcs SET type=?,loc=?,traits=? where char_id=?;";
 
             // Insert a new record into characters table using our prepared statement
-            updateCHARStatement = connection.prepareStatement(ADD_NPC_CHAR_SQL, Statement.RETURN_GENERATED_KEYS);
+            updateCHARStatement = connection.prepareStatement(ADD_NPC_CHAR_SQL);
             updateCHARStatement.setString(1, npc.getName());
             updateCHARStatement.setString(2, npc.getChar_class());
             updateCHARStatement.setString(3, npc.getLevel());
@@ -573,7 +570,6 @@ public class CampaignDAOImpl implements CampaignDAO{
 
             updateCHARStatement.setQueryTimeout(DBUtility.TIMEOUT);
             updateCHARStatement.executeUpdate();
-
 
             updateNPCStatement = connection.prepareStatement(ADD_NPC_SQL);
             updateNPCStatement.setString(1, npc.getType());

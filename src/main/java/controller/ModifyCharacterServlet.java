@@ -17,7 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet(name = "ModifyCharacterServlet", value = "/ModifyCharacterServlet")
+@WebServlet(name = "ModifyCharacterServlet", value = "/modifyCharacter")
 public class ModifyCharacterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -90,6 +90,7 @@ public class ModifyCharacterServlet extends HttpServlet {
                 ResultSet rs = statement.executeQuery();
                 rs.next();
                 int char_id = rs.getInt(1);
+
                 campaignDAO.modifyNPC(npc,char_id);
                 request.setAttribute("message", "Non-playable character modified successfully!");
 

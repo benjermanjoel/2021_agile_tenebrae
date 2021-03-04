@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -32,7 +32,7 @@
 
 <%-- Form for adding a new character.--%>
 <div class="container">
-    <form action="addCharacter" method="post">
+    <form action="modifyCharacter" method="post">
         <div class="col">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" name="name" required>
@@ -190,7 +190,7 @@
             </div>
         </div>
         <br>
-        <button type="submit" class="btn btn-primary">Create Character</button>
+        <button type="submit" class="btn btn-primary">Modify Character</button>
     </form>
     <h3 style="color: #2373c8">${message}</h3>
 </div>
