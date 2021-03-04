@@ -18,6 +18,8 @@ public class LoadPCServlet extends HttpServlet {
 
         /* Set variables */
         final CampaignDAO campaignDAO = new CampaignDAOImpl();
+        HttpSession session = request.getSession();
+        final int user_id = ((int)session.getAttribute("user_id"));
 
         //Tell servlet which file to route to
         String target = "screenPC.jsp";
@@ -25,7 +27,7 @@ public class LoadPCServlet extends HttpServlet {
         try {
 
             /* Retrieve list of PC information from DAO and store in variable pcList */
-            List<PC> pcList = campaignDAO.retrievePCs();
+            List<PC> pcList = campaignDAO.retrievePCs(user_id);
 
             //Attach our list of people to the request object
             request.setAttribute("pcList", pcList);

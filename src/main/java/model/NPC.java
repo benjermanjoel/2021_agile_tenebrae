@@ -7,6 +7,7 @@ package model;
 import java.io.Serializable;
 
 public class NPC implements Serializable {
+    private int user_id;
     private String name;
     private String type;
     private String char_class;
@@ -29,10 +30,11 @@ public class NPC implements Serializable {
 
     // Constructor
 
-    public NPC(String name, String type, String char_class, String level, String race, String hitpts, String armor,
+    public NPC(int user_id,String name, String type, String char_class, String level, String race, String hitpts, String armor,
                String proficiency, String initiative, String speed, String strength, String dexterity,
                String constitution, String intelligence, String wisdom, String charisma, String location,
                String traits, String background) {
+        this.user_id = user_id;
         this.name = name;
         this.type = type;
         this.char_class = char_class;
@@ -57,6 +59,14 @@ public class NPC implements Serializable {
 
     // Getters 'n setters
 
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
 
     public String getName() {
         return name;

@@ -7,12 +7,8 @@ package dao;
 
 import model.*;
 import model.Item;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import utility.DBUtility;
-import utility.WorkbookUtility;
 
-import java.io.File;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,150 +43,13 @@ public class CampaignDAOImpl implements CampaignDAO{
             "char_class text,level text,race text,hitpts text,armor text,proficiency text, " +
             "initiative text,speed text,strength text,dexterity text,constitution text, "+
             "intelligence text,wisdom text,charisma text,background text);";
-    final static String SELECT_ALL_PCS = "select * from characters where isnpc=false;";
+    // final static String SELECT_ALL_PCS = "select * from characters where isnpc=false;";
     // CREATE and SELECT queries for npcs
     final static String CREATE_TABLE_NPCS = "create table npcs(id serial primary key, name text, " +
             "type text,char_class text,level text,race text,hitpts text,armor text,proficiency text, " +
             "initiative text,speed text,strength text,dexterity text,constitution text, "+
             "intelligence text,wisdom text,charisma text,location text,traits text,background text);";
-    final static String SELECT_ALL_NPCS = "select * from characters join npcs n on characters.char_id = n.char_id";
-
-    @Override
-    /*
-    * The following method, populateDB, takes as an argument a filepath. It then uses the JDBC to create a new
-    * database connect which creates the database. The first SQL statement we run is to drop all tables.
-    * Then using our CREATE and SELECT queries above, this method begins creating and populating our database tables.
-    *
-    * */
-    public void populateDB(String weaponsPath,String itemsPath,String spellsPath,String pcsPath,String npcsPath) throws CampaignDAOException {
-        Connection connection;
-        Statement statement;
-
-        try {
-            // Create the database and tables
-            connection = DBUtility.createConnection();
-            statement = connection.createStatement();
-            statement.setQueryTimeout(DBUtility.TIMEOUT);
-            statement.executeUpdate(DROP_WEAPONS_TABLE);
-            statement.executeUpdate(DROP_ITEMS_TABLE);
-            statement.executeUpdate(DROP_SPELLS_TABLE);
-            //statement.executeUpdate(DROP_PCS_TABLE);
-            //statement.executeUpdate(DROP_NPCS_TABLE);
-            statement.executeUpdate(CREATE_TABLE_WEAPONS);
-            statement.executeUpdate(CREATE_TABLE_ITEMs);
-            statement.executeUpdate(CREATE_TABLE_SPELLS);
-            //statement.executeUpdate(CREATE_TABLE_PCS);
-            //statement.executeUpdate(CREATE_TABLE_NPCS);
-
-            // Populate the campaign tables with data
-            final File weaponsFile = new File(weaponsPath);
-            final File itemsFile = new File(itemsPath);
-            final File spellsFile = new File(spellsPath);
-            //final File pcsFile = new File(pcsPath);
-            //final File npcsFile = new File(npcsPath);
-            final List<Weapon> weapons = WorkbookUtility.retrieveWeapons(weaponsFile);
-            final List<Item> items = WorkbookUtility.retrieveItems(itemsFile);
-            final List<Spell> spells = WorkbookUtility.retrieveSpells(spellsFile);
-            //final List<PC> pcs = WorkbookUtility.retrievePCs(pcsFile);
-            //final List<NPC> npcs = WorkbookUtility.retrieveNPCs(npcsFile);
-
-            for (final Weapon weapon : weapons) {
-                final String insertWeapons = "insert into weapons (name,type,cost,damage,weight,properties) values" +
-                        "('" + weapon.getName() + "','"
-                        + weapon.getType() + "','"
-                        + weapon.getCost() + "','"
-                        + weapon.getDamage() + "','"
-                        + weapon.getWeight() + "','"
-                        + weapon.getProperties() + "')";
-                //Debugging
-                System.out.println(insertWeapons);
-                // Insert the data
-                statement.executeUpdate(insertWeapons);
-            }
-            for (final Item item : items) {
-                final String insertItems = "insert into items (name,type,cost,weight) values" +
-                        "('" + item.getName() + "','"
-                        + item.getType() + "','"
-                        + item.getCost() + "','"
-                        + item.getWeight() + "')";
-                //Debugging
-                System.out.println(insertItems);
-                // Insert the data
-                statement.executeUpdate(insertItems);
-
-            }
-            for (final Spell spell : spells) {
-                final String insertSpells = "insert into spells (name,level,school,casting,ritual,concentration,classes) values" +
-                        "('" + spell.getName() + "','"
-                        + spell.getLevel() + "','"
-                        + spell.getSchool() + "','"
-                        + spell.getCasting() + "','"
-                        + spell.getRitual() + "','"
-                        + spell.getConcentration() + "','"
-                        + spell.getClasses() + "')";
-                //Debugging
-                System.out.println(insertSpells);
-                // Insert the data
-                statement.executeUpdate(insertSpells);
-            }
-            /*
-            for (final PC pc : pcs) {
-                final String insertPCS = "insert into pcs (name,char_class,level,race,hitpts,armor,proficiency," +
-                        "initiative,speed,strength,dexterity,constitution,intelligence,wisdom,charisma,background) values" +
-                        "('" + pc.getName() + "','"
-                        + pc.getChar_class() + "','"
-                        + pc.getLevel() + "','"
-                        + pc.getRace() + "','"
-                        + pc.getHitpts() + "','"
-                        + pc.getArmor() + "','"
-                        + pc.getProficiency() + "','"
-                        + pc.getInitiative() + "','"
-                        + pc.getSpeed() + "','"
-                        + pc.getStrength() + "','"
-                        + pc.getDexterity() + "','"
-                        + pc.getConstitution() + "','"
-                        + pc.getIntelligence() + "','"
-                        + pc.getWisdom() + "','"
-                        + pc.getCharisma() + "','"
-                        + pc.getBackground() + "')";
-                //Debugging
-                System.out.println(insertPCS);
-                // Insert the data
-                statement.executeUpdate(insertPCS);
-            }
-            for (final NPC npc : npcs) {
-                final String insertNPCS = "insert into npcs (name,type,char_class,level,race,hitpts,armor,proficiency," +
-                        "initiative,speed,strength,dexterity,constitution,intelligence,wisdom,charisma,location,traits,background) values" +
-                        "('" + npc.getName() + "','"
-                        + npc.getType() + "','"
-                        + npc.getChar_class() + "','"
-                        + npc.getLevel() + "','"
-                        + npc.getRace() + "','"
-                        + npc.getHitpts() + "','"
-                        + npc.getArmor() + "','"
-                        + npc.getProficiency() + "','"
-                        + npc.getInitiative() + "','"
-                        + npc.getSpeed() + "','"
-                        + npc.getStrength() + "','"
-                        + npc.getDexterity() + "','"
-                        + npc.getConstitution() + "','"
-                        + npc.getIntelligence() + "','"
-                        + npc.getWisdom() + "','"
-                        + npc.getCharisma() + "','"
-                        + npc.getLocation() + "','"
-                        + npc.getTraits() + "','"
-                        + npc.getBackground() + "')";
-                //Debugging
-                System.out.println(insertNPCS);
-                // Insert the data
-                statement.executeUpdate(insertNPCS);
-            }
-             */
-        } catch (SQLException | ClassNotFoundException | InvalidFormatException | IOException exception ) {
-            exception.printStackTrace();
-            throw new CampaignDAOException("Error: Unable to populate the campaign database with data from spreadsheet.");
-        }
-    }
+    //final static String SELECT_ALL_NPCS = "select * from characters join npcs n on characters.char_id = n.char_id";
 
     @Override
     /*
@@ -303,20 +162,23 @@ public class CampaignDAOImpl implements CampaignDAO{
     //The following method leverages the SELECT_ALL_PCS query to retrieve PC data from the pcs table
 
     //TODO de-duplicate code.
-    public List<PC> retrievePCs() throws CampaignDAOException {
+    public List<PC> retrievePCs(Integer user_id) throws CampaignDAOException {
         final List<PC> pcs = new ArrayList<PC>();
+        final String SELECT_ALL_PCS = "select * from characters where isnpc=false and user_id = ?;";
         Connection connection;
-        Statement statement;
+        PreparedStatement statement;
 
         try {
             connection = DBUtility.createConnection();
-            statement = connection.createStatement();
+            statement = connection.prepareStatement(SELECT_ALL_PCS);
+            statement.setInt(1,user_id);
             statement.setQueryTimeout(DBUtility.TIMEOUT);
 
             // select all data from pcs table
-            final ResultSet results = statement.executeQuery(SELECT_ALL_PCS);
+            final ResultSet results = statement.executeQuery();
             // loop
             while (results.next()){
+                 int id = results.getInt("user_id");
                  String name = results.getString("name");
                  String char_class = results.getString("class");
                  String level = results.getString("level");
@@ -334,7 +196,7 @@ public class CampaignDAOImpl implements CampaignDAO{
                  String charisma = results.getString("cha");
                  String background = results.getString("background");
 
-                pcs.add(new PC(name,char_class,level,race,hitpts,armor,proficiency,initiative,speed,
+                pcs.add(new PC(id,name,char_class,level,race,hitpts,armor,proficiency,initiative,speed,
                         strength,dexterity,constitution,intelligence,wisdom,charisma,background));
             }
             connection.close();
@@ -349,20 +211,23 @@ public class CampaignDAOImpl implements CampaignDAO{
     //The following method leverages the SELECT_ALL_NPCS query to retrieve NPC data from the npcs table
 
     //TODO de-duplicate code
-    public List<NPC> retrieveNPCs() throws CampaignDAOException {
+    public List<NPC> retrieveNPCs(Integer user_id) throws CampaignDAOException {
         final List<NPC> npcs = new ArrayList<NPC>();
+        final String SELECT_ALL_NPCS = "select * from characters c join npcs n on c.char_id = n.char_id where c.user_id=?;";
         Connection connection;
-        Statement statement;
+        PreparedStatement statement;
 
         try {
             connection = DBUtility.createConnection();
-            statement = connection.createStatement();
+            statement = connection.prepareStatement(SELECT_ALL_NPCS);
+            statement.setInt(1,user_id);
             statement.setQueryTimeout(DBUtility.TIMEOUT);
 
-            // select all data from npcs table
-            final ResultSet results = statement.executeQuery(SELECT_ALL_NPCS);
+            // select all data from pcs table
+            final ResultSet results = statement.executeQuery();
             // loop
             while (results.next()){
+                 int id = results.getInt("user_id");
                  String name = results.getString("name");
                  String char_class = results.getString("class");
                  String level = results.getString("level");
@@ -384,7 +249,7 @@ public class CampaignDAOImpl implements CampaignDAO{
                  String location = results.getString("loc");
                  String traits = results.getString("traits");
 
-                npcs.add(new NPC(name,type,char_class,level,race,hitpts,armor,proficiency,initiative,speed,
+                npcs.add(new NPC(user_id,name,type,char_class,level,race,hitpts,armor,proficiency,initiative,speed,
                         strength,dexterity,constitution,intelligence,wisdom,charisma,location,traits,background));
             }
             connection.close();
@@ -403,8 +268,8 @@ public class CampaignDAOImpl implements CampaignDAO{
         try {
             connection = DBUtility.createConnection();
             final String addPCSQL = "insert into characters (name, level, race, class, hp, ac,proficiency," +
-                    "initiative,speed,str,dex,con,intel,wis,cha,background,isnpc) values" +
-                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                    "initiative,speed,str,dex,con,intel,wis,cha,background,isnpc, user_id) values" +
+                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             // Insert a new record into pcs table using our prepared statement
             insertStatement = connection.prepareStatement(addPCSQL);
@@ -425,6 +290,7 @@ public class CampaignDAOImpl implements CampaignDAO{
             insertStatement.setString(15, pc.getCharisma());
             insertStatement.setString(16, pc.getBackground());
             insertStatement.setBoolean(17, false);
+            insertStatement.setInt(18, pc.getUser_id());
 
 
             insertStatement.setQueryTimeout(DBUtility.TIMEOUT);
@@ -447,8 +313,8 @@ public class CampaignDAOImpl implements CampaignDAO{
         try {
             connection = DBUtility.createConnection();
             final String ADD_NPC_CHAR_SQL = "insert into characters (name,class,level,race,hp,ac,proficiency," +
-                    "initiative,speed,str,dex,con,intel,wis,cha,background,isnpc) values" +
-                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                    "initiative,speed,str,dex,con,intel,wis,cha,background,isnpc,user_id) values" +
+                    "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
             final String ADD_NPC_SQL = "insert into npcs (type,loc,traits,char_id) values" +
                     "(?,?,?,?);";
 
@@ -471,6 +337,7 @@ public class CampaignDAOImpl implements CampaignDAO{
             insertStatement.setString(15, npc.getCharisma());
             insertStatement.setString(16, npc.getBackground());
             insertStatement.setBoolean(17, true);
+            insertStatement.setInt(18, npc.getUser_id());
 
             insertStatement.setQueryTimeout(DBUtility.TIMEOUT);
             insertStatement.executeUpdate();
