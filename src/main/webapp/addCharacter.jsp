@@ -24,8 +24,9 @@
 <%@include file="includes/navbar.jsp"%>
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">Add a new PC</h1>
+        <h1 class="display-4">Add a new Character</h1>
         <p class = "lead">Enter in all the required fields below to add a new playable or non-playable character!</p>
+        <h3 style="color: #2373c8">${message}</h3>
     </div>
 </div>
 
@@ -38,8 +39,8 @@
         </div>
         <div class="col">
             <label for="level">Level</label>
-            <select class="form-control" id="level" name="level" required>
-                <option selected>Choose...</option>
+            <select class="form-select" id="level" name="level" required>
+                <option value="" selected disabled>Choose...</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -65,7 +66,7 @@
         <div class="col">
             <label for="char_class">Class</label>
             <select class="form-select" id="char_class" name="class" required>
-                <option selected>Choose...</option>
+                <option selected disabled>Choose...</option>
                 <option value="Barbarian">Barbarian</option>
                 <option value="Bard">Bard</option>
                 <option value="Cleric">Cleric</option>
@@ -84,7 +85,7 @@
             <div class="col">
                 <label for="race">Race</label>
                 <select class="form-select" id="race" name="race" required>
-                    <option selected>Choose...</option>
+                    <option selected disabled>Choose...</option>
                     <option value="Dragonborn">Dragonborn</option>
                     <option value="Dwarf">Dwarf</option>
                     <option value="Drow">Drow</option>
@@ -98,84 +99,77 @@
                 </select>
             </div>
             <div class="col">
-                <label  for="hitPts">Hit Points</label>
-                <input type="text" class="form-control" id="hitPts" name="hitPts" aria-placeholder="45">
+                <label for="hitPts">Hit Points</label>
+                <input type="text" class="form-control" id="hitPts" name="hitPts" aria-placeholder="45" required>
             </div>
             <div class="col">
                 <label for="armorClass">Armor Class</label>
-                <input type="text" class="form-control" id="armorClass" name="armorClass" aria-placeholder="15">
+                <input type="text" class="form-control" id="armorClass" name="armorClass" aria-placeholder="12" required>
             </div>
         </div>
         <div class="form-row">
             <div class="col">
                 <label for="proficiency">Proficiency</label>
-                <select class="form-select" id="proficiency" name="proficiency">
-                    <option selected>Choose...</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
+                <select class="form-select" id="proficiency" name="proficiency" required>
+                    <option selected disabled>Choose...</option>
+                    <option value="2">+2</option>
+                    <option value="3">+3</option>
+                    <option value="4">+4</option>
+                    <option value="5">+5</option>
+                    <option value="6">+6</option>
                 </select>
             </div>
             <div class="col">
                 <label for="initiative">Initiative</label>
-                <select class="form-select" id="initiative" name="initiative">
-                    <option selected>Choose...</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
+                <input type="text" class="form-control" id="initiative" name="initiative" aria-placeholder="2" required>
             </div>
             <div class="col">
                 <label for="speed">Speed</label>
-                <select class="form-select" id="speed" name="speed">
-                    <option selected>Choose...</option>
-                    <option value="30">30</option>
-                    <option value="35">35</option>
-                </select>
+                <input type="text" class="form-control" id="speed" name="speed" aria-placeholder="30" required>
             </div>
         </div>
         <div class="form-group">
             <label for="strength" class="form-label">Strength</label>
-            <input type="range" class="form-range" min="8" max="15" id="strength" name="strength" oninput="this.nextElementSibling.value = this.value">
+            <input type="range" class="form-range" min="1" max="20" id="strength" name="strength" oninput="this.nextElementSibling.value = this.value" required>
             <output>12</output>
             <br>
             <label for="dexterity" class="form-label">Dexterity</label>
-            <input type="range" class="form-range" min="8" max="15" id="dexterity" name="dexterity" oninput="this.nextElementSibling.value = this.value">
+            <input type="range" class="form-range" min="1" max="20" id="dexterity" name="dexterity" oninput="this.nextElementSibling.value = this.value" required>
             <output>12</output>
             <br>
             <label for="constitution" class="form-label">Constitution</label>
-            <input type="range" class="form-range" min="8" max="15" id="constitution" name="constitution" oninput="this.nextElementSibling.value = this.value">
+            <input type="range" class="form-range" min="1" max="20" id="constitution" name="constitution" oninput="this.nextElementSibling.value = this.value" required>
             <output>12</output>
             <br>
             <label for="intelligence" class="form-label">Intelligence</label>
-            <input type="range" class="form-range" min="8" max="15" id="intelligence" name="intelligence" oninput="this.nextElementSibling.value = this.value">
+            <input type="range" class="form-range" min="1" max="20" id="intelligence" name="intelligence" oninput="this.nextElementSibling.value = this.value" required>
             <output>12</output>
             <br>
             <label for="wisdom" class="form-label">Wisdom</label>
-            <input type="range" class="form-range" min="8" max="15" id="wisdom" name="wisdom" oninput="this.nextElementSibling.value = this.value">
+            <input type="range" class="form-range" min="1" max="20" id="wisdom" name="wisdom" oninput="this.nextElementSibling.value = this.value" required>
             <output>12</output>
             <br>
             <label for="charisma" class="form-label">Charisma</label>
-            <input type="range" class="form-range" min="8" max="15" id="charisma" name="charisma" oninput="this.nextElementSibling.value = this.value">
+            <input type="range" class="form-range" min="1" max="20" id="charisma" name="charisma" oninput="this.nextElementSibling.value = this.value" required>
             <output>12</output>
         </div>
         <div class="mb-3">
             <label for="background" class="form-label">Background</label>
-            <textarea class="form-control" id="background" name="background" rows="3"></textarea>
+            <textarea class="form-control" id="background" name="background" rows="3" required></textarea>
         </div>
         <div class="col-auto">
             <p>
                 <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Non-playable Character?
+                    Click for Non-Player Character
                 </button>
             </p>
             <div class="collapse" id="collapseExample">
                 <label for="type">Type</label>
                 <div>
                     <select class="form-select" id="type" name="type">
-                        <option></option>
-                        <option value="1">Non-combat NPC</option>
-                        <option value="2">Enemy</option>
+                        <option selected disabled>Choose...</option>
+                        <option value="CombatNPC">Combat NPC</option>
+                        <option value="NonCombatNPC">Non-Combat NPC</option>
                     </select>
                 </div>
                 <div class="col">
@@ -191,7 +185,6 @@
         <br>
         <button type="submit" class="btn btn-primary">Create Character</button>
     </form>
-    <h3 style="color: #2373c8">${message}</h3>
 </div>
 
 
