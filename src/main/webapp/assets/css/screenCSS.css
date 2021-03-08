@@ -29,6 +29,20 @@
     border-radius: 10px;
 }
 
+#itemTable {
+    height: 500px;
+    overflow-x: scroll;
+}
+
+#spellTable {
+    height: 500px;
+    overflow-x: scroll;
+}
+
+.columnSpacing {
+    padding-top: 15px;
+}
+
 /* Styling for main content section of page */
 .dashboardView {
     display: none;
