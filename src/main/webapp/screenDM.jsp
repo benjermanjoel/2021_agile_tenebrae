@@ -36,12 +36,14 @@
         </div>
     </div>
 
+    <!---------------------------Left column of screen------------------------->
+
     <!-- Container holding "rows" in webpage for PC, NPC, and table data for spells and items-->
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-2" id="leftColumn">
                 <!-- List for Player Characters -->
-                <h2>Player Characters</h2>
+                <h2 class="columnSpacing">Player Characters</h2>
                 <div class="list-group">
                 <c:choose>
 
@@ -61,9 +63,9 @@
                 </div>
 
 
-                <div class="row" id="stylingNPC">
+                <div class="row">
                     <!-- List for Non-Player Characters -->
-                    <h2>Non-Player Characters</h2>
+                    <h2 class="columnSpacing">Non-Player Characters</h2>
                     <div class="list-group">
                         <c:choose>
 
@@ -87,7 +89,8 @@
                 </div>
             </div>
 
-            <!--Main content of page-->
+            <!---------------------------Main content of page------------------------->
+
             <div class="col-md-6 border border-top-0 border-bottom-0">
                 <!-- Container to hold and display all Player Character stats (to be switched with nonPlayerCharacter on click) -->
                 <div class="dashboardView" id="playerCharacter">
@@ -346,117 +349,115 @@
 
             </div>
 
-            <!--Tables to display tools and spells-->
+            <!---------------------------Right column of screen------------------------->
+
             <div class="col-md-4" id="rightColumn">
-                <!-- TODO: Create and display tables with tools or spells from database-->
-                <h2>*Insert real database tables here*</h2>
 
-                <!-- Currently has demo tables placed with fake data -->
-                <h3>Items Table</h3>
-                <table class="table table-sm table-bordered table-striped table-dark">
-                    <thead>
-                        <tr>
-                            <th scope="col">Item</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Cost</th>
-                            <th scope="col">Weight</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Abacus</th>
-                            <td>Adventuring Gear</td>
-                            <td>2 gp</td>
-                            <td>2 lb</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Acid (vial)</th>
-                            <td>Adventuring Gear</td>
-                            <td>25 gp</td>
-                            <td>1 lb</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Alchemist's fire (flask)</th>
-                            <td>Adventuring Gear</td>
-                            <td>50 gp</td>
-                            <td>1 lb</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Arrows (20)</th>
-                            <td>Ammunition</td>
-                            <td>1 gp</td>
-                            <td>1 lb</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Blowgun Needles (20)</th>
-                            <td>Ammunition</td>
-                            <td>1 gp</td>
-                            <td>1 lb</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <!--Table to display weapons-->
+                <h2 class="columnSpacing">Weapons Table</h2>
+                <div class="list-group" id="weaponTable">
+                    <c:choose>
+                        <c:when test="${empty weaponList}">
+                            <h5>Weapon table is currently empty.</h5>
+                        </c:when>
+                        <c:otherwise>
+                            <table class="table table-sm table-bordered table-striped table-dark table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Cost</th>
+                                    <th scope="col">Damage</th>
+                                    <th scope="col">Weight</th>
+                                    <th scope="col">Properties</th>
+                                </tr>
+                                </thead>
+                                <c:forEach var="weaponList" items="${weaponList}">
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">${weaponList.name}</th>
+                                        <td>${weaponList.type}</td>
+                                        <td>${weaponList.cost}</td>
+                                        <td>${weaponList.damage}</td>
+                                        <td>${weaponList.weight}</td>
+                                        <td>${weaponList.properties}</td>
+                                    </tr>
+                                    </tbody>
+                                </c:forEach>
+                            </table>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
 
-                <h3>Spells Table</h3>
-                <table class="table table-sm table-bordered table-striped table-dark">
-                    <thead>
-                    <tr>
-                        <th scope="col">Spell</th>
-                        <th scope="col">Level</th>
-                        <th scope="col">School</th>
-                        <th scope="col">Casting</th>
-                        <th scope="col">Ritual</th>
-                        <th scope="col">Concentration</th>
-                        <th scope="col">Classes</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">Acid Splash</th>
-                        <td>Cantrip</td>
-                        <td>Conjuration</td>
-                        <td>Action</td>
-                        <td>No</td>
-                        <td>No</td>
-                        <td>Sorcerer, Wizard</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Blade Ward</th>
-                        <td>Cantrip</td>
-                        <td>Abjuration</td>
-                        <td>Action</td>
-                        <td>No</td>
-                        <td>No</td>
-                        <td>Bard,Sorcerer, Warlock, Wizard</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Chill Touch</th>
-                        <td>Cantrip</td>
-                        <td>Necromancy</td>
-                        <td>Action</td>
-                        <td>No</td>
-                        <td>No</td>
-                        <td>Sorcerer, Warlock, Wizard</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Dancing Lights</th>
-                        <td>Cantrip</td>
-                        <td>Evocation</td>
-                        <td>Action</td>
-                        <td>No</td>
-                        <td>Yes</td>
-                        <td>Bard, Sorcerer, Wizard</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Druidcraft</th>
-                        <td>Cantrip</td>
-                        <td>Transmutation</td>
-                        <td>Action</td>
-                        <td>No</td>
-                        <td>No</td>
-                        <td>Druid</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <!--Table to display spells-->
+                <h2 class="columnSpacing">Spells Table</h2>
+                <div class="list-group" id="spellTable">
+                    <c:choose>
+                        <c:when test="${empty spellList}">
+                            <h5>Spell table is currently empty.</h5>
+                        </c:when>
+                        <c:otherwise>
+                            <table class="table table-sm table-bordered table-striped table-dark table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Spell</th>
+                                    <th scope="col">Level</th>
+                                    <th scope="col">School</th>
+                                    <th scope="col">Casting</th>
+                                    <th scope="col">Ritual</th>
+                                    <th scope="col">Concentration</th>
+                                    <th scope="col">Classes</th>
+                                </tr>
+                                </thead>
+                                <c:forEach var="spellList" items="${spellList}">
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">${spellList.name}</th>
+                                        <td>${spellList.level}</td>
+                                        <td>${spellList.school}</td>
+                                        <td>${spellList.casting}</td>
+                                        <td>${spellList.ritual}</td>
+                                        <td>${spellList.concentration}</td>
+                                        <td>${spellList.classes}</td>
+                                    </tr>
+                                    </tbody>
+                                </c:forEach>
+                            </table>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+
+                <!--Table to display tools-->
+                <h2 class="columnSpacing">Items Table</h2>
+                <div class="list-group" id="itemTable">
+                    <c:choose>
+                        <c:when test="${empty itemList}">
+                            <h5>Item table is currently empty.</h5>
+                        </c:when>
+                        <c:otherwise>
+                            <table class="table table-sm table-bordered table-striped table-dark table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Item</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Cost</th>
+                                    <th scope="col">Weight</th>
+                                </tr>
+                                </thead>
+                                <c:forEach var="itemList" items="${itemList}">
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">${itemList.name}</th>
+                                        <td>${itemList.type}</td>
+                                        <td>${itemList.cost}</td>
+                                        <td>${itemList.weight}</td>
+                                    </tr>
+                                    </tbody>
+                                </c:forEach>
+                            </table>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
             </div>
         </div>
     </div>

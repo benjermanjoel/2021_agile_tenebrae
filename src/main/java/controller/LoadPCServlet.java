@@ -3,7 +3,10 @@ package controller;
 import dao.CampaignDAO;
 import dao.CampaignDAOException;
 import dao.CampaignDAOImpl;
+import model.Item;
 import model.PC;
+import model.Spell;
+import model.Weapon;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -25,12 +28,37 @@ public class LoadPCServlet extends HttpServlet {
         String target = "screenPC.jsp";
 
         try {
+            /* ------------------------Retrieve Players--------------------------- */
 
             /* Retrieve list of PC information from DAO and store in variable pcList */
             List<PC> pcList = campaignDAO.retrievePCs(user_id);
 
             //Attach our list of people to the request object
             request.setAttribute("pcList", pcList);
+
+            /* ------------------------Retrieve Items--------------------------- */
+
+            /* Retrieve list of item information from DAO and store in variable itemList */
+            List<Item> itemList = campaignDAO.retrieveItems();
+
+            //Attach our lists of items to the request object
+            request.setAttribute("itemList", itemList);
+
+            /* ------------------------Retrieve Spells--------------------------- */
+
+            /* Retrieve list of spell information from DAO and store in variable spellList */
+            List<Spell> spellList = campaignDAO.retrieveSpells();
+
+            //Attach our lists of items to the request object
+            request.setAttribute("spellList", spellList);
+
+            /* ------------------------Retrieve Weapons--------------------------- */
+
+            /* Retrieve list of weapon information from DAO and store in variable weaponList */
+            List<Weapon> weaponList = campaignDAO.retrieveWeapons();
+
+            //Attach our lists of items to the request object
+            request.setAttribute("weaponList", weaponList);
 
         } catch (CampaignDAOException e) {
             e.printStackTrace();
