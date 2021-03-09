@@ -39,6 +39,11 @@
     overflow-x: scroll;
 }
 
+#weaponTable {
+    height: 500px;
+    overflow-x: scroll;
+}
+
 .columnSpacing {
     padding-top: 15px;
 }
