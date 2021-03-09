@@ -39,7 +39,7 @@
     <!---------------------------Left column of screen------------------------->
 
     <!-- Container holding "rows" in webpage for PC, NPC, and table data for spells and items-->
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-2" id="leftColumn">
                 <!-- List for Player Characters -->
