@@ -40,7 +40,7 @@
     <div class="row">
         <div class="col-md-2" id="leftColumn">
             <!-- List for Player Characters -->
-            <h2>Player Characters</h2>
+            <h2 class="columnSpacing">Player Characters</h2>
             <div class="list-group">
             <c:choose>
 
@@ -195,30 +195,34 @@
 
         <div class="col-md-4" id="rightColumn">
 
-            <!--Table to display tools-->
-            <h2>Items Table</h2>
-            <div class="list-group" id="itemTable">
+            <!--Table to display weapons-->
+            <h2 class="columnSpacing">Weapons Table</h2>
+            <div class="list-group" id="weaponTable">
                 <c:choose>
-                    <c:when test="${empty itemList}">
-                        <h5>Item table is currently empty.</h5>
+                    <c:when test="${empty weaponList}">
+                        <h5>Weapon table is currently empty.</h5>
                     </c:when>
                     <c:otherwise>
                         <table class="table table-sm table-bordered table-striped table-dark table-hover">
                             <thead>
                             <tr>
-                                <th scope="col">Item</th>
+                                <th scope="col">Name</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Cost</th>
+                                <th scope="col">Damage</th>
                                 <th scope="col">Weight</th>
+                                <th scope="col">Properties</th>
                             </tr>
                             </thead>
-                            <c:forEach var="itemList" items="${itemList}">
+                            <c:forEach var="weaponList" items="${weaponList}">
                                 <tbody>
                                 <tr>
-                                    <th scope="row">${itemList.name}</th>
-                                    <td>${itemList.type}</td>
-                                    <td>${itemList.cost}</td>
-                                    <td>${itemList.weight}</td>
+                                    <th scope="row">${weaponList.name}</th>
+                                    <td>${weaponList.type}</td>
+                                    <td>${weaponList.cost}</td>
+                                    <td>${weaponList.damage}</td>
+                                    <td>${weaponList.weight}</td>
+                                    <td>${weaponList.properties}</td>
                                 </tr>
                                 </tbody>
                             </c:forEach>
@@ -257,6 +261,38 @@
                                     <td>${spellList.ritual}</td>
                                     <td>${spellList.concentration}</td>
                                     <td>${spellList.classes}</td>
+                                </tr>
+                                </tbody>
+                            </c:forEach>
+                        </table>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+
+            <!--Table to display tools-->
+            <h2 class="columnSpacing">Items Table</h2>
+            <div class="list-group" id="itemTable">
+                <c:choose>
+                    <c:when test="${empty itemList}">
+                        <h5>Item table is currently empty.</h5>
+                    </c:when>
+                    <c:otherwise>
+                        <table class="table table-sm table-bordered table-striped table-dark table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Cost</th>
+                                <th scope="col">Weight</th>
+                            </tr>
+                            </thead>
+                            <c:forEach var="itemList" items="${itemList}">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">${itemList.name}</th>
+                                    <td>${itemList.type}</td>
+                                    <td>${itemList.cost}</td>
+                                    <td>${itemList.weight}</td>
                                 </tr>
                                 </tbody>
                             </c:forEach>
