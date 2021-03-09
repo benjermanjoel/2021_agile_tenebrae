@@ -12,7 +12,10 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
-
+/*
+    The ViewPCServlet is used to retrieve character information quickly from the database, and convert it to a json
+    object. The character information is then sent to the dashboard for display.
+ */
 @WebServlet(name = "ViewPCServlet", value = "/ViewPCServlet")
 public class ViewPCServlet extends HttpServlet {
     @Override

@@ -20,5 +20,5 @@ public interface CampaignDAO {
     void modifyNPC(NPC npc, Integer char_id) throws CampaignDAOException;
     void deletePC(String name) throws CampaignDAOException;
     void deleteNPC(String name) throws CampaignDAOException;
-    //TODO determine if we need more stuff here.
+
 }

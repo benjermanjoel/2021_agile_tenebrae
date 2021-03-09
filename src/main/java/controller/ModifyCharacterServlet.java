@@ -16,7 +16,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/*
+    The ModifyCharacterServlet is used to modify a database record for a character.
+* */
 @WebServlet(name = "ModifyCharacterServlet", value = "/modifyCharacter")
 public class ModifyCharacterServlet extends HttpServlet {
     @Override
