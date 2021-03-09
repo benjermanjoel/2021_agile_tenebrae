@@ -12,7 +12,9 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
-
+/* The LoadPCServlet is used to retrieve playable characters, items, weapons and spells for display to end-users
+on the PC dashboard page.
+* */
 @WebServlet(name = "LoadPCServlet", value = "/LoadPCServlet")
 public class LoadPCServlet extends HttpServlet {
     @Override

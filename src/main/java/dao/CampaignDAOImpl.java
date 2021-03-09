@@ -13,43 +13,17 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+     The CampaignDAOImpl class is the main Java class used to interact with the database backend. This class implements
+      all the methods defined in the CampaignDAO interface.
+*/
 public class CampaignDAOImpl implements CampaignDAO{
 
-/*
-     Database creation actions. The following code block instantiates final strings of SQL queries that are used for
-     dropping all tables, creating each individual table, and for selecting all table information.
-     These final's are later used in the implemented interface methods below.
-*/
-    // With each new campaign creation, all tables are dropped!
-    final static String DROP_WEAPONS_TABLE = "drop table if exists weapons;";
-    final static String DROP_ITEMS_TABLE = "drop table if exists items;";
-    final static String DROP_SPELLS_TABLE = "drop table if exists spells;";
-    final static String DROP_PCS_TABLE = "drop table if exists pcs;";
-    final static String DROP_NPCS_TABLE = "drop table if exists npcs;";
-    // CREATE and SELECT queries for weapons
-    final static String CREATE_TABLE_WEAPONS = "create table weapons(id serial primary key, name text, " +
-            "type text, cost text, damage text, weight text, properties text);";
+    // Final static strings for the main SELECT SQL queries used in the below methods
     final static String SELECT_ALL_WEAPONS = "select * from weapons;";
-    // CREATE and SELECT queries for items
-    final static String CREATE_TABLE_ITEMs = "create table items(id serial primary key, name text, " +
-            "type text, cost text, weight text);";
     final static String SELECT_ALL_ITEMS = "select * from items;";
-    // CREATE and SELECT queries for spells
-    final static String CREATE_TABLE_SPELLS = "create table spells(id serial primary key, name text, " +
-            "level text, school text, casting text, ritual text, concentration text, classes text);";
     final static String SELECT_ALL_SPELLS = "select * from spells;";
-    // CREATE and SELECT queries for pcs
-    final static String CREATE_TABLE_PCS = "create table pcs(id serial primary key, name text, " +
-            "char_class text,level text,race text,hitpts text,armor text,proficiency text, " +
-            "initiative text,speed text,strength text,dexterity text,constitution text, "+
-            "intelligence text,wisdom text,charisma text,background text);";
-    // final static String SELECT_ALL_PCS = "select * from characters where isnpc=false;";
-    // CREATE and SELECT queries for npcs
-    final static String CREATE_TABLE_NPCS = "create table npcs(id serial primary key, name text, " +
-            "type text,char_class text,level text,race text,hitpts text,armor text,proficiency text, " +
-            "initiative text,speed text,strength text,dexterity text,constitution text, "+
-            "intelligence text,wisdom text,charisma text,location text,traits text,background text);";
-    //final static String SELECT_ALL_NPCS = "select * from characters join npcs n on characters.char_id = n.char_id";
+
 
     @Override
     /*
@@ -161,7 +135,6 @@ public class CampaignDAOImpl implements CampaignDAO{
     @Override
     //The following method leverages the SELECT_ALL_PCS query to retrieve PC data from the pcs table
 
-    //TODO de-duplicate code.
     public List<PC> retrievePCs(Integer user_id) throws CampaignDAOException {
         final List<PC> pcs = new ArrayList<PC>();
         final String SELECT_ALL_PCS = "select * from characters where isnpc=false and user_id = ?;";
@@ -210,7 +183,6 @@ public class CampaignDAOImpl implements CampaignDAO{
     @Override
     //The following method leverages the SELECT_ALL_NPCS query to retrieve NPC data from the npcs table
 
-    //TODO de-duplicate code
     public List<NPC> retrieveNPCs(Integer user_id) throws CampaignDAOException {
         final List<NPC> npcs = new ArrayList<NPC>();
         final String SELECT_ALL_NPCS = "select * from characters c join npcs n on c.char_id = n.char_id where c.user_id=?;";

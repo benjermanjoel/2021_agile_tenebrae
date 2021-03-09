@@ -123,7 +123,6 @@ public class AddCharacterServlet extends HttpServlet {
 
         /* ------------------------------ Validation for hit points  ------------------------------*/
 
-        /* TODO: Check length of varchar for hitPts (in database?) to match */
         /* Check to see if entry is empty or greater than 5 digits */
         if (Strings.isNullOrEmpty(hitPts) || hitPts.length() > 5) {
             request.setAttribute("message", "Please enter a valid Hit Point total number, no greater than 5 digits.");
@@ -401,7 +400,6 @@ public class AddCharacterServlet extends HttpServlet {
         /* ------------------------------ Validation for background  ------------------------------*/
 
         /* Check to see if entry is empty or greater than 2000 characters */
-        /* TODO: Confirm length of background with group */
         if (Strings.isNullOrEmpty(background) || background.length() > 2000) {
             request.setAttribute("message", "Please enter a background for your character (no more than 2000 characters).");
             getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
@@ -440,32 +438,30 @@ public class AddCharacterServlet extends HttpServlet {
 
             /* Check to see if entry is empty or left on "Choose..." option */
             if (Strings.isNullOrEmpty(type) || type.equals("Choose...")) {
-                request.setAttribute("message", "Please select a Type for your Non-Player Character.");
+                request.setAttribute("message", "Please select a Type for your non-playable character.");
                 getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
                 return;
             }
             /* Validate type selection by checking if the type chosen does not match each given type with the preset values */
             if (!(type.equals("CombatNPC")
                     || type.equals("NonCombatNPC"))) {
-                request.setAttribute("message", "Please select a Type for your Non-Player Character.");
+                request.setAttribute("message", "Please select a Type for your non-playable character.");
                 getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
                 return;
             }
             /* ------------------------------ Validation for location  ------------------------------*/
 
             /* Check to see if entry is empty or greater than 20 characters */
-            /* TODO: Confirm length of location with group */
             if (Strings.isNullOrEmpty(location) || location.length() > 20) {
-                request.setAttribute("message", "Please enter a location for your Non-Player Character (no more than 20 characters.");
+                request.setAttribute("message", "Please enter a location for your non-playable character (no more than 20 characters.");
                 getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
                 return;
             }
             /* ------------------------------ Validation for traits  ------------------------------*/
 
             /* Check to see if entry is empty or greater than 200 characters */
-            /* TODO: Confirm length of location with group */
             if (Strings.isNullOrEmpty(traits) || traits.length() > 200) {
-                request.setAttribute("message", "Please enter a location for your Non-Player Character (no more than 200 characters).");
+                request.setAttribute("message", "Please enter traits for your non-playable character (no more than 200 characters).");
                 getServletContext().getRequestDispatcher("/addCharacter.jsp").forward(request, response);
                 return;
             }

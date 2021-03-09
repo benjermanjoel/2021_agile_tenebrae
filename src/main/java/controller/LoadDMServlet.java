@@ -13,7 +13,9 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
-
+/* The LoadDMServlet is used to retrieve playable and non-playable characters, items, weapons and spells for display to
+DM's on the DM dashboard page.
+* */
 @WebServlet(name = "LoadDMServlet", value = "/LoadDMServlet")
 public class LoadDMServlet extends HttpServlet {
     @Override
