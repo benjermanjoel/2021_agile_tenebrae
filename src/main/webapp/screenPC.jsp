@@ -77,7 +77,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="JournalServlet">
+                                <form>
                                     <div class="form-group">
                                         <label for="contents" class="col-form-label">Entry</label>
                                         <textarea class="form-control" id="contents"></textarea>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary entrySubmit">Add Entry</button>
+                                <button type="button" class="btn btn-primary" onclick="entrySubmit()">Add Entry</button>
                             </div>
                         </div>
                     </div>
@@ -95,12 +95,15 @@
         </div>
 
         <script>
-            $(function () {
-                $('body').on('click', '.entrySubmit', function (e) {
-                    $(this.form).submit();
-                    $('#journalModal').modal('hide');
-                });
-            });
+            function entrySubmit() {
+                // $.ajax('JournalServlet',
+                //     {
+                //     data : {
+                //         contents : this.contents,
+                //     },
+                // });
+                $('#journalModal').modal('hide');
+            }
         </script>
 
         <!--Main content of page-->
