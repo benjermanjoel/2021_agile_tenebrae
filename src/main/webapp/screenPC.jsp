@@ -93,18 +93,7 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            function entrySubmit() {
-                // $.ajax('JournalServlet',
-                //     {
-                //     data : {
-                //         contents : this.contents,
-                //     },
-                // });
-                $('#journalModal').modal('hide');
-            }
-        </script>
+        
 
         <!--Main content of page-->
         <div class="col-md-6 border border-top-0 border-bottom-0">
