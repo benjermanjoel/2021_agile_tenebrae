@@ -96,15 +96,15 @@
                 <div class="dashboardView" id="playerCharacter">
                     <div class="row">
                         <div>
-                            <table class="table table-bordered">
+                            <table style="width: 100%" class="table table-bordered">
                                 <thead id="pcStatHead">
                                     <tr class="table-dark">
-                                        <th scope="col" colspan="2" id="nameCell">CHARACTER NAME HERE</th>
+                                        <th style="text-align: center" scope="col" colspan="2" id="nameCell">CHARACTER NAME HERE</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">Class:</th>
+                                        <th style="width: 17%" scope="row">Class:</th>
                                         <td id="classCell">Class Here</td>
                                     </tr>
                                     <tr>
@@ -177,15 +177,15 @@
 
                     <div class="row">
                         <div>
-                            <table class="table table-bordered">
+                            <table style="width: 100%" class="table table-bordered">
                                 <thead id="npcStatHead">
                                 <tr class="table-dark">
-                                    <th scope="col" colspan="2" id="npcNameCell">CHARACTER NAME HERE</th>
+                                    <th style="text-align: center" scope="col" colspan="2" id="npcNameCell">CHARACTER NAME HERE</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <th scope="row">Type:</th>
+                                    <th style="width: 17%" scope="row">Type:</th>
                                     <td id="npcTypeCell">TYPE HERE</td>
                                 </tr>
                                 <tr>
@@ -278,7 +278,7 @@
                                     type: 'get',
                                     <!-- Data to be sent to servlet to match with the specific character -->
                                     data: {name: $name, type: 'PC'},
-                                    timeout: 500,
+                                    timeout: 1000,
                                     success: function(data) {
                                         $("#nameCell").text(data.name);
                                         $("#classCell").text(data.char_class);
@@ -315,7 +315,7 @@
                                     type: 'get',
                                     <!-- Data to be sent to servlet to match with the specific character -->
                                     data: {name: $name, type: 'NPC'},
-                                    timeout: 500,
+                                    timeout: 1000,
                                     success: function(data) {
                                         $("#npcNameCell").text(data.name);
                                         $("#npcTypeCell").text(data.type);
