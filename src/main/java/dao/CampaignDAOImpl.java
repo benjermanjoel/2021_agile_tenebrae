@@ -473,5 +473,55 @@ public class CampaignDAOImpl implements CampaignDAO{
 
     }
 
+    @Override
+    public void addNote(Integer user_id, String contents) throws CampaignDAOException {
+        Connection connection;
+        PreparedStatement insertStatement;
+
+        try {
+            connection = DBUtility.createConnection();
+            final String addNoteSQL = "insert into journal (user_id,contents) values" +
+                    "(?,?);";
+
+            // Insert a new record into pcs table using our prepared statement
+            insertStatement = connection.prepareStatement(addNoteSQL);
+            insertStatement.setInt(1, user_id);
+            insertStatement.setString(2, contents);
+
+
+            insertStatement.setQueryTimeout(DBUtility.TIMEOUT);
+            insertStatement.executeUpdate();
+            connection.close();
+
+        } catch (SQLException | ClassNotFoundException exception) {
+            exception.printStackTrace();
+            throw new CampaignDAOException("Error: unable to add note to journal.");
+        }
+    }
+
+    @Override
+    public void retrieveNotes(Integer user_id) throws CampaignDAOException {
+        Connection connection;
+        PreparedStatement insertStatement;
+
+        try {
+            connection = DBUtility.createConnection();
+            final String retrieveNotesSQL = "SELECT * from journal where user_id = ?;";
+
+            // Insert a new record into pcs table using our prepared statement
+            insertStatement = connection.prepareStatement(retrieveNotesSQL);
+            insertStatement.setInt(1, user_id);
+
+
+            insertStatement.setQueryTimeout(DBUtility.TIMEOUT);
+            insertStatement.executeUpdate();
+            connection.close();
+
+        } catch (SQLException | ClassNotFoundException exception) {
+            exception.printStackTrace();
+            throw new CampaignDAOException("Error: unable to retrieve notes from journal.");
+        }
+    }
+
 
 }
