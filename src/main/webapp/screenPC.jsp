@@ -99,11 +99,13 @@
         <script>
             function entrySubmit(){
                 $.ajax({
-                    url : '/JournalServlet',
-                    data : {
-                        contents : this.contents
+                    url : 'JournalServlet',
+                    type: 'POST',
+                    data: {
+                        contents: $('#contents').val()
                     }
                 });
+                jQuery.noConflict();
                 $('#journalModal').modal('hide');
             }
         </script>
