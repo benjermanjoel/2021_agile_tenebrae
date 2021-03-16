@@ -14,6 +14,14 @@
   <!-- Bootstrap core CSS -->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
+  <!-- Link to our CSS page -->
+  <link href="assets/css/screenCSS.css" rel="stylesheet">
+
+  <!-- Google fonts link -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fondamento&family=Merienda:wght@700&display=swap" rel="stylesheet">
+
+
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
