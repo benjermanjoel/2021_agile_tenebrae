@@ -57,7 +57,7 @@
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
     <label for="email">Email:</label>
-    <input class="form-control" id="email" name="email" size=""30 style="color: #faebd7"/>
+    <input class="form-control" id="email" name="email" size=""30/>
     <br><br>
     <label for="password">Password:</label>
     <input class="form-control" type="password" id="password" name="password" size="30" />
