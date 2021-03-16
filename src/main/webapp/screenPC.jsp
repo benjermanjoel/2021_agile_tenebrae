@@ -198,25 +198,25 @@
                 </div>
 
             </div>
-<%--            <div class="journalView" id="journalView">--%>
-<%--                <div class="row">--%>
-<%--                    <div>--%>
-<%--                        <table style="width: 100%" class="table table-bordered">--%>
-<%--                            <thead id="journalHead">--%>
-<%--                            <tr class="table-dark">--%>
-<%--                                <th style="text-align: center" scope="col" colspan="2">Quest Journal</th>--%>
-<%--                            </tr>--%>
-<%--                            </thead>--%>
-<%--                            <tbody>--%>
-<%--                            <tr>--%>
-<%--                                <th scope="row">Entries:</th>--%>
-<%--                                <td id="entryCell">Journal Entries Here</td>--%>
-<%--                            </tr>--%>
-<%--                            </tbody>--%>
-<%--                        </table>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
+            <div class="journalView" id="journalView">
+                <div class="row">
+                    <div>
+                        <table style="width: 100%" class="table table-bordered">
+                            <thead id="journalHead">
+                            <tr class="table-dark">
+                                <th style="text-align: center" scope="col" colspan="2">Quest Journal</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Entries:</th>
+                                <td id="entryCell">Journal Entries Here</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -268,7 +268,7 @@
                         url : 'JournalServlet',
                         type: 'GET',
                         success: function(data) {
-                            $("#entryCell").text(data.contents);
+                            $("#entryCell").text(data.value);
                             $("#journalView").show();
                         }
                     });
