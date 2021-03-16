@@ -10,6 +10,10 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- CDN for hosting and using jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Required meta tags -->
@@ -87,6 +91,53 @@
                         </c:choose>
                     </div>
                 </div>
+
+                <div>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#journalModal">New Journal Entry</button>
+
+                    <div id="journalModal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">New Journal Entry</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="contents" class="col-form-label">Entry</label>
+                                            <textarea class="form-control" id="contents"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="entrySubmit()">Add Entry</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="button" class="btn btn-primary" onclick="getJournal">View Journal</button>
+                </div>
+
+                <script>
+                    function entrySubmit(){
+                        $.ajax({
+                            url : 'JournalServlet',
+                            type: 'POST',
+                            data: {
+                                contents: $('#contents').val()
+                            }
+                        });
+                        jQuery.noConflict();
+                        $('#journalModal').modal('hide');
+                    }
+                </script>
             </div>
 
             <!---------------------------Main content of page------------------------->
@@ -462,9 +513,6 @@
         </div>
     </div>
 
-
-<!-- Optional JavaScript; Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
 <!--Place footer-->
 <%@include file="includes/footer.jsp"%>

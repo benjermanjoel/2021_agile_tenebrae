@@ -96,21 +96,26 @@
                 </div>
             </div>
 
+            <div>
+                <button type="button" class="btn btn-primary" onclick="getJournal()">View Journal</button>
+            </div>
+
+            <script>
+                function entrySubmit(){
+                    $.ajax({
+                        url : 'JournalServlet',
+                        type: 'POST',
+                        data: {
+                            contents: $('#contents').val()
+                        }
+                    });
+                    jQuery.noConflict();
+                    $('#journalModal').modal('hide');
+                }
+            </script>
         </div>
 
-        <script>
-            function entrySubmit(){
-                $.ajax({
-                    url : 'JournalServlet',
-                    type: 'POST',
-                    data: {
-                        contents: $('#contents').val()
-                    }
-                });
-                jQuery.noConflict();
-                $('#journalModal').modal('hide');
-            }
-        </script>
+
 
         <!--Main content of page-->
         <div class="col-md-6 border border-top-0 border-bottom-0">
@@ -193,6 +198,25 @@
                 </div>
 
             </div>
+<%--            <div class="journalView" id="journalView">--%>
+<%--                <div class="row">--%>
+<%--                    <div>--%>
+<%--                        <table style="width: 100%" class="table table-bordered">--%>
+<%--                            <thead id="journalHead">--%>
+<%--                            <tr class="table-dark">--%>
+<%--                                <th style="text-align: center" scope="col" colspan="2">Quest Journal</th>--%>
+<%--                            </tr>--%>
+<%--                            </thead>--%>
+<%--                            <tbody>--%>
+<%--                            <tr>--%>
+<%--                                <th scope="row">Entries:</th>--%>
+<%--                                <td id="entryCell">Journal Entries Here</td>--%>
+<%--                            </tr>--%>
+<%--                            </tbody>--%>
+<%--                        </table>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
 
 
@@ -236,6 +260,19 @@
                             })
                     });
                 });
+            </script>
+
+            <script>
+                function getJournal(){
+                    $.ajax({
+                        url : 'JournalServlet',
+                        type: 'GET',
+                        success: function(data) {
+                            $("#entryCell").text(data.contents);
+                            $("#journalView").show();
+                        }
+                    });
+                }
             </script>
 
         </div>
