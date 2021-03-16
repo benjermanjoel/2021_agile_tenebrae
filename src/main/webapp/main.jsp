@@ -17,7 +17,7 @@
 
   <title>Dungeon Masters' Uber cool stat tracker!</title>
 </head>
-<body>
+<body background="assets/img/background.jpg">
 <%@include file="includes/navbar.jsp"%>
 <div class="container">
   <div class="jumbotron">

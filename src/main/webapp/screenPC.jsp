@@ -28,7 +28,7 @@
     <title>Player Character's Screen</title>
 </head>
 
-<body>
+<body background="assets/img/background.jpg">
 
 <!--Place navbar-->
 <%@include file="includes/navbar.jsp"%>

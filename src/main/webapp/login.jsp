@@ -19,7 +19,7 @@
     src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js">
   </script>
 </head>
-<body>
+<body background="assets/img/background.jpg">
   <div style="text-align: center">
     <h1>Login</h1>
     <form action="login" method="post">

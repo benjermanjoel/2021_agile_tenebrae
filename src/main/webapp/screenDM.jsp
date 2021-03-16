@@ -24,7 +24,7 @@
 
 </head>
 
-<body>
+<body background="assets/img/background.jpg">
 
 <!--Place navbar-->
 <%@include file="includes/navbar.jsp"%>
