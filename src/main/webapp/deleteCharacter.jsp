@@ -13,14 +13,14 @@
         Enter in the name of a character you would like to delete.
     </p>
 </head>
-<body>
+<body background="assets/img/background.jpg">
 <div class="container">
     <form action="DeleteCharacter" method="post">
         <div class="col">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
-        <button type="submit" class="btn btn-primary">Delete Character</button>
+        <button type="submit" class="btn btn-dark">Delete Character</button>
     </form>
     <h3 style="color: #2373c8">${message}</h3>
 </div>

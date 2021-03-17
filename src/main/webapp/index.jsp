@@ -33,7 +33,7 @@
   <!-- Custom styles for this template -->
   <link href="signin.css" rel="stylesheet">
 </head>
-<body class="text-center">
+<body background="assets/img/background.jpg" class="text-center">
 <!--
 <form class="form-signin" method="post" action="login">
   <img class="mb-4" src="assets/img/dd_ampersand.png" alt="" width="300" height="300">
@@ -53,7 +53,7 @@
   <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
 </form> -->
   <form class="form-signin" action="login" method="post">
-    <img class="mb-4" src="assets/img/dd_ampersand.png" alt="" width="300" height="300">
+    <img class="mb-4" src="assets/img/tenebrae-icon.png" alt="" width="300" height="300">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
     <label for="email">Email:</label>
@@ -68,7 +68,7 @@
     </div>
     <br>${message}
     <br><br>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+    <button class="btn btn-lg btn-primary btn-block btn btn-dark" type="submit">Login</button>
   </form>
 </body>
 </html>

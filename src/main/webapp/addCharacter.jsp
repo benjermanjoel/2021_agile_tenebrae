@@ -20,7 +20,7 @@
 
     <title>Dungeon Masters' Uber cool stat tracker!</title>
 </head>
-<body>
+<body background="assets/img/background.jpg">
 <%@include file="includes/navbar.jsp"%>
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -160,7 +160,7 @@
         <div class="col-auto">
             <p>
                 <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Click for Non-Player Character
+                    Click for Non-playable Character
                 </button>
             </p>
             <div class="collapse" id="collapseExample">
@@ -183,7 +183,7 @@
             </div>
         </div>
         <br>
-        <button type="submit" class="btn btn-primary">Create Character</button>
+        <button type="submit" class="btn btn-dark">Create Character</button>
     </form>
 </div>
 
