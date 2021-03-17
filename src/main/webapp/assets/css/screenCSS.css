@@ -1,3 +1,18 @@
+/* Styling for entirety of pages */
+body {
+    font-family: 'Merienda', cursive;
+
+}
+
+.smallFont {
+    font-family: 'Fondamento', cursive;
+}
+
+.smallFontBold {
+    font-family: 'Fondamento', cursive;
+    font-weight: bold;
+}
+
 /* Styling for headline of page */
 #headline {
     color: #0c63e4;
@@ -51,4 +66,9 @@
 /* Styling for main content section of page */
 .dashboardView {
     display: none;
+}
+
+/* Styling for add character section of page */
+.sliderNumbers {
+    font-size: 2.5em;
 }

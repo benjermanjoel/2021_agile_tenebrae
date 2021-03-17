@@ -18,7 +18,13 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <!-- Link to our CSS page -->
     <link href="assets/css/screenCSS.css" rel="stylesheet">
+
+    <!-- Google fonts link -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fondamento&family=Merienda:wght@700&display=swap" rel="stylesheet">
 
     <title>Dungeon Master's Screen</title>
 
@@ -55,7 +61,7 @@
                         <c:forEach var="pcList" items="${pcList}">
 
                                 <!-- TODO: Create link to database for character -->
-                                <a href="#" class="list-group-item list-group-item-action listOnClickPC">${pcList.name}</a>
+                                <a href="#" class="list-group-item list-group-item-action listOnClickPC smallFont">${pcList.name}</a>
 
                         </c:forEach>
                     </c:otherwise>
@@ -96,7 +102,7 @@
                 <div class="dashboardView" id="playerCharacter">
                     <div class="row">
                         <div>
-                            <table style="width: 100%" class="table table-bordered">
+                            <table style="width: 100%" class="table table-bordered smallFont">
                                 <thead id="pcStatHead">
                                     <tr class="table-dark">
                                         <th style="text-align: center" scope="col" colspan="2" id="nameCell">CHARACTER NAME HERE</th>
@@ -177,7 +183,7 @@
 
                     <div class="row">
                         <div>
-                            <table style="width: 100%" class="table table-bordered">
+                            <table style="width: 100%" class="table table-bordered smallFont">
                                 <thead id="npcStatHead">
                                 <tr class="table-dark">
                                     <th style="text-align: center" scope="col" colspan="2" id="npcNameCell">CHARACTER NAME HERE</th>
@@ -361,7 +367,7 @@
                             <h5>Weapon table is currently empty.</h5>
                         </c:when>
                         <c:otherwise>
-                            <table class="table table-sm table-bordered table-striped table-dark table-hover">
+                            <table class="table table-sm table-bordered table-striped table-dark table-hover smallFont">
                                 <thead>
                                 <tr>
                                     <th scope="col">Name</th>
@@ -397,7 +403,7 @@
                             <h5>Spell table is currently empty.</h5>
                         </c:when>
                         <c:otherwise>
-                            <table class="table table-sm table-bordered table-striped table-dark table-hover">
+                            <table class="table table-sm table-bordered table-striped table-dark table-hover smallFont">
                                 <thead>
                                 <tr>
                                     <th scope="col">Spell</th>
@@ -435,7 +441,7 @@
                             <h5>Item table is currently empty.</h5>
                         </c:when>
                         <c:otherwise>
-                            <table class="table table-sm table-bordered table-striped table-dark table-hover">
+                            <table class="table table-sm table-bordered table-striped table-dark table-hover smallFont">
                                 <thead>
                                 <tr>
                                     <th scope="col">Item</th>
