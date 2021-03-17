@@ -68,7 +68,7 @@
             </div>
 
             <div>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#journalModal">New Journal Entry</button>
+                <button type="button" class="btn btn-dark list-group-item-action" data-toggle="modal" data-target="#journalModal">New Journal Entry</button>
 
                 <div id="journalModal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-xl">
@@ -89,7 +89,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onclick="entrySubmit()">Add Entry</button>
+                                <button type="button" class="btn btn-dark" onclick="entrySubmit()">Add Entry</button>
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
             </div>
 
             <div>
-                <button type="button" class="btn btn-primary" onclick="getJournal()">View Journal</button>
+                <button type="button" class="btn btn-dark list-group-item-action getJournal" >View Journal</button>
             </div>
 
             <script>
@@ -263,16 +263,19 @@
             </script>
 
             <script>
-                function getJournal(){
-                    $.ajax({
-                        url : 'JournalServlet',
-                        type: 'GET',
-                        success: function(data) {
-                            $("#entryCell").text(data.value);
-                            $("#journalView").show();
-                        }
+                $( document ).ready(function() {
+                    $(".getJournal").click(function() {
+                            $.ajax('JournalServlet',
+                                {
+                                dataType: 'json',
+                                type: 'get',
+                                success: function(data) {
+                                    $("#entryCell").json(data.notes);
+                                    $("#journalView").show();
+                                }
+                            })
                     });
-                }
+                });
             </script>
 
         </div>
