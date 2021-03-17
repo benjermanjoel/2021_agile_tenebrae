@@ -29,7 +29,7 @@
 <%@include file="includes/navbar.jsp"%>
 <div class="container">
   <div class="jumbotron">
-    <h1 class="display-4">Welcome back!</h1>
+    <h1 class="display-4" id="headline">Welcome back!</h1>
     <b>${user.firstName} (${user.email})</b>
     <br><br>
   </div>

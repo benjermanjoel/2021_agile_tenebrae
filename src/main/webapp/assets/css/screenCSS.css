@@ -15,11 +15,9 @@ body {
 
 /* Styling for headline of page */
 #headline {
-    color: #0c63e4;
+    color: #e43834;
     font-weight: 550;
     padding: 25px 0px;
-    /* Copied .border properties from bootstrap files for border-bottom to match*/
-    border-bottom: 1px solid #dee2e6;
 }
 
 /* Styling for "left column" section of page */
