@@ -58,7 +58,7 @@
                     <c:forEach var="pcList" items="${pcList}">
 
 
-                            <!-- TODO: Create link to database for character -->
+                            <!-- Create link to database for character -->
                             <a href="#" class="list-group-item list-group-item-action listOnClickPC">${pcList.name}</a>
 
 
@@ -276,7 +276,10 @@
                                 type: 'get',
                                     timeout: 1000,
                                 success: function(data) {
-                                    $("#entryCell").text(data.notes);
+                                    for (entry in data){
+                                        console.log(data.entry);
+                                    }
+                                    $("#entryCell").text(data);
                                     $("#journalView").show();
                                     console.log(data);
                                 }
