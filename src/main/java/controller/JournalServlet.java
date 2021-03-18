@@ -1,6 +1,8 @@
 package controller;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import dao.CampaignDAO;
 import dao.CampaignDAOException;
 import dao.CampaignDAOImpl;
@@ -22,8 +24,11 @@ public class JournalServlet extends HttpServlet {
         try {
             final List notes = campaignDAO.retrieveNotes(user_id);
             Gson gson = new Gson();
-            String json = gson.toJson(notes);
-            response.getWriter().println(json);
+//            String json = gson.toJson(notes);
+//            response.getWriter().println(json);
+            JsonElement element = gson.toJsonTree(notes);
+            JsonArray jsonArray = element.getAsJsonArray();
+            response.getWriter().print(jsonArray);
             request.setAttribute("message", "Retrieved journal entries.");
 
         } catch (CampaignDAOException exception) {

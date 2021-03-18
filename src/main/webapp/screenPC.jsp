@@ -67,8 +67,10 @@
             </c:choose>
             </div>
 
+            <br>
+
             <div>
-                <button type="button" class="btn btn-dark list-group-item-action" data-toggle="modal" data-target="#journalModal">New Journal Entry</button>
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#journalModal">New Journal Entry</button>
 
                 <div id="journalModal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-xl">
@@ -96,8 +98,10 @@
                 </div>
             </div>
 
+            <br>
+
             <div>
-                <button type="button" class="btn btn-dark list-group-item-action getJournal" >View Journal</button>
+                <button type="button" class="btn btn-dark" id="getJournal" >View Journal</button>
             </div>
 
             <script>
@@ -264,14 +268,17 @@
 
             <script>
                 $( document ).ready(function() {
-                    $(".getJournal").click(function() {
+                    $("#journalView").hide();
+                    $("#getJournal").on('click', function() {
                             $.ajax('JournalServlet',
                                 {
                                 dataType: 'json',
                                 type: 'get',
+                                    timeout: 1000,
                                 success: function(data) {
-                                    $("#entryCell").json(data.notes);
+                                    $("#entryCell").text(data.notes);
                                     $("#journalView").show();
+                                    console.log(data);
                                 }
                             })
                     });
