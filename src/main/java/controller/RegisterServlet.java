@@ -26,7 +26,7 @@ public class RegisterServlet extends HttpServlet {
             String destPage = "register.jsp";
 
             Connection con = DBUtility.createConnection();
-            PreparedStatement ps = con.prepareStatement("insert into users values (?, ?, ?, ?)");
+            PreparedStatement ps = con.prepareStatement("insert into users(firstname, lastname, password, email) values (?, ?, ?, ?)");
 
             ps.setString(1, fName);
             ps.setString(2, lName);
