@@ -32,7 +32,7 @@
 <%@include file="includes/navbar.jsp"%>
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">Modify a Character</h1>
+        <h1 class="display-4" id="headline">Modify a Character</h1>
         <p class = "lead">Enter in all the required fields below to modify a character</p>
     </div>
 </div>
@@ -215,7 +215,7 @@
         <br>
         <button type="submit" class="btn btn-primary">Modify Character</button>
     </form>
-    <h3 style="color: #2373c8">${message}</h3>
+    <h3 style="color: #e43834">${message}</h3>
 </div>
 
 

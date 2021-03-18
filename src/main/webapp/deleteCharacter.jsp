@@ -27,18 +27,20 @@
 <body background="assets/img/background.jpg">
 
   <%@include file="includes/navbar.jsp"%>
-  <p>
-    Enter in the name of a character you would like to delete.
-  </p>
-  <div class="container">
-    <form action="DeleteCharacter" method="post">
-        <div class="col">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-        </div>
-        <button type="submit" class="btn btn-dark">Delete Character</button>
-    </form>
-    <h3 style="color: #2373c8">${message}</h3>
-</div>
+
+  <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+          <h1 class="display-4" id="headline">Delete a Character</h1>
+          <p class="lead">Enter in the name of a character you would like to delete.</p>
+          <form action="DeleteCharacter" method="post">
+              <div class="col">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" id="name" name="name" required>
+              </div>
+              <button type="submit" class="btn btn-dark">Delete Character</button>
+          </form>
+          <h3 style="color: #e43834">${message}</h3>
+      </div>
+  </div>
 </body>
 </html>
