@@ -205,7 +205,7 @@
             <div class="journalView" id="journalView">
                 <div class="row">
                     <div>
-                        <table style="width: 100%" class="table table-bordered">
+                        <table style="width: 100%" class="table table-bordered" id="journalTable">
                             <thead id="journalHead">
                             <tr class="table-dark">
                                 <th style="text-align: center" scope="col" colspan="2">Quest Journal</th>
@@ -213,8 +213,6 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <th scope="row">Entries:</th>
-                                <td id="entryCell">Journal Entries Here</td>
                             </tr>
                             </tbody>
                         </table>
@@ -277,6 +275,11 @@
                                     timeout: 1000,
                                 success: function(data) {
                                     for (entry in data){
+
+                                        $('#journalTable tr:last').after("<tr>" +
+                                            "<th scope=row>Entry:</th>" +
+                                            "<td>" + data[entry] + "</td></tr>");
+
                                         console.log(data.entry);
                                     }
                                     $("#entryCell").text(data);
