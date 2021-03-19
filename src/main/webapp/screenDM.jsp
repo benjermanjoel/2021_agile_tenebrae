@@ -127,6 +127,8 @@
                     </div>
                 </div>
 
+                <br>
+
                 <div>
                     <button type="button" class="btn btn-dark" onclick="getJournal">View Journal</button>
                 </div>
