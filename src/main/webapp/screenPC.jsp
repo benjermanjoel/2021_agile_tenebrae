@@ -64,7 +64,7 @@
                     <c:forEach var="pcList" items="${pcList}">
 
 
-                            <!-- TODO: Create link to database for character -->
+                            <!-- Create link to database for character -->
                             <a href="#" class="list-group-item list-group-item-action listOnClickPC smallFont">${pcList.name}</a>
 
 
@@ -72,6 +72,8 @@
                 </c:otherwise>
             </c:choose>
             </div>
+
+            <br>
 
             <div>
                 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#journalModal">New Journal Entry</button>
@@ -102,21 +104,28 @@
                 </div>
             </div>
 
+            <br>
+
+            <div>
+                <button type="button" class="btn btn-dark" id="getJournal" >View Journal</button>
+            </div>
+
+            <script>
+                function entrySubmit(){
+                    $.ajax({
+                        url : 'JournalServlet',
+                        type: 'POST',
+                        data: {
+                            contents: $('#contents').val()
+                        }
+                    });
+                    jQuery.noConflict();
+                    $('#journalModal').modal('hide');
+                }
+            </script>
         </div>
 
-        <script>
-            function entrySubmit(){
-                $.ajax({
-                    url : 'JournalServlet',
-                    type: 'POST',
-                    data: {
-                        contents: $('#contents').val()
-                    }
-                });
-                jQuery.noConflict();
-                $('#journalModal').modal('hide');
-            }
-        </script>
+
 
         <!--Main content of page-->
         <div class="col-md-6 border border-top-0 border-bottom-0">
@@ -199,6 +208,23 @@
                 </div>
 
             </div>
+            <div class="journalView" id="journalView">
+                <div class="row">
+                    <div>
+                        <table style="width: 100%" class="table table-bordered" id="journalTable">
+                            <thead id="journalHead">
+                            <tr class="table-dark">
+                                <th style="text-align: center" scope="col" colspan="2">Quest Journal</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -238,6 +264,32 @@
                                     $("#playerCharacter").show();
                                     <!-- console log for testing -->
                                     console.log(data);
+                                }
+                            })
+                        $("#journalView").hide();
+                    });
+                });
+            </script>
+
+            <script>
+                $( document ).ready(function() {
+                    $("#journalView").hide();
+                    $("#getJournal").on('click', function() {
+                            $.ajax('JournalServlet',
+                                {
+                                dataType: 'json',
+                                type: 'get',
+                                    timeout: 1000,
+                                success: function(data) {
+                                    for (entry in data){
+
+                                        $('#journalTable tr:last').after("<tr>" +
+                                            "<th scope=row>Entry:</th>" +
+                                            "<td>" + data[entry] + "</td></tr>");
+
+                                    }
+                                    $("#entryCell").text(data);
+                                    $("#journalView").show();
                                 }
                             })
                     });

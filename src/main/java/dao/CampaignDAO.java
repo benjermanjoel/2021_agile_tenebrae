@@ -21,6 +21,6 @@ public interface CampaignDAO {
     void deletePC(String name) throws CampaignDAOException;
     void deleteNPC(String name) throws CampaignDAOException;
     void addNote(Integer user_id, String contents) throws CampaignDAOException;
-    void retrieveNotes(Integer user_id) throws CampaignDAOException;
+    List retrieveNotes(Integer user_id) throws CampaignDAOException;
 
 }
