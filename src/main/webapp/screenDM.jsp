@@ -94,10 +94,6 @@
                     </div>
                 </div>
             </div>
-            
-            <div id="dice">
-                <%@include file="includes/dice.jsp"%>
-            </div>
 
             <!---------------------------Main content of page------------------------->
 

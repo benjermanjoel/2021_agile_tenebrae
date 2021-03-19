@@ -18,6 +18,7 @@
         <%@include file="includes/registerValidate.jsp"%>
 
         <link href="signin.css" rel="stylesheet">
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     </head>
     <body>
         <form class="form-signin" method="post" action="register">
