@@ -98,6 +98,8 @@
                     </div>
                 </div>
 
+                <br>
+
                 <div>
                     <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#journalModal">New Journal Entry</button>
 
@@ -130,7 +132,7 @@
                 <br>
 
                 <div>
-                    <button type="button" class="btn btn-dark" onclick="getJournal">View Journal</button>
+                    <button type="button" class="btn btn-dark" id="getJournal">View Journal</button>
                 </div>
 
                 <script>
@@ -323,6 +325,23 @@
                     </div>
                 </div>
 
+                <div class="journalView" id="journalView">
+                    <div class="row">
+                        <div>
+                            <table style="width: 100%" class="table table-bordered" id="journalTable">
+                                <thead id="journalHead">
+                                <tr class="table-dark">
+                                    <th style="text-align: center" scope="col" colspan="2">Quest Journal</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
                 <!-- When doc is ready, run function-->
                 <script>
                     $( document ).ready(function() {
@@ -404,6 +423,31 @@
                                 })
                         });
                      });
+                </script>
+
+                <script>
+                    $( document ).ready(function() {
+                        $("#journalView").hide();
+                        $("#getJournal").on('click', function() {
+                            $.ajax('JournalServlet',
+                                    {
+                                        dataType: 'json',
+                                        type: 'get',
+                                        timeout: 1000,
+                                        success: function(data) {
+                                            for (entry in data){
+
+                                                $('#journalTable tr:last').after("<tr>" +
+                                                        "<th scope=row>Entry:</th>" +
+                                                        "<td>" + data[entry] + "</td></tr>");
+
+                                            }
+                                            $("#entryCell").text(data);
+                                            $("#journalView").show();
+                                        }
+                                    })
+                        });
+                    });
                 </script>
 
             </div>
