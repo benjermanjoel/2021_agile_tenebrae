@@ -14,6 +14,13 @@
   <!-- Bootstrap core CSS -->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
+  <!-- Link to our CSS page -->
+  <link href="assets/css/screenCSS.css" rel="stylesheet">
+
+  <!-- Google fonts link -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fondamento&family=Merienda:wght@700&display=swap" rel="stylesheet">
+
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -33,31 +40,14 @@
   <!-- Custom styles for this template -->
   <link href="signin.css" rel="stylesheet">
 </head>
-<body class="text-center">
-<!--
-<form class="form-signin" method="post" action="login">
-  <img class="mb-4" src="assets/img/dd_ampersand.png" alt="" width="300" height="300">
-  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+<body background="assets/img/background.jpg" class="text-center">
 
-  <label for="email" class="sr-only">Email address</label>
-  <input type="email" id="email" class="form-control" placeholder="Email address" required autofocus>
-
-  <label for="password" class="sr-only">Password</label>
-  <input type="password" id="password" class="form-control" placeholder="Password" required>
-  <div class="checkbox mb-3">
-    <label>
-      <input type="checkbox" value="remember-me"> Remember me
-    </label>
-  </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
-</form> -->
   <form class="form-signin" action="login" method="post">
-    <img class="mb-4" src="assets/img/dd_ampersand.png" alt="" width="300" height="300">
+    <img class="mb-4" src="assets/img/tenebrae-icon.png" alt="" width="300" height="300">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
     <label for="email">Email:</label>
-    <input class="form-control" id="email" name="email" size=""30/>
+    <input class="form-control" id="email" name="email" size="30"/>
     <br><br>
     <label for="password">Password:</label>
     <input class="form-control" type="password" id="password" name="password" size="30" />
@@ -68,7 +58,9 @@
     </div>
     <br>${message}
     <br><br>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+    <button class="btn btn-lg btn-primary btn-block btn btn-dark" type="submit">Login</button>
+    <a href="register.jsp">No account? Register.</a>
   </form>
+
 </body>
 </html>

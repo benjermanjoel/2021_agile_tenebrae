@@ -18,27 +18,36 @@
     <%--Javascript--%>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
+    <!-- Link to our CSS page -->
+    <link href="assets/css/screenCSS.css" rel="stylesheet">
+
+    <!-- Google fonts link -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fondamento&family=Merienda:wght@700&display=swap" rel="stylesheet">
+
     <title>Dungeon Masters' Uber cool stat tracker!</title>
 </head>
-<body>
+
+<body background="assets/img/background.jpg">
 <%@include file="includes/navbar.jsp"%>
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">Add a new Character</h1>
+        <h1 class="display-4" id="headline">Add a new Character</h1>
         <p class = "lead">Enter in all the required fields below to add a new playable or non-playable character!</p>
-        <h3 style="color: #2373c8">${message}</h3>
+        <h3 style="color: #e43834">${message}</h3>
     </div>
 </div>
 
 <%-- Form for adding a new character.--%>
-<div class="container">
+<div class="container smallFont">
     <form action="addCharacter" method="post">
         <div class="col">
-            <label for="name">Name</label>
+            <label for="name" class="smallFontBold">Name</label>
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
+        <br>
         <div class="col">
-            <label for="level">Level</label>
+            <label for="level" class="smallFontBold">Level</label>
             <select class="form-select" id="level" name="level" required>
                 <option value="" selected disabled>Choose...</option>
                 <option value="1">1</option>
@@ -63,8 +72,9 @@
                 <option value="20">20</option>
             </select>
         </div>
+        <br>
         <div class="col">
-            <label for="char_class">Class</label>
+            <label for="char_class" class="smallFontBold">Class</label>
             <select class="form-select" id="char_class" name="class" required>
                 <option selected disabled>Choose...</option>
                 <option value="Barbarian">Barbarian</option>
@@ -81,9 +91,10 @@
                 <option value="Wizard">Wizard</option>
             </select>
         </div>
+        <br>
         <div class="form-row">
             <div class="col">
-                <label for="race">Race</label>
+                <label for="race" class="smallFontBold">Race</label>
                 <select class="form-select" id="race" name="race" required>
                     <option selected disabled>Choose...</option>
                     <option value="Dragonborn">Dragonborn</option>
@@ -98,18 +109,21 @@
                     <option value="Tiefling">Tiefling</option>
                 </select>
             </div>
+            <br>
             <div class="col">
-                <label for="hitPts">Hit Points</label>
+                <label for="hitPts" class="smallFontBold">Hit Points</label>
                 <input type="text" class="form-control" id="hitPts" name="hitPts" aria-placeholder="45" required>
             </div>
+            <br>
             <div class="col">
-                <label for="armorClass">Armor Class</label>
+                <label for="armorClass" class="smallFontBold">Armor Class</label>
                 <input type="text" class="form-control" id="armorClass" name="armorClass" aria-placeholder="12" required>
             </div>
         </div>
+        <br>
         <div class="form-row">
             <div class="col">
-                <label for="proficiency">Proficiency</label>
+                <label for="proficiency" class="smallFontBold">Proficiency</label>
                 <select class="form-select" id="proficiency" name="proficiency" required>
                     <option selected disabled>Choose...</option>
                     <option value="2">+2</option>
@@ -119,52 +133,62 @@
                     <option value="6">+6</option>
                 </select>
             </div>
+            <br>
             <div class="col">
-                <label for="initiative">Initiative</label>
+                <label for="initiative" class="smallFontBold">Initiative</label>
                 <input type="text" class="form-control" id="initiative" name="initiative" aria-placeholder="2" required>
             </div>
+            <br>
             <div class="col">
-                <label for="speed">Speed</label>
+                <label for="speed" class="smallFontBold">Speed</label>
                 <input type="text" class="form-control" id="speed" name="speed" aria-placeholder="30" required>
             </div>
         </div>
+        <br>
         <div class="form-group">
-            <label for="strength" class="form-label">Strength</label>
+            <label for="strength" class="form-label smallFontBold">Strength</label>
             <input type="range" class="form-range" min="1" max="20" id="strength" name="strength" oninput="this.nextElementSibling.value = this.value" required>
-            <output>12</output>
+            <output class="sliderNumbers">11</output>
             <br>
-            <label for="dexterity" class="form-label">Dexterity</label>
+            <br>
+            <label for="dexterity" class="form-label smallFontBold">Dexterity</label>
             <input type="range" class="form-range" min="1" max="20" id="dexterity" name="dexterity" oninput="this.nextElementSibling.value = this.value" required>
-            <output>12</output>
+            <output class="sliderNumbers">11</output>
             <br>
-            <label for="constitution" class="form-label">Constitution</label>
+            <br>
+            <label for="constitution" class="form-label smallFontBold">Constitution</label>
             <input type="range" class="form-range" min="1" max="20" id="constitution" name="constitution" oninput="this.nextElementSibling.value = this.value" required>
-            <output>12</output>
+            <output class="sliderNumbers">11</output>
             <br>
-            <label for="intelligence" class="form-label">Intelligence</label>
+            <br>
+            <label for="intelligence" class="form-label smallFontBold">Intelligence</label>
             <input type="range" class="form-range" min="1" max="20" id="intelligence" name="intelligence" oninput="this.nextElementSibling.value = this.value" required>
-            <output>12</output>
+            <output class="sliderNumbers">11</output>
             <br>
-            <label for="wisdom" class="form-label">Wisdom</label>
+            <br>
+            <label for="wisdom" class="form-label smallFontBold">Wisdom</label>
             <input type="range" class="form-range" min="1" max="20" id="wisdom" name="wisdom" oninput="this.nextElementSibling.value = this.value" required>
-            <output>12</output>
+            <output class="sliderNumbers">11</output>
             <br>
-            <label for="charisma" class="form-label">Charisma</label>
+            <br>
+            <label for="charisma" class="form-label smallFontBold">Charisma</label>
             <input type="range" class="form-range" min="1" max="20" id="charisma" name="charisma" oninput="this.nextElementSibling.value = this.value" required>
-            <output>12</output>
+            <output class="sliderNumbers">11</output>
+            <br>
+            <br>
         </div>
         <div class="mb-3">
-            <label for="background" class="form-label">Background</label>
+            <label for="background" class="form-label smallFontBold">Background</label>
             <textarea class="form-control" id="background" name="background" rows="3" required></textarea>
         </div>
         <div class="col-auto">
             <p>
                 <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Click for Non-Player Character
+                    Click for Non-playable Character
                 </button>
             </p>
             <div class="collapse" id="collapseExample">
-                <label for="type">Type</label>
+                <label for="type" class="smallFontBold">Type</label>
                 <div>
                     <select class="form-select" id="type" name="type">
                         <option selected disabled>Choose...</option>
@@ -172,18 +196,20 @@
                         <option value="NonCombatNPC">Non-Combat NPC</option>
                     </select>
                 </div>
+                <br>
                 <div class="col">
-                    <label for="location">Location</label>
+                    <label for="location" class="smallFontBold">Location</label>
                     <input type="text" class="form-control" id="location" name="location">
                 </div>
+                <br>
                 <div class="mb-3">
-                    <label for="traits" class="form-label">Traits</label>
+                    <label for="traits" class="form-label smallFontBold">Traits</label>
                     <textarea class="form-control" id="traits" name="traits" rows="3"></textarea>
                 </div>
             </div>
         </div>
         <br>
-        <button type="submit" class="btn btn-primary">Create Character</button>
+        <button type="submit" class="btn btn-dark">Create Character</button>
     </form>
 </div>
 
