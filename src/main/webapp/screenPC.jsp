@@ -260,6 +260,7 @@
                                     console.log(data);
                                 }
                             })
+                        $("#journalView").hide();
                     });
                 });
             </script>
@@ -280,11 +281,9 @@
                                             "<th scope=row>Entry:</th>" +
                                             "<td>" + data[entry] + "</td></tr>");
 
-                                        console.log(data.entry);
                                     }
                                     $("#entryCell").text(data);
                                     $("#journalView").show();
-                                    console.log(data);
                                 }
                             })
                     });
